@@ -1,19 +1,45 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export const Navbar = () => {
-	return (
-		<nav className="navbar navbar-light bg-light">
-			<div className="container">
-				<Link to="/">
-					<span className="navbar-brand mb-0 h1">React Boilerplate</span>
-				</Link>
-				<div className="ml-auto">
-					<Link to="/demo">
-						<button className="btn btn-primary">Check the Context in action</button>
-					</Link>
+export const Navbar = () => (
+	<div>
+		<div>
+			<figure>
+				<div>
+					<a href="/">
+						<figure>
+							<img alt="Navbar logo" src="https://trello.com/1/cards/6487673b8a84db1e093e494c/attachments/648d75a034e7c5e96de2b244/previews/648d75a034e7c5e96de2b295/download/image.png" />
+						</figure>
+						<div>
+							<div></div>
+						</div>
+					</a>
 				</div>
-			</div>
-		</nav>
-	);
-};
+			</figure>
+		</div>
+		<div>
+			<nav>
+				<div>
+					<div>
+						<a href="/destinations">Home</a>
+					</div>
+				</div>
+				<div>
+					<div>
+						<a href="/day-tours">Private Area</a>
+					</div>
+				</div>
+				<div>
+					<div>
+						<a href="/about">Contact</a>
+					</div>
+				</div>
+				<div>
+					<div>
+						<a href="/contact">Sign Up / Log In</a>
+					</div>
+				</div>
+			</nav>
+		</div>
+	</div>
+);
