@@ -8,11 +8,8 @@ export const Navbar = () => (
 				<div>
 					<a href="/">
 						<figure>
-							<img alt="Navbar logo" src="https://trello.com/1/cards/6487673b8a84db1e093e494c/attachments/648d75a034e7c5e96de2b244/previews/648d75a034e7c5e96de2b295/download/image.png" />
+							<img alt="Navbar logo"  style={{ height: '100px', width: '100px' }} src="https://trello.com/1/cards/6487673b8a84db1e093e494c/attachments/648d75a034e7c5e96de2b244/previews/648d75a034e7c5e96de2b295/download/image.png" />
 						</figure>
-						<div>
-							<div></div>
-						</div>
 					</a>
 				</div>
 			</figure>
@@ -26,12 +23,12 @@ export const Navbar = () => (
 				</div>
 				<div>
 					<div>
-						<a href="/day-tours">Private Area</a>
+						<a href="/day-tours">Contact</a>
 					</div>
 				</div>
 				<div>
 					<div>
-						<a href="/about">Contact</a>
+						<a href="/about">Private Area</a>
 					</div>
 				</div>
 				<div>
