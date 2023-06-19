@@ -7,8 +7,8 @@ export const Home = () => {
 	const { store, actions } = useContext(Context);
 
 	return (
-		<div className="text-center mt-5">
-			<h1>IBENTO</h1>
+		<div className="text-center">
+			<h1 className="mt-6" >IBENTO</h1>
 			<div id="carouselExampleIndicators" class="carousel slide">
 				<div class="carousel-indicators">
 					<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -23,7 +23,7 @@ export const Home = () => {
 					<img src="https://cdn.papershift.com/20220926102759/Team-building.jpeg" className="d-block w-100 slider-image" alt="Slider Image"/>
 					</div>
 					<div className="carousel-item">
-					<img src="https://future.inese.es/wp-content/uploads/2018/11/eventos-organizacion.jpg" className="d-block w-100 slider-image" alt="Slider Image"/>
+					<img src="https://www.elconfidencialdigital.com/media/elconfidencialdigital/images/2018/12/27/2018122712353083998.jpg" className="d-block w-100 slider-image" alt="Slider Image"/>
 					</div>
 				</div>
 				<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
