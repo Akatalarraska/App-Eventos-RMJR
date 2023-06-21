@@ -110,6 +110,8 @@ class Factura(db.Model):
     evento_id = db.Column(db.Integer, db.ForeignKey('evento.id'))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     fecha = db.Column(db.String(10), unique=False, nullable=False)
+    cantidad = db.Column(db.Integer, nullable=True)
+    precio = db.Column(db.Integer, nullable=True)
     pasarela_id = db.Column(db.String(120), unique=True, nullable=False)
     evento = db.relationship('Evento', backref= 'factura', lazy=True)
 
