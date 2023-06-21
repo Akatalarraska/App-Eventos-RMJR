@@ -1,0 +1,49 @@
+@import url("https://fonts.googleapis.com/css?family=Fira+Sans");
+
+@media (min-width: 1025px) {
+  .h-custom {
+    height: 100vh !important;
+  }
+}
+
+.card-registration .select-input.form-control[readonly]:not([disabled]) {
+  font-size: 1rem;
+  line-height: 2.15;
+  padding-left: 0.75em;
+  padding-right: 0.75em;
+  opacity: 0.2;
+}
+
+.card-registration .select-arrow {
+  top: 13px;
+}
+
+.gradient-custom-2 {
+  /* background: linear-gradient(to right, #777dbd, #9da5c9); */
+  background-color: #BA968C;
+}
+
+.bg-indigo {
+  background-color: #9DA5C9;
+  color: #efeced;
+}
+
+::placeholder {
+  font-family: "Fira Sans", sans-serif;
+  font-size: 14px;
+  opacity: 1;
+}
+
+@media (min-width: 992px) {
+  .card-registration-2 .bg-indigo {
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+  }
+}
+
+@media (max-width: 991px) {
+  .card-registration-2 .bg-indigo {
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+  }
+}

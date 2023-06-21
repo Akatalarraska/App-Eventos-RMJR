@@ -9,7 +9,7 @@ export const Signup = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
-   const {actions} = useContext(Context);   
+  const { actions } = useContext(Context);
 
 
 
@@ -40,6 +40,9 @@ export const Signup = () => {
         }
       });
     };
+
+ 
+    
 
     loginBtn.addEventListener("click", handleLoginClick);
     signupBtn.addEventListener("click", handleSignupClick);
@@ -106,7 +109,44 @@ export const Signup = () => {
             onChange={(event) => setPassword(event.target.value)} />
         </div>
         <button className="submit-btn">Sign up</button>
+
+
+
+        <div className="row mb-4 additional-elements">
+          <div className="col-md-12 d-flex justify-content-center">
+            {/* Checkbox */}
+            <div className="form-check mb-3 mb-md-0">
+              <input
+                className="form-check-input"
+                type="checkbox"
+                defaultValue=""
+                id="loginCheck"
+                defaultChecked=""
+              />
+              <label className="form-check-label" htmlFor="loginCheck">
+                {" "}
+                Remember me{" "}
+              </label>
+            </div>
+          </div>
+        </div>
+        <div className="text-center mb-3 additional-elements">
+          <p>Sign up with:</p>
+          <button type="button" className="btn btn-dark btn-floating mx-1">
+            <i className="fab fa-facebook-f" />
+          </button>
+          <button type="button" className="btn btn-dark btn-floating mx-1">
+            <i className="fab fa-google" />
+          </button>
+          <button type="button" className="btn btn-dark btn-floating mx-1">
+            <i className="fab fa-twitter" />
+          </button>
+          <button type="button" className="btn btn-dark btn-floating mx-1">
+            <i className="fab fa-linkedin" />
+          </button>
+        </div>
       </form>
+
       <form className="login slide-up"
         onSubmit={handleLogin}
       >
@@ -131,7 +171,30 @@ export const Signup = () => {
               onChange={(event) => setPassword(event.target.value)} />
           </div>
           <button className="submit-btn">Log in</button>
+          <div className="row mb-4">
+            <div className="col-md-6 d-flex justify-content-center">
+              {/* Checkbox */}
+              <div className="form-check mb-3 mb-md-0">
+                <input
+                  className="form-check-input"
+                  type="checkbox"
+                  defaultValue=""
+                  id="loginCheck"
+                  defaultChecked=""
+                />
+                <label className="form-check-label" htmlFor="loginCheck">
+                  {" "}
+                  Remember me{" "}
+                </label>
+              </div>
+            </div>
+            <div className="col-md-6 d-flex justify-content-center">
+              {/* Simple link */}
+              <a href="#!">Forgot password?</a>
+            </div>
+          </div>
         </div>
+
       </form>
     </div>
   );
