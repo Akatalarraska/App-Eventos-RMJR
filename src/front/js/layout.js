@@ -7,6 +7,8 @@ import { Home } from "./pages/home";
 import { Demo } from "./pages/demo";
 import { Single } from "./pages/single";
 import injectContext from "./store/appContext";
+import {Signup} from "./pages/signup"
+import {CompanySignup} from "./pages/companysignup"
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
@@ -27,6 +29,8 @@ const Layout = () => {
                     <div className="flex-grow-1">
                         <Routes>
                             <Route element={<Home />} path="/" />
+                            <Route element={<Signup />} path="/signup" />
+                            <Route element={<CompanySignup />} path="/companysignup" />
                             <Route element={<Demo />} path="/demo" />
                             <Route element={<Single />} path="/single/:theid" />
                             <Route element={<h1>Not found!</h1>} />
@@ -35,7 +39,7 @@ const Layout = () => {
                     <Footer />
                 </ScrollToTop>
             </BrowserRouter>
-        </div>
+         </div>
     );
 };
 
