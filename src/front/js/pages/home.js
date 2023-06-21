@@ -18,7 +18,7 @@ export const Home = () => {
 				</div>
 				<div className="carousel-inner">
 					<div className="carousel-item active">
-						<img src="https://www.joanestradaevents.com/media/eventos-corporativos/eventos-empresas/28_junio_noche_mail-131.jpg" className="d-block w-100 slider-image" alt="Slider Image" />
+						<img src="https://swissrents.com/wp-content/uploads/2022/08/Sala-de-reuniones-1-1.jpg" className="d-block w-100 slider-image" alt="Slider Image" />
 					</div>
 					<div className="carousel-item">
 						<img src="https://cdn.papershift.com/20220926102759/Team-building.jpeg" className="d-block w-100 slider-image" alt="Slider Image" />
