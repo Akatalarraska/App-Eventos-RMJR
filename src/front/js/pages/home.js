@@ -40,7 +40,7 @@ export const Home = () => {
 			<hr className="featurette-divider" />
 
 		
-			<h2>Eventos destacados</h2>
+			<h1>Eventos destacados</h1>
 
 			<div className="container marketing">
 				<div className="row">
@@ -103,15 +103,100 @@ export const Home = () => {
 						</svg>
 					</div>
 				</div>
+			</div>	
 
 				<hr className="featurette-divider" />
 
-				// añadir cuadricula de servicios
+		<h1>TIPOS DE EVENTOS</h1>
+		
+		<div className="cuadricula_home">
+			<div className="row">
+				<div className="col-md-4 col-sm-6 content-block content-block-style-4">
+					<div className="content-block-container text-center" style={{ height: '293px' }}>
+						<div className="image-block">
+							<div className="image-block-container">
+								<img src="https://impulsapopular.com/wp-content/uploads/2020/01/4624-Lanzamiento-de-productos-qu%C3%A9-elementos-tener-en-cuenta.jpg" alt="Lanzamientos de productos" style={{ height: '250px', width: '250px', borderRadius: '20px' }} />
+							</div>
+						</div>
+						<a href="#" title="Lanzamientos de productos" className="btn btn-gfort-white wave-effect">
+							<h5>Lanzamientos de productos</h5>
+						</a>
+					</div>
+				</div>
 
+				<div className="col-md-4 col-sm-6 content-block content-block-style-4">
+					<div className="content-block-container text-center" style={{ height: '293px' }}>
+						<div className="image-block">
+							<div className="image-block-container">
+								<img src="https://impulsapopular.com/wp-content/uploads/2020/01/4624-Lanzamiento-de-productos-qu%C3%A9-elementos-tener-en-cuenta.jpg" alt="Lanzamientos de productos" style={{ height: '250px', width: '250px', borderRadius: '20px' }} />
+							</div>
+						</div>
+						<a href="#" title="Lanzamientos de productos" className="btn btn-gfort-white wave-effect">
+							<h5>Lanzamientos de productos</h5>
+						</a>
+					</div>
+				</div>
 
-				<hr className="featurette-divider" />
+				<div className="col-md-4 col-sm-6 content-block content-block-style-4">
+					<div className="content-block-container text-center" style={{ height: '293px' }}>
+						<div className="image-block">
+							<div className="image-block-container">
+								<img src="https://impulsapopular.com/wp-content/uploads/2020/01/4624-Lanzamiento-de-productos-qu%C3%A9-elementos-tener-en-cuenta.jpg" alt="Lanzamientos de productos" style={{ height: '250px', width: '250px', borderRadius: '20px' }} />
+							</div>
+						</div>
+						<a href="#" title="Lanzamientos de productos" className="btn btn-gfort-white wave-effect">
+							<h5>Lanzamientos de productos</h5>
+						</a>
+					</div>
+				</div>
 
+				<div className="col-md-4 col-sm-6 content-block content-block-style-4">
+					<div className="content-block-container text-center" style={{ height: '293px' }}>
+						<div className="image-block">
+							<div className="image-block-container">
+								<img src="https://impulsapopular.com/wp-content/uploads/2020/01/4624-Lanzamiento-de-productos-qu%C3%A9-elementos-tener-en-cuenta.jpg" alt="Lanzamientos de productos" style={{ height: '250px', width: '250px', borderRadius: '20px' }} />
+							</div>
+						</div>
+						<a href="#" title="Lanzamientos de productos" className="btn btn-gfort-white wave-effect">
+							<h5>Lanzamientos de productos</h5>
+						</a>
+					</div>
+				</div>
+
+				<div className="col-md-4 col-sm-6 content-block content-block-style-4">
+					<div className="content-block-container text-center" style={{ height: '293px' }}>
+						<div className="image-block">
+							<div className="image-block-container">
+								<img src="https://impulsapopular.com/wp-content/uploads/2020/01/4624-Lanzamiento-de-productos-qu%C3%A9-elementos-tener-en-cuenta.jpg" alt="Lanzamientos de productos" style={{ height: '250px', width: '250px', borderRadius: '20px' }} />
+							</div>
+						</div>
+						<a href="#" title="Lanzamientos de productos" className="btn btn-gfort-white wave-effect">
+							<h5>Lanzamientos de productos</h5>
+						</a>
+					</div>
+				</div>
+
+				<div className="col-md-4 col-sm-6 content-block content-block-style-4">
+					<div className="content-block-container text-center" style={{ height: '293px' }}>
+						<div className="image-block">
+							<div className="image-block-container">
+								<img src="https://impulsapopular.com/wp-content/uploads/2020/01/4624-Lanzamiento-de-productos-qu%C3%A9-elementos-tener-en-cuenta.jpg" alt="Lanzamientos de productos" style={{ height: '250px', width: '250px', borderRadius: '20px' }} />
+							</div>
+						</div>
+						<a href="#" title="Lanzamientos de productos" className="btn btn-gfort-white wave-effect">
+							<h5>Lanzamientos de productos</h5>
+						</a>
+					</div>
+				</div>
 			</div>
+		</div>
+
+		
+
+
+				<hr className="featurette-divider" />
+
+			
 
 
 			<a href="#" className="back-to-top">

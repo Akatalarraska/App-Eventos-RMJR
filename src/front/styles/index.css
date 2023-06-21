@@ -4,6 +4,9 @@
 #principal {
     margin-top: 110px;
 }
+h1{
+  color: rgb(111, 103, 228)
+}
 
 @import url('https://fonts.googleapis.com/css?family=Oswald:500');
 .back{
