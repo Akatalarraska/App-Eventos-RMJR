@@ -9,6 +9,9 @@ class User(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(80), unique=False, nullable=False)
     user_empresa = db.relationship('User_Empresa', backref= 'user', lazy=True)
+    evento = db.relationship('Evento', backref= 'user', lazy=True)
+    factura = db.relationship('Factura', backref= 'user', lazy=True)
+    valoracion = db.relationship('Valoracion', backref= 'user', lazy=True)
 
     def __repr__(self):
         return f'<User: {self.name}>'
@@ -31,6 +34,7 @@ class Empresa(db.Model):
     direccion = db.Column(db.String(60), unique=False, nullable=True)
     codigo_postal = db.Column(db.Integer, unique=False, nullable=True)
     user_empresa = db.relationship('User_Empresa', backref= 'empresa', lazy=True)
+    evento = db.relationship('Evento', backref= 'empresa', lazy=True)
 
     def __repr__(self):
         return f'<Empresa: {self.razon_social}>'
@@ -43,15 +47,15 @@ class Empresa(db.Model):
         }
 
 class User_Empresa(db.Model):
-    __tablename__ = 'user__empresa'
+    __tablename__ = 'user_empresa'
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     empresa_id = db.Column(db.Integer, db.ForeignKey('empresa.id'))
     role = db.Column(db.String(20), unique=False, nullable=False)
-    evento = db.relationship('Evento', backref = 'user_empresa', lazy = 'dynamic')
+    
 
     def __repr__(self):
-        return f'<User {self.user_id}>'
+        return f'<User {self.name}>'
 
     def serialize(self):
         return {
@@ -63,11 +67,8 @@ class User_Empresa(db.Model):
 
 class Evento(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    user_empresa_id = db.Column(db.Integer, db.ForeignKey('user__empresa.id'))
-    """
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     empresa_id = db.Column(db.Integer, db.ForeignKey('empresa.id'))
-    """
     nombre = db.Column(db.String(40), unique=False, nullable=False)
     descripcion = db.Column(db.String(140), unique=False, nullable=False)
     ubicacion = db.Column(db.String(40), unique=False, nullable=False)
@@ -76,14 +77,15 @@ class Evento(db.Model):
     personas = db.Column(db.Integer, unique=False, nullable=False)
     free = db.Column(db.Boolean())
     importe = db.Column(db.Integer, unique=False, nullable=True)
+    valoracion = db.relationship('Valoracion', backref= 'evento', lazy=True)
+    
 
     def __repr__(self):
-        return f'<User {self.email}>'
+        return f'<Evento {self.id}>'
 
     def serialize(self):
         return {
             "id": self.id,
-            "email": self.email,
             # do not serialize the password, its a security breach
         }
 
@@ -95,12 +97,11 @@ class Valoracion(db.Model):
     comentario = db.Column(db.String(120), unique=True, nullable=False)
 
     def __repr__(self):
-        return f'<User {self.email}>'
+        return f'<Valoracion {self.evento_id}>'
 
     def serialize(self):
         return {
             "id": self.id,
-            "email": self.email,
             # do not serialize the password, its a security breach
         }
 
@@ -110,13 +111,13 @@ class Factura(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     fecha = db.Column(db.String(10), unique=False, nullable=False)
     pasarela_id = db.Column(db.String(120), unique=True, nullable=False)
+    evento = db.relationship('Evento', backref= 'factura', lazy=True)
 
     def __repr__(self):
-        return f'<User {self.email}>'
+        return f'<Fra {self.id}>'
 
     def serialize(self):
         return {
             "id": self.id,
-            "email": self.email,
             # do not serialize the password, its a security breach
         }
