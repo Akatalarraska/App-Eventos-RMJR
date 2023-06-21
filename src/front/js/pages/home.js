@@ -39,10 +39,7 @@ export const Home = () => {
 
 			<hr className="featurette-divider" />
 
-			<p>
-				<img src={rigoImageUrl} alt="Rigo Baby" />
-			</p>
-
+		
 			<h2>Eventos destacados</h2>
 
 			<div className="container marketing">

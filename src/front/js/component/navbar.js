@@ -6,22 +6,14 @@ const toggleMenu = () => {
 };
 
 export const Navbar = () => (
-  <div className="container">
+  <div className="container navbar">
+    <div class="back"></div>
     <nav>
-      <img src="ruta_de_la_imagen.jpg" alt="Logo" />
+      <a href="#">Home</a>
+      <a href="#">Works</a>
+      <a href="#">Partners</a>
+      <a href="#">Private Area</a>
+      <a href="#">Sign Up // Log in</a>
     </nav>
-    <div className="overlay"></div>
-    <button className="burger" onClick={toggleMenu}>
-      <i className="fa-solid fa-bars"></i>
-      <i className="fa-solid fa-close"></i>
-    </button>
-    <aside>
-      <a>Home</a>
-      <a>Products</a>
-      <a>Contact</a>
-      <h3>Test</h3>
-      <a>Private Area</a>
-      <button>Sign Up // Log in</button>
-    </aside>
   </div>
 );
