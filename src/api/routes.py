@@ -8,11 +8,56 @@ from api.utils import generate_sitemap, APIException
 api = Blueprint('api', __name__)
 
 
-@api.route('/hello', methods=['POST', 'GET'])
-def handle_hello():
+#ruta para crear un usuario
 
-    response_body = {
-        "message": "Hello! I'm a message that came from the backend, check the network tab on the google inspector and you will see the GET request"
-    }
+@api.route('/signup', methods=['POST'])
+def handle_signup():
 
-    return jsonify(response_body), 200
+    body = request.get_json()
+
+    if body is None:
+        raise APIException(
+            "You need to specify the request body as a json object", status_code=400)
+
+    if "email" not in body:
+        raise APIException('You need to specify the email', status_code=400)
+
+    if "password" not in body:
+        raise APIException('You need to specify the password', status_code=400)
+
+    user1 = User(email=body["email"], password=body["password"])
+    db.session.add(user1)
+    db.session.commit()
+
+    return jsonify("ok"), 200
+
+
+
+#ruta definida para el login
+
+@api.route('/login', methods=['POST'])
+def handle_login():
+
+    body = request.get_json()
+
+    if body is None:
+        raise APIException(
+            "You need to specify the request body as a json object", status_code=400)
+
+    if "email" not in body:
+        raise APIException('You need to specify the email', status_code=400)
+
+    if "password" not in body:
+        raise APIException('You need to specify the password', status_code=400)
+
+    user1 = User.query.filter_by(
+        email=body["email"], password=body["password"]).first()
+    if user1 is None:
+        raise APIException('User not found', status_code=404)
+
+    return jsonify("ok"), 200
+
+
+
+
+
