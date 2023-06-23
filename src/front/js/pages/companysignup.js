@@ -19,7 +19,7 @@ export const CompanySignup = () => {
 
 
 
-    const handleCompanySignup = (event) => {
+    const handleSignup = (event) => {
         event.preventDefault();
         actions.handleCompanySignup(companyName, vat, address, postcode, city, country, phone, email);
     }
@@ -134,7 +134,7 @@ export const CompanySignup = () => {
                                                 </label>
                                             </div>
                                             <div className="d-grid gap-2">
-                                                <button type="submit" className="btn btn-dark btn-lg" data-mdb-ripple-color="dark" onClick={handleCompanySignup}>
+                                                <button type="submit" className="btn btn-dark btn-lg" data-mdb-ripple-color="dark" onClick={handleSignup}>
                                                     Register
                                                 </button>
                                             </div>
