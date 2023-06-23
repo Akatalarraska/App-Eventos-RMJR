@@ -107,96 +107,21 @@ export const Home = () => {
 
 				<hr className="featurette-divider" />
 
-		<h1>TIPOS DE EVENTOS</h1>
-		
-		<div className="cuadricula_home">
-			<div className="row">
-				<div className="col-md-4 col-sm-6 content-block content-block-style-4">
-					<div className="content-block-container text-center" style={{ height: '293px' }}>
-						<div className="image-block">
-							<div className="image-block-container">
-								<img src="https://impulsapopular.com/wp-content/uploads/2020/01/4624-Lanzamiento-de-productos-qu%C3%A9-elementos-tener-en-cuenta.jpg" alt="Lanzamientos de productos" style={{ height: '250px', width: '250px', borderRadius: '20px' }} />
-							</div>
-						</div>
-						<a href="#" title="Lanzamientos de productos" className="btn btn-gfort-white wave-effect">
-							<h5>Lanzamientos de productos</h5>
-						</a>
-					</div>
-				</div>
-
-				<div className="col-md-4 col-sm-6 content-block content-block-style-4">
-					<div className="content-block-container text-center" style={{ height: '293px' }}>
-						<div className="image-block">
-							<div className="image-block-container">
-								<img src="https://impulsapopular.com/wp-content/uploads/2020/01/4624-Lanzamiento-de-productos-qu%C3%A9-elementos-tener-en-cuenta.jpg" alt="Lanzamientos de productos" style={{ height: '250px', width: '250px', borderRadius: '20px' }} />
-							</div>
-						</div>
-						<a href="#" title="Lanzamientos de productos" className="btn btn-gfort-white wave-effect">
-							<h5>Lanzamientos de productos</h5>
-						</a>
-					</div>
-				</div>
-
-				<div className="col-md-4 col-sm-6 content-block content-block-style-4">
-					<div className="content-block-container text-center" style={{ height: '293px' }}>
-						<div className="image-block">
-							<div className="image-block-container">
-								<img src="https://impulsapopular.com/wp-content/uploads/2020/01/4624-Lanzamiento-de-productos-qu%C3%A9-elementos-tener-en-cuenta.jpg" alt="Lanzamientos de productos" style={{ height: '250px', width: '250px', borderRadius: '20px' }} />
-							</div>
-						</div>
-						<a href="#" title="Lanzamientos de productos" className="btn btn-gfort-white wave-effect">
-							<h5>Lanzamientos de productos</h5>
-						</a>
-					</div>
-				</div>
-
-				<div className="col-md-4 col-sm-6 content-block content-block-style-4">
-					<div className="content-block-container text-center" style={{ height: '293px' }}>
-						<div className="image-block">
-							<div className="image-block-container">
-								<img src="https://impulsapopular.com/wp-content/uploads/2020/01/4624-Lanzamiento-de-productos-qu%C3%A9-elementos-tener-en-cuenta.jpg" alt="Lanzamientos de productos" style={{ height: '250px', width: '250px', borderRadius: '20px' }} />
-							</div>
-						</div>
-						<a href="#" title="Lanzamientos de productos" className="btn btn-gfort-white wave-effect">
-							<h5>Lanzamientos de productos</h5>
-						</a>
-					</div>
-				</div>
-
-				<div className="col-md-4 col-sm-6 content-block content-block-style-4">
-					<div className="content-block-container text-center" style={{ height: '293px' }}>
-						<div className="image-block">
-							<div className="image-block-container">
-								<img src="https://impulsapopular.com/wp-content/uploads/2020/01/4624-Lanzamiento-de-productos-qu%C3%A9-elementos-tener-en-cuenta.jpg" alt="Lanzamientos de productos" style={{ height: '250px', width: '250px', borderRadius: '20px' }} />
-							</div>
-						</div>
-						<a href="#" title="Lanzamientos de productos" className="btn btn-gfort-white wave-effect">
-							<h5>Lanzamientos de productos</h5>
-						</a>
-					</div>
-				</div>
-
-				<div className="col-md-4 col-sm-6 content-block content-block-style-4">
-					<div className="content-block-container text-center" style={{ height: '293px' }}>
-						<div className="image-block">
-							<div className="image-block-container">
-								<img src="https://impulsapopular.com/wp-content/uploads/2020/01/4624-Lanzamiento-de-productos-qu%C3%A9-elementos-tener-en-cuenta.jpg" alt="Lanzamientos de productos" style={{ height: '250px', width: '250px', borderRadius: '20px' }} />
-							</div>
-						</div>
-						<a href="#" title="Lanzamientos de productos" className="btn btn-gfort-white wave-effect">
-							<h5>Lanzamientos de productos</h5>
-						</a>
-					</div>
-				</div>
-			</div>
-		</div>
-
+			<h1>TIPOS DE EVENTOS</h1>
+			
 		
 
 
 				<hr className="featurette-divider" />
 
-			
+				<section>
+					<img src="https://www.rwlasvegas.com/wp-content/uploads/2022/05/crockfords-las-vegas-standard-deluxe-bedroom_1000x880.jpg"/>
+					<img src="https://eventosempresa.fosburycafe.es/wp-content/uploads/2021/05/P1000415.jpg"/>
+					<img src="https://premiumcartransfers.com/wp-content/uploads/2016/05/transfers-eventos-chofer.jpg"/>
+					<img src="https://i0.wp.com/sonria.com/wp-content/uploads/2020/10/11Curso1.jpg?fit=960%2C640&ssl=1"/>
+					<img src="https://us.123rf.com/450wm/sonjachnyj/sonjachnyj1705/sonjachnyj170500628/78906332-deliciosa-mesa-de-frutas-en-la-recepci%C3%B3n-de-la-boda-catering-de-lujo-en-el-restaurante.jpg"/>
+					<img src="https://impulsapopular.com/wp-content/uploads/2020/01/4624-Lanzamiento-de-productos-qu%C3%A9-elementos-tener-en-cuenta.jpg" alt="Lanzamientos de productos"/>
+				</section>
 
 
 			<a href="#" className="back-to-top">
