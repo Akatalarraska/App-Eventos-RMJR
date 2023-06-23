@@ -46,7 +46,58 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				//reset the global store
 				setStore({ demo: demo });
-			}
+			},
+
+
+			handleSingup: async (name, dni, email, password) => {
+				try{
+					const resp = await fetch(process.env.BACKEND_URL + "/api/signup", {
+						method: "POST",
+						headers: {
+							"Content-Type": "application/json"
+						},
+						body: JSON.stringify({
+							name: name,
+							dni: dni,
+							email: email,
+							password: password
+						})
+					})
+					const data = await resp.json()
+					console.log("data", data)
+					if(data.msg){
+						setStore({ message: data.msg })
+					}else{
+						setStore({ message: "User created successfully" })
+					}
+				}catch(error){
+					console.log("Error creating user", error)
+				}},
+
+			handleLogin: async (email, password) => {
+				try{
+					const resp = await fetch(process.env.BACKEND_URL + "/api/login", {
+						method: "POST",
+						headers: {
+							"Content-Type": "application/json"
+						},
+						body: JSON.stringify({
+							email: email,
+							password: password
+						})
+					})
+					const data = await resp.json()
+					console.log("data", data)
+					if(data.msg){
+						setStore({ message: data.msg })
+					}else{
+						setStore({ message: "User logged in successfully" })
+					}
+				}catch(error){
+					console.log("Error logging in user", error)
+				}},
+
+
 		}
 	};
 };

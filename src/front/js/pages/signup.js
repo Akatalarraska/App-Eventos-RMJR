@@ -56,14 +56,14 @@ export const Signup = () => {
 
   const handleSignup = (event) => {
     event.preventDefault();
-    actions.handleSignup(name, dni, email, password);
+    actions.handleUserSignup(name, dni, email, password);
   }
 
 
 
   const handleLogin = (event) => {
     event.preventDefault();
-    actions.handleLogin(email, password);
+    actions.handleUserLogin(email, password);
   }
 
 
