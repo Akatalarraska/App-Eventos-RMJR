@@ -1,10 +1,11 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
-import rigoImageUrl from "../../img/rigo-baby.jpg";
 import "../../styles/home.css";
 
 export const Home = () => {
 	const { store, actions } = useContext(Context);
+
+	
 
 	return (
 		<div className="text-center" id="principal">
@@ -40,7 +41,7 @@ export const Home = () => {
 			<hr className="featurette-divider" />
 
 		
-			<h1>Eventos destacados</h1>
+			<h1>PLAN, CREATE, PROMOTE AND EXECUTE EVENTS</h1>
 
 			<div className="container marketing">
 				<div className="row">
@@ -76,7 +77,7 @@ export const Home = () => {
 
 				<div className="row featurette">
 					<div className="col-md-7">
-						<h2 className="featurette-heading fw-normal lh-1">First featurette heading. <span className="text-body-secondary">It’ll blow your mind.</span></h2>
+						<h2 className="featurette-heading fw-normal lh-1">Próximos eventos<span className="text-body-secondary">Ven a conocer los próximos eventos que etán sucediendo a tu alrededor</span></h2>
 						<p className="lead">Some great placeholder content for the first featurette here. Imagine some exciting prose here.</p>
 					</div>
 					<div className="col-md-5">
@@ -92,7 +93,7 @@ export const Home = () => {
 
 				<div className="row featurette">
 					<div className="col-md-7 order-md-2">
-						<h2 className="featurette-heading fw-normal lh-1">Oh yeah, it’s that good. <span className="text-body-secondary">See for yourself.</span></h2>
+						<h2 className="featurette-heading fw-normal lh-1">Inspirate del pasado y superate en los siguientes <span className="text-body-secondary">See for yourself.</span></h2>
 						<p className="lead">Another featurette? Of course. More placeholder content here to give you an idea of how this layout would work with some actual real-world content in place.</p>
 					</div>
 					<div className="col-md-5 order-md-1">
@@ -108,19 +109,15 @@ export const Home = () => {
 				<hr className="featurette-divider" />
 
 			<h1>TIPOS DE EVENTOS</h1>
-			
 		
 
-
-				<hr className="featurette-divider" />
-
 				<section>
-					<img src="https://www.rwlasvegas.com/wp-content/uploads/2022/05/crockfords-las-vegas-standard-deluxe-bedroom_1000x880.jpg"/>
-					<img src="https://eventosempresa.fosburycafe.es/wp-content/uploads/2021/05/P1000415.jpg"/>
-					<img src="https://premiumcartransfers.com/wp-content/uploads/2016/05/transfers-eventos-chofer.jpg"/>
-					<img src="https://i0.wp.com/sonria.com/wp-content/uploads/2020/10/11Curso1.jpg?fit=960%2C640&ssl=1"/>
-					<img src="https://us.123rf.com/450wm/sonjachnyj/sonjachnyj1705/sonjachnyj170500628/78906332-deliciosa-mesa-de-frutas-en-la-recepci%C3%B3n-de-la-boda-catering-de-lujo-en-el-restaurante.jpg"/>
-					<img src="https://impulsapopular.com/wp-content/uploads/2020/01/4624-Lanzamiento-de-productos-qu%C3%A9-elementos-tener-en-cuenta.jpg" alt="Lanzamientos de productos"/>
+					<img src="https://www.rwlasvegas.com/wp-content/uploads/2022/05/crockfords-las-vegas-standard-deluxe-bedroom_1000x880.jpg" alt="Hoteles"/>
+					<img src="https://eventosempresa.fosburycafe.es/wp-content/uploads/2021/05/P1000415.jpg" data-text="Restaurantes..."/>
+					<img src="https://premiumcartransfers.com/wp-content/uploads/2016/05/transfers-eventos-chofer.jpg"data-text="Transfers"/>
+					<img src="https://i0.wp.com/sonria.com/wp-content/uploads/2020/10/11Curso1.jpg?fit=960%2C640&ssl=1" data-text="Salas"/>
+					<img src="https://us.123rf.com/450wm/sonjachnyj/sonjachnyj1705/sonjachnyj170500628/78906332-deliciosa-mesa-de-frutas-en-la-recepci%C3%B3n-de-la-boda-catering-de-lujo-en-el-restaurante.jpg" data-text="Caterings"/>
+					<img src="https://impulsapopular.com/wp-content/uploads/2020/01/4624-Lanzamiento-de-productos-qu%C3%A9-elementos-tener-en-cuenta.jpg" data-text="Lanzamientos de producto"/>
 				</section>
 
 
