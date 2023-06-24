@@ -2,15 +2,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 
-			user: {},
-			token: null,
+			user: {
+				email: null,
+				token: null
+			},
 		},
 		actions: {
 
 
 			userSignup: (name, dni, signupEmail, signupPassword, option) => {
 
-				const store = getStore();
 				
 				const newUser = {
 					name: name,
@@ -31,14 +32,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 				.then(resp => resp.json())
 				.then(data => {
 				  setStore({ user: newUser });
-				  console.log("user", store.user);
 				})
 				.catch(error => console.log("Error creating user", error));
 			  },
 
 
 			userLogin: (loginEmail, loginPassword, option) => {
-				const store = getStore();
 				fetch(process.env.BACKEND_URL + "/api/auth", {
 					method: "POST",	
 					headers: {
@@ -52,8 +51,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 				.then(resp => resp.json())
 				.then(data => {
-						setStore({ user: data.user})
-						console.log("user", store.user)
+						console.log("data", data)
+						setStore({ 
+							user: {
+								email: data.email, 
+								token: data.token
+							}
+						})
 					}
 				)
 				.catch(error => console.log("Error logging in user", error))
@@ -67,18 +71,7 @@ export default getState;
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+//// comentado por si sirven en futuro, async await
 
 
 			// handleUserSignup: async (name, dni, signupEmail, signupPassword) => {
