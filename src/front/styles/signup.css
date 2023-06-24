@@ -4,7 +4,7 @@ html,
 body {
   position: relative;
   min-height: 100vh;
-  /* background-color: #efeced; */
+  background-color: #efeced;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -12,7 +12,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
 
 .form-structor {
   background-color: #ba968c;
@@ -45,7 +44,7 @@ body {
     left: 50%;
     -webkit-transform: translate(-50%, -50%);
     width: 65%;
-    z-index: 5;
+    z-index: 1;
     -webkit-transition: all 0.3s ease;
 
     &.slide-up {
@@ -62,7 +61,7 @@ body {
     }
 
     &.slide-up .form-title {
-      font-size: 1em;
+      font-size: 2em;
       cursor: pointer;
     }
 
@@ -75,7 +74,7 @@ body {
 
     .form-title {
       color: #efeced;
-      font-size: 1.7em;
+      font-size: 3em;
       text-align: center;
 
       span {
@@ -105,11 +104,12 @@ body {
         padding: 8px 15px;
         border-bottom: 1px solid #efeced;
         width: 100%;
-        font-size: 12px;
+        font-size: 16px;
 
         &:last-child {
           border-bottom: 0;
         }
+
         &::-webkit-input-placeholder {
           color: rgba(0, 0, 0, 0.4);
         }
@@ -125,7 +125,7 @@ body {
       margin: 15px auto;
       padding: 15px 45px;
       width: 100%;
-      font-size: 13px;
+      font-size: 16px;
       font-weight: bold;
       cursor: pointer;
       opacity: 1;
@@ -146,7 +146,7 @@ body {
     right: 0;
     bottom: 0;
     background-color: #9da5c9;
-    z-index: 5;
+    z-index: 2;
     -webkit-transition: all 0.3s ease;
 
     &::before {
@@ -159,7 +159,7 @@ body {
       width: 200%;
       height: 250px;
       border-radius: 50%;
-      z-index: 4;
+      z-index: 1;
       -webkit-transition: all 0.3s ease;
     }
 
@@ -169,12 +169,12 @@ body {
       left: 50%;
       -webkit-transform: translate(-50%, -50%);
       width: 65%;
-      z-index: 5;
+      z-index: 2;
       -webkit-transition: all 0.3s ease;
 
       .form-title {
         color: #000;
-        font-size: 1.7em;
+        font-size: 3em;
         text-align: center;
 
         span {
@@ -205,7 +205,7 @@ body {
           padding: 8px 15px;
           border-bottom: 1px solid #efeced;
           width: 100%;
-          font-size: 12px;
+          font-size: 16px;
 
           &:last-child {
             border-bottom: 0;
@@ -218,14 +218,15 @@ body {
 
       .submit-btn {
         background-color: #777dbd;
-        color: rgba(256, 256, 256, 0.7);
+        color: black;
+        
         border: 0;
         border-radius: 15px;
         display: block;
         margin: 15px auto;
         padding: 15px 45px;
         width: 100%;
-        font-size: 13px;
+        font-size: 16px;
         font-weight: bold;
         cursor: pointer;
         opacity: 1;
@@ -258,7 +259,7 @@ body {
     }
 
     &.slide-up .form-title {
-      font-size: 1em;
+      font-size: 2em;
       margin: 0;
       padding: 0;
       cursor: pointer;
@@ -273,4 +274,3 @@ body {
     }
   }
 }
-
