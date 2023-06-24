@@ -29,7 +29,7 @@ const Layout = () => {
                     <div className="flex-grow-1">
                         <Routes>
                             <Route element={<Home />} path="/" />
-                            <Route element={<Signup />} path="/signup" />
+                            <Route element={<Signup />} path="/auth" />
                             <Route element={<CompanySignup />} path="/companysignup" />
                             <Route element={<Demo />} path="/demo" />
                             <Route element={<Single />} path="/single/:theid" />

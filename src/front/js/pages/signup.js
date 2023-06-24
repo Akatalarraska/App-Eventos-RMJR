@@ -61,12 +61,12 @@ export const Signup = () => {
 /// Lógica para gestión de signup y login
   const handleSignup = (event) => {
     event.preventDefault();
-    actions.UserSignup(name, dni, signupEmail, signupPassword, option);
+    actions.userSignup(name, dni, signupEmail, signupPassword, option);
   };
 
   const handleLogin = (event) => {
     event.preventDefault();
-    actions.UserLogin(loginEmail, loginPassword, option); 
+    actions.userLogin(loginEmail, loginPassword, option); 
     if(store.token) {
       navigate("/Home");
     }
