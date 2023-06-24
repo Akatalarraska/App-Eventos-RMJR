@@ -4,7 +4,7 @@ html,
 body {
   position: relative;
   min-height: 100vh;
-  background-color: #efeced;
+  /* background-color: #efeced; */
   display: flex;
   align-items: center;
   justify-content: center;
