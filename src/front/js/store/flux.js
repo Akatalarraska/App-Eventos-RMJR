@@ -7,7 +7,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 				token: null
 			},
 
-			company: {},
+			company: {
+			}, 
+			
 
 		},
 		actions: {
@@ -35,6 +37,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				.then(resp => resp.json())
 				.then(data => {
 				  setStore({ user: newUser });
+				  console.log("data", data);
 				})
 				.catch(error => console.log("Error creating user", error));
 			  },
@@ -66,18 +69,21 @@ const getState = ({ getStore, getActions, setStore }) => {
 				.catch(error => console.log("Error logging in user", error))
 			},
 
-			companySignup: (companyName, vat, address, postCode, city, country, phone, email) => {
+
+
+
+			companySignup: (companyName, vat, address, postCode, city, phone, email) => {
+				
 				const newCompany = {
 					companyName: companyName,
 					vat: vat,
 					address: address,
 					postCode: postCode,
 					city: city,
-					country: country,
 					phone: phone,
 					email: email
 				}
-				fetch(process.env.BACKEND_URL + "/api/company", {
+				fetch(process.env.BACKEND_URL + "/api/companysignup", {
 					method: "POST",
 					headers: {
 						"Content-Type": "application/json"
@@ -90,7 +96,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					setStore({ company: newCompany });
 				})
 				.catch(error => console.log("Error creating company", error));
-			}
+			},
 
 		}
 	};
