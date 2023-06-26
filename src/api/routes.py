@@ -67,11 +67,23 @@ def handle_companysignup():
         if "email" not in body:
             raise APIException('You need to specify the email', status_code=400)
     
-        empresa = Empresa(email=body["email"], cif=body["cif"], razon_social=body["companyName"], direccion=body["address"], poblacion=body["city"], pais=body["country"], telefono=body["phone"], codigo_postal=body["postCode"])
+        empresa = Empresa(email=body["email"], cif=body["vat"], razon_social=body["companyName"], direccion=body["address"], poblacion=body["city"], telefono=body["phone"], codigo_postal=body["postCode"])
         db.session.add(empresa)
         db.session.commit()
     
-        return jsonify("company signup ok"), 200
+        response = {
+        "message": "Company signup successful",
+        "email": empresa.email,
+        "cif": empresa.cif,
+        "razon_social": empresa.razon_social,
+        "direccion": empresa.direccion,
+        "poblacion": empresa.poblacion,
+        "telefono": empresa.telefono,
+        "codigo_postal": empresa.codigo_postal
+        }
+
+        print(response)
+        return jsonify(response), 200
     
 
 
