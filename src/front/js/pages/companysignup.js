@@ -9,9 +9,9 @@ export const CompanySignup = () => {
     const [companyName, setCompanyName] = useState("")
     const [vat, setVat] = useState("")
     const [address, setAddress] = useState("")
-    const [postcode, setPostcode] = useState("")
+    const [postCode, setPostCode] = useState("")
     const [city, setCity] = useState("")
-    const [country, setCountry] = useState("")
+    // const [country, setCountry] = useState("")
     const [phone, setPhone] = useState("")
     const [email, setEmail] = useState("")
 
@@ -21,7 +21,7 @@ export const CompanySignup = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        actions.companySignup(companyName, vat, address, postCode, city, country, phone, email);
+        actions.companySignup(companyName, vat, address, postCode, city, phone, email);
     }
     
 
@@ -76,8 +76,8 @@ export const CompanySignup = () => {
                                                         className="form-control form-control-lg"
                                                         placeholder="Post Code" 
                                                         required
-                                                        value={postcode}
-                                                        onChange={(event) => setPostcode(event.target.value)}
+                                                        value={postCode}
+                                                        onChange={(event) => setPostCode(event.target.value)}
                                                         />
                                                 </div>
                                                 <div className="col-md-7 mb-4 pb-2">
@@ -90,16 +90,6 @@ export const CompanySignup = () => {
                                                         onChange={(event) => setCity(event.target.value)}
                                                         />
                                                 </div>
-                                            </div>
-                                            <div className="mb-4 pb-2">
-                                                <input
-                                                    type="text"
-                                                    className="form-control form-control-lg"
-                                                    placeholder="Country" 
-                                                    required
-                                                    value={country}
-                                                    onChange={(event) => setCountry(event.target.value)}
-                                                    />
                                             </div>
                                             <div className="row">
                                                 <div className="col-md-7 mb-4 pb-2">
@@ -150,3 +140,16 @@ export const CompanySignup = () => {
         </section>
     );
 };
+
+
+
+                                            {/* <div className="mb-4 pb-2">
+                                                <input
+                                                    type="text"
+                                                    className="form-control form-control-lg"
+                                                    placeholder="Country" 
+                                                    required
+                                                    value={country}
+                                                    onChange={(event) => setCountry(event.target.value)}
+                                                    />
+                                            </div> */}
