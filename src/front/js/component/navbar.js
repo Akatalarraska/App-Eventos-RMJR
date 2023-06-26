@@ -7,7 +7,7 @@ const toggleMenu = () => {
 
 export const Navbar = () => (
   <div className="container navbar">
-    <div class="back"></div>
+    <div className="back"></div>
     <nav>
       <a href="#">Home</a>
       <a href="#">Works</a>
