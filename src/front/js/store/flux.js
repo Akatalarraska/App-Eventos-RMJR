@@ -6,6 +6,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 				email: null,
 				token: null
 			},
+
+			company: {},
+
 		},
 		actions: {
 
@@ -62,6 +65,32 @@ const getState = ({ getStore, getActions, setStore }) => {
 				)
 				.catch(error => console.log("Error logging in user", error))
 			},
+
+			companySignup: (companyName, vat, address, postCode, city, country, phone, email) => {
+				const newCompany = {
+					companyName: companyName,
+					vat: vat,
+					address: address,
+					postCode: postCode,
+					city: city,
+					country: country,
+					phone: phone,
+					email: email
+				}
+				fetch(process.env.BACKEND_URL + "/api/company", {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json"
+					},
+					body: JSON.stringify(newCompany)
+				})
+				.then(resp => resp.json())
+				.then(data => {
+					console.log("data", data)
+					setStore({ company: newCompany });
+				})
+				.catch(error => console.log("Error creating company", error));
+			}
 
 		}
 	};
