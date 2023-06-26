@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User
+from api.models import db, User, Empresa
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
 
@@ -52,6 +52,26 @@ def handle_auth():
                     })
     else:
         raise APIException('Invalid action specified', status_code=400)
+
+
+
+@api.route('/companysignup', methods=['POST'])
+def handle_companysignup():
+        
+        body = request.get_json()
+    
+        if body is None:
+            raise APIException(
+                "You need to specify the request body as a json object", status_code=400)
+    
+        if "email" not in body:
+            raise APIException('You need to specify the email', status_code=400)
+    
+        empresa = Empresa(email=body["email"], cif=body["cif"], razon_social=body["companyName"], direccion=body["address"], poblacion=body["city"], pais=body["country"], telefono=body["phone"], codigo_postal=body["postCode"])
+        db.session.add(empresa)
+        db.session.commit()
+    
+        return jsonify("company signup ok"), 200
     
 
 
