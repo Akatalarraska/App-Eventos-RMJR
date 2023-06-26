@@ -19,9 +19,9 @@ export const CompanySignup = () => {
 
 
 
-    const handleSignup = (event) => {
+    const handleSubmit = (event) => {
         event.preventDefault();
-        actions.handleCompanySignup(companyName, vat, address, postcode, city, country, phone, email);
+        actions.companySignup(companyName, vat, address, postCode, city, country, phone, email);
     }
     
 
@@ -30,8 +30,8 @@ export const CompanySignup = () => {
     return (
         <section className="h-custom gradient-custom-2">
             <form className="signup"
-                onSubmit={handleCompanySignup}>
-                <div className="container py-5">
+                onSubmit={handleSubmit}>
+                <div className="container py-2">
                     <div className="row d-flex justify-content-center align-items-center h-100">
                         <div className="col-12">
                             <div className="card card-registration card-registration-2">
@@ -134,7 +134,7 @@ export const CompanySignup = () => {
                                                 </label>
                                             </div>
                                             <div className="d-grid gap-2">
-                                                <button type="submit" className="btn btn-dark btn-lg" data-mdb-ripple-color="dark" onClick={handleSignup}>
+                                                <button type="submit" className="btn btn-dark btn-lg" data-mdb-ripple-color="dark" onClick={handleSubmit}>
                                                     Register
                                                 </button>
                                             </div>
