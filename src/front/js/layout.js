@@ -22,11 +22,11 @@ const Layout = () => {
     if(!process.env.BACKEND_URL || process.env.BACKEND_URL == "") return <BackendURL/ >;
 
     return (
-        <div className="d-flex flex-column min-vh-100">
+        <div className="d-flex flex-column min-vh-100 min-vw-100">
             <BrowserRouter basename={basename}>
                 <ScrollToTop>
                     <Navbar />
-                    <div className="flex-grow-1">
+                    <div className="d-flex justify-content-center flex-grow-1">
                         <Routes>
                             <Route element={<Home />} path="/" />
                             <Route element={<Signup />} path="/auth" />
