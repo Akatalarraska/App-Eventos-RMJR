@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
+import { ExpandingCards } from "../component/expandingCards";
 import "../../styles/home.css";
 
 export const Home = () => {
@@ -75,6 +76,30 @@ export const Home = () => {
 
 				<hr className="featurette-divider" />
 
+				<h1>Tipos de eventos y servicios</h1>
+
+				<section>
+					<img src="https://www.rwlasvegas.com/wp-content/uploads/2022/05/crockfords-las-vegas-standard-deluxe-bedroom_1000x880.jpg" alt="Hoteles"/>
+					<img src="https://eventosempresa.fosburycafe.es/wp-content/uploads/2021/05/P1000415.jpg" data-text="Restaurantes..."/>
+					<img src="https://premiumcartransfers.com/wp-content/uploads/2016/05/transfers-eventos-chofer.jpg"data-text="Transfers"/>
+					<img src="https://i0.wp.com/sonria.com/wp-content/uploads/2020/10/11Curso1.jpg?fit=960%2C640&ssl=1" data-text="Salas"/>
+					<img src="https://us.123rf.com/450wm/sonjachnyj/sonjachnyj1705/sonjachnyj170500628/78906332-deliciosa-mesa-de-frutas-en-la-recepci%C3%B3n-de-la-boda-catering-de-lujo-en-el-restaurante.jpg" data-text="Caterings"/>
+					<img src="https://impulsapopular.com/wp-content/uploads/2020/01/4624-Lanzamiento-de-productos-qu%C3%A9-elementos-tener-en-cuenta.jpg" data-text="Lanzamientos de producto"/>
+				</section>
+
+				<hr className="featurette-divider" />
+
+				<h2>Expanding Cards</h2>
+
+				<div className="expanding"> 
+					<div className="panel" style={{backgroundImage: "url('https://www.taglyancomplex.com/old-blog-pics/wp-content/uploads/2014/09/cater-food.jpg')"}}>
+					</div>
+					<h3>Restaurants & Caterings</h3>
+				</div>
+
+
+				
+
 				<div className="row featurette">
 					<div className="col-md-7">
 						<h2 className="featurette-heading fw-normal lh-1">Próximos eventos<span className="text-body-secondary">Ven a conocer los próximos eventos que etán sucediendo a tu alrededor</span></h2>
@@ -108,17 +133,8 @@ export const Home = () => {
 
 				<hr className="featurette-divider" />
 
-			<h1>TIPOS DE EVENTOS</h1>
+			
 		
-
-				<section>
-					<img src="https://www.rwlasvegas.com/wp-content/uploads/2022/05/crockfords-las-vegas-standard-deluxe-bedroom_1000x880.jpg" alt="Hoteles"/>
-					<img src="https://eventosempresa.fosburycafe.es/wp-content/uploads/2021/05/P1000415.jpg" data-text="Restaurantes..."/>
-					<img src="https://premiumcartransfers.com/wp-content/uploads/2016/05/transfers-eventos-chofer.jpg"data-text="Transfers"/>
-					<img src="https://i0.wp.com/sonria.com/wp-content/uploads/2020/10/11Curso1.jpg?fit=960%2C640&ssl=1" data-text="Salas"/>
-					<img src="https://us.123rf.com/450wm/sonjachnyj/sonjachnyj1705/sonjachnyj170500628/78906332-deliciosa-mesa-de-frutas-en-la-recepci%C3%B3n-de-la-boda-catering-de-lujo-en-el-restaurante.jpg" data-text="Caterings"/>
-					<img src="https://impulsapopular.com/wp-content/uploads/2020/01/4624-Lanzamiento-de-productos-qu%C3%A9-elementos-tener-en-cuenta.jpg" data-text="Lanzamientos de producto"/>
-				</section>
 
 
 			<a href="#" className="back-to-top">

@@ -27,10 +27,10 @@ export const Footer = () => (
 				<div className="footer-col">
 					<h4>Follow Us</h4>
 					<div className="social-links"> 
-						<a href="#"><i class="fa-brands fa-facebook"></i></a>
-						<a href="#"><i class="fa-brands fa-instagram"></i></a>
-						<a href="#"><i class="fa-brands fa-twitter"></i></a>
-						<a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+						<a href="#"><i className="fa-brands fa-facebook"></i></a>
+						<a href="#"><i className="fa-brands fa-instagram"></i></a>
+						<a href="#"><i className="fa-brands fa-twitter"></i></a>
+						<a href="#"><i className="fa-brands fa-linkedin-in"></i></a>
 					</div>
 				</div>
 
