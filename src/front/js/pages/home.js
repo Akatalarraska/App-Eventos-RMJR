@@ -1,12 +1,31 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import { ExpandingCards } from "../component/expandingCards";
 import "../../styles/home.css";
 
+
 export const Home = () => {
 	const { store, actions } = useContext(Context);
+	const [eventos, setEventos] = useState([]);
 
-	
+	// Realizar la solicitud GET para obtener los eventos de la base de datos
+	useEffect(() => {
+		fetch("https://api.example.com/eventos")
+		  .then(response => {
+			if (response.ok) {
+			  return response.json();
+			}
+			throw new Error("Error de respuesta: " + response.status);
+		  })
+		  .then(data => {
+			// Almacenar los eventos en el estado
+			setEventos(data);
+		  })
+		  .catch(error => {
+			console.error(error);
+		  });
+	  }, []);
+
 
 	return (
 		<div className="text-center" id="principal">
@@ -96,8 +115,30 @@ export const Home = () => {
 					</div>
 					<h3>Restaurants & Caterings</h3>
 				</div>
+				
 
-
+				<div className="eventcard" >
+					<div className="container marketing">
+					<div className="row">
+						<h2>Un evento</h2>
+						{eventos.map(evento => (
+						<div className="col-lg-4" key={evento.id}>
+							<img
+							className="bd-placeholder-img rounded-circle"
+							width="240"
+							height="240"
+							src={evento.imagen}
+							role="img"
+							alt="Evento"
+							/>
+							<h2 className="fw-normal">{evento.nombre}</h2>
+							<p>{evento.descripcion}</p>
+						</div>
+						))}
+					</div>
+					</div>
+				</div>
+							
 				
 
 				<div className="row featurette">
