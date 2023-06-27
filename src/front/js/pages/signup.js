@@ -1,7 +1,8 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
 import "../../styles/signup.css";
+import { Link } from "react-router-dom";
 
 export const Signup = () => {
   const [name, setName] = useState("");
@@ -10,10 +11,12 @@ export const Signup = () => {
   const [signupPassword, setSignupPassword] = useState("");
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
-  const [option, setOption] = useState("signup"); 
+  const [option, setOption] = useState("signup");
 
+  const loginFormRef = useRef(null);
 
   const { store, actions } = useContext(Context);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -58,7 +61,7 @@ export const Signup = () => {
   }, []);
 
 
-/// Lógica para gestión de signup y login
+  /// Lógica para gestión de signup y login
   const handleSignup = (event) => {
     event.preventDefault();
     actions.userSignup(name, dni, signupEmail, signupPassword, option);
@@ -66,13 +69,13 @@ export const Signup = () => {
 
   const handleLogin = (event) => {
     event.preventDefault();
-    actions.userLogin(loginEmail, loginPassword, option); 
-    if(store.token) {
+    actions.userLogin(loginEmail, loginPassword, option);
+    if (store.token) {
       navigate("/Home");
     }
   };
 
-    
+
 
 
 
@@ -88,14 +91,19 @@ export const Signup = () => {
         <div className="form-holder">
           <input
             type="text"
+            id="name"
+            name="name"
             className="input"
             placeholder="Name"
+            autoComplete="name"
             required
             value={name}
             onChange={(event) => setName(event.target.value)}
           />
           <input
             type="text"
+            id="dni"
+            name="dni"
             className="input"
             placeholder="DNI"
             required
@@ -104,6 +112,8 @@ export const Signup = () => {
           />
           <input
             type="email"
+            id="signupEmail"
+            name="signupEmail"
             className="input"
             placeholder="Email"
             autoComplete="username"
@@ -113,6 +123,8 @@ export const Signup = () => {
           />
           <input
             type="password"
+            id="signupPassword"
+            name="signupPassword"
             className="input"
             placeholder="Password"
             autoComplete="current-password"
@@ -129,7 +141,9 @@ export const Signup = () => {
             <div className="form-check mb-3 mb-md-0">
               <input
                 className="form-check-input"
+                name="signupCheck"
                 type="checkbox"
+                autoComplete="signupCheck"
                 defaultValue=""
                 id="signupCheck"
                 defaultChecked=""
@@ -155,13 +169,15 @@ export const Signup = () => {
           <button type="button" className="btn btn-dark btn-floating mx-1">
             <i className="fab fa-linkedin" />
           </button>
+          <div className="text-center pt-2">Already have an account? <br></br>Click <span onClick={() => loginFormRef.current.scrollIntoView({ behavior: "smooth" })}>Log In</span>  to enter your details</div>
         </div>
       </form>
 
       <form
+        ref={loginFormRef}
+        id="login-form"
         className="login slide-up"
-        onSubmit={handleLogin}
-      >
+        onSubmit={handleLogin}>
         <div className="center">
           <h2 className="form-title" id="login">
             Log in
@@ -169,6 +185,8 @@ export const Signup = () => {
           <div className="form-holder">
             <input
               type="email"
+              id="loginEmail"
+              name="loginEmail"
               className="input"
               placeholder="Email"
               autoComplete="username"
@@ -178,6 +196,8 @@ export const Signup = () => {
             />
             <input
               type="password"
+              id="loginPassword"
+              name="loginPassword"
               className="input"
               placeholder="Password"
               autoComplete="current-password"
@@ -193,6 +213,7 @@ export const Signup = () => {
               <div className="form-check mb-3 mb-md-0">
                 <input
                   className="form-check-input"
+                  autoComplete="loginCheck"
                   type="checkbox"
                   defaultValue=""
                   id="loginCheck"

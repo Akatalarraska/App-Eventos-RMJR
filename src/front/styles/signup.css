@@ -4,6 +4,7 @@ html,
 body {
   position: relative;
   min-height: 100vh;
+  min-width: 100vw;
   background-color: #efeced;
   display: flex;
   align-items: center;
@@ -15,13 +16,13 @@ body {
 
 .form-structor {
   background-color: #ba968c;
-  border-radius: 15px;
+  /* border-radius: 15px; */
   position: relative;
   overflow: hidden;
   height: 58em;
   width: 40em;
   max-width: 100vw;
-  max-height: 100vh;
+  min-height: 100vh;
 
   &::after {
     content: "";
