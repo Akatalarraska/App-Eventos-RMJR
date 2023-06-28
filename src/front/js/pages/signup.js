@@ -1,19 +1,27 @@
 import React, { useEffect, useState, useContext, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
 import "../../styles/signup.css";
+import { Link } from "react-router-dom";
 
 export const Signup = () => {
+  const [name, setName] = useState("");
+  const [dni, setDni] = useState("");
+  const [signupEmail, setSignupEmail] = useState("");
+  const [signupPassword, setSignupPassword] = useState("");
+  const [loginEmail, setLoginEmail] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
+  const [option, setOption] = useState("signup");
 
-  const [name, setName] = useState("")
-  const [dni, setDni] = useState("")
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
+  const loginFormRef = useRef(null);
 
-   const {actions} = useContext(Context);   
+  const { store, actions } = useContext(Context);
 
-
+  const navigate = useNavigate();
 
   useEffect(() => {
+
+    /// Lógica para cambiar vista entre login y signup
     const loginBtn = document.getElementById("login");
     const signupBtn = document.getElementById("signup");
 
@@ -27,6 +35,7 @@ export const Signup = () => {
           parent.classList.remove("slide-up");
         }
       });
+      setOption("login");
     };
 
     const handleSignupClick = (e) => {
@@ -39,6 +48,7 @@ export const Signup = () => {
           parent.classList.remove("slide-up");
         }
       });
+      setOption("signup");
     };
 
     loginBtn.addEventListener("click", handleLoginClick);
@@ -51,37 +61,49 @@ export const Signup = () => {
   }, []);
 
 
+  /// Lógica para gestión de signup y login
   const handleSignup = (event) => {
     event.preventDefault();
-    actions.handleSignup(name, dni, email, password);
-  }
-
-
+    actions.userSignup(name, dni, signupEmail, signupPassword, option);
+  };
 
   const handleLogin = (event) => {
     event.preventDefault();
-    actions.handleLogin(email, password);
-  }
+    actions.userLogin(loginEmail, loginPassword, option);
+    if (store.token) {
+      navigate("/Home");
+    }
+  };
+
+
 
 
 
   return (
     <div className="form-structor">
-      <form className="signup"
+      <form
+        className="signup"
         onSubmit={handleSignup}
       >
-        <h2 className="form-title" id="signup">Sign up</h2>
+        <h2 className="form-title" id="signup">
+          Sign up
+        </h2>
         <div className="form-holder">
           <input
             type="text"
+            id="name"
+            name="name"
             className="input"
             placeholder="Name"
+            autoComplete="name"
             required
             value={name}
             onChange={(event) => setName(event.target.value)}
           />
           <input
             type="text"
+            id="dni"
+            name="dni"
             className="input"
             placeholder="DNI"
             required
@@ -90,47 +112,124 @@ export const Signup = () => {
           />
           <input
             type="email"
+            id="signupEmail"
+            name="signupEmail"
             className="input"
             placeholder="Email"
             autoComplete="username"
             required
-            value={email}
-            onChange={(event) => setEmail(event.target.value)} />
+            value={signupEmail}
+            onChange={(event) => setSignupEmail(event.target.value)}
+          />
           <input
             type="password"
+            id="signupPassword"
+            name="signupPassword"
             className="input"
             placeholder="Password"
             autoComplete="current-password"
             required
-            value={password}
-            onChange={(event) => setPassword(event.target.value)} />
+            value={signupPassword}
+            onChange={(event) => setSignupPassword(event.target.value)}
+          />
         </div>
         <button className="submit-btn">Sign up</button>
+
+        <div className="row mb-4 additional-elements">
+          <div className="col-md-12 d-flex justify-content-center">
+            {/* Checkbox */}
+            <div className="form-check mb-3 mb-md-0">
+              <input
+                className="form-check-input"
+                name="signupCheck"
+                type="checkbox"
+                autoComplete="signupCheck"
+                defaultValue=""
+                id="signupCheck"
+                defaultChecked=""
+              />
+              <label className="form-check-label" htmlFor="loginCheck">
+                {" "}
+                Remember me{" "}
+              </label>
+            </div>
+          </div>
+        </div>
+        <div className="text-center mb-3 additional-elements">
+          <p>Sign up with:</p>
+          <button type="button" className="btn btn-dark btn-floating mx-1">
+            <i className="fab fa-facebook-f" />
+          </button>
+          <button type="button" className="btn btn-dark btn-floating mx-1">
+            <i className="fab fa-google" />
+          </button>
+          <button type="button" className="btn btn-dark btn-floating mx-1">
+            <i className="fab fa-twitter" />
+          </button>
+          <button type="button" className="btn btn-dark btn-floating mx-1">
+            <i className="fab fa-linkedin" />
+          </button>
+          <div className="text-center pt-2">Already have an account? <br></br>Click <span onClick={() => loginFormRef.current.scrollIntoView({ behavior: "smooth" })}>Log In</span>  to enter your details</div>
+        </div>
       </form>
-      <form className="login slide-up"
-        onSubmit={handleLogin}
-      >
+
+      <form
+        ref={loginFormRef}
+        id="login-form"
+        className="login slide-up"
+        onSubmit={handleLogin}>
         <div className="center">
-          <h2 className="form-title" id="login">Log in</h2>
+          <h2 className="form-title" id="login">
+            Log in
+          </h2>
           <div className="form-holder">
             <input
               type="email"
+              id="loginEmail"
+              name="loginEmail"
               className="input"
               placeholder="Email"
               autoComplete="username"
               required
-              value={email}
-              onChange={(event) => setEmail(event.target.value)} />
+              value={loginEmail}
+              onChange={(event) => setLoginEmail(event.target.value)}
+            />
             <input
               type="password"
+              id="loginPassword"
+              name="loginPassword"
               className="input"
               placeholder="Password"
               autoComplete="current-password"
               required
-              value={password}
-              onChange={(event) => setPassword(event.target.value)} />
+              value={loginPassword}
+              onChange={(event) => setLoginPassword(event.target.value)}
+            />
           </div>
           <button className="submit-btn">Log in</button>
+          <div className="row mb-4">
+            <div className="col-md-6 d-flex justify-content-center">
+              {/* Checkbox */}
+              <div className="form-check mb-3 mb-md-0">
+                <input
+                  className="form-check-input"
+                  autoComplete="loginCheck"
+                  type="checkbox"
+                  defaultValue=""
+                  id="loginCheck"
+                  defaultChecked=""
+                />
+                <label className="form-check-label" htmlFor="loginCheck">
+                  {" "}
+                  Remember me{" "}
+                </label>
+              </div>
+            </div>
+            <div className="col-md-6 d-flex justify-content-center">
+              {/* Simple link */}
+              <a href="#!">Forgot password?</a>
+            </div>
+          </div>
         </div>
       </form>
     </div>

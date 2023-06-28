@@ -1,0 +1,65 @@
+.h-custom {
+  height: 100vh;
+  z-index: 2;
+  padding-bottom: 6em;
+  padding-top: 6em;
+  background-color: #ba968c;
+  min-height: calc(100vh - -200px);
+}
+
+.signup {
+  margin-bottom: 6em;
+}
+
+.card-registration .select-input.form-control[readonly]:not([disabled]) {
+  font-size: 1rem;
+  line-height: 2.15;
+  padding-left: 0.75em;
+  padding-right: 0.75em;
+  opacity: 0.2;
+}
+
+.card-registration {
+  top: 13px;
+}
+
+.bg-indigo {
+  background-color: #9da5c9;
+  color: #efeced;
+}
+
+::placeholder {
+  font-family: "Fira Sans", sans-serif;
+  font-size: 14px;
+  opacity: 1;
+}
+
+.card-registration-2 .bg-indigo {
+  border-bottom-right-radius: 15px;
+}
+
+/* Media queries for responsiveness */
+
+@media (max-width: 767px) {
+  .card-registration .col-md-5 {
+    margin-bottom: 1rem;
+  }
+}
+
+@media (max-width: 575px) {
+  .card-registration .col-md-7 {
+    margin-bottom: 15em;
+    padding-bottom: 10em;
+  }
+}
+@media (max-width: 400px) {
+  .mobile-fix {
+    margin-bottom: 15em; 
+  }
+}
+
+
+
+
+
+

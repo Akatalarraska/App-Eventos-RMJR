@@ -7,6 +7,8 @@ import { Home } from "./pages/home";
 import { Demo } from "./pages/demo";
 import { Single } from "./pages/single";
 import injectContext from "./store/appContext";
+import {Signup} from "./pages/signup"
+import {CompanySignup} from "./pages/companysignup"
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
@@ -20,13 +22,15 @@ const Layout = () => {
     if(!process.env.BACKEND_URL || process.env.BACKEND_URL == "") return <BackendURL/ >;
 
     return (
-        <div className="d-flex flex-column min-vh-100">
+        <div className="d-flex flex-column min-vh-100 min-vw-100">
             <BrowserRouter basename={basename}>
                 <ScrollToTop>
                     <Navbar />
-                    <div className="flex-grow-1">
+                    <div className="d-flex justify-content-center flex-grow-1">
                         <Routes>
                             <Route element={<Home />} path="/" />
+                            <Route element={<Signup />} path="/auth" />
+                            <Route element={<CompanySignup />} path="/companysignup" />
                             <Route element={<Demo />} path="/demo" />
                             <Route element={<Single />} path="/single/:theid" />
                             <Route element={<h1>Not found!</h1>} />
@@ -35,7 +39,7 @@ const Layout = () => {
                     <Footer />
                 </ScrollToTop>
             </BrowserRouter>
-        </div>
+         </div>
     );
 };
 

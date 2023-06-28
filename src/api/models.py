@@ -85,18 +85,21 @@ class Evento(db.Model):
         return f'<Evento {self.id}>'
 
     def serialize(self):
-       return {
-        "id": self.id,
-        "imagen": self.imagen,
-        "nombre": self.nombre,
-        "descripcion": self.descripcion,
-        "ubicacion": self.ubicacion,
-        "fecha_inicio": self.fecha_inicio,
-        "fecha_fin": self.fecha_fin,
-        "personas": self.personas,
-        "free": self.free,
-        "importe": self.importe
-    }
+
+        return {
+            "id": self.id,
+            "imagen": self.imagen,
+            "nombre": self.nombre,
+            "descripcion": self.descripcion,
+            "ubicacion": self.ubicacion,
+            "fecha_inicio": self.fecha_inicio,
+            "fecha_fin": self.fecha_fin,
+            "personas": self.personas,
+            "free": self.free,
+            "importe": self.importe
+            # do not serialize the password, its a security breach
+        }
+
 class Valoracion(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     evento_id = db.Column(db.Integer, db.ForeignKey('evento.id'))
