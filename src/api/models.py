@@ -55,7 +55,7 @@ class User_Empresa(db.Model):
     
 
     def __repr__(self):
-        return f'<User {self.name}>'
+        return f'<User {self.role}>'
 
     def serialize(self):
         return {
@@ -85,6 +85,7 @@ class Evento(db.Model):
         return f'<Evento {self.id}>'
 
     def serialize(self):
+
         return {
             "id": self.id,
             "imagen": self.imagen,
