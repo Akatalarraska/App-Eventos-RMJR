@@ -10,7 +10,7 @@ export const Home = () => {
 
 	// Realizar la solicitud GET para obtener los eventos de la base de datos
 	useEffect(() => {
-		fetch("https://api.example.com/eventos")
+		fetch(process.env.BACKEND_URL + "/api/eventos")
 		  .then(response => {
 			if (response.ok) {
 			  return response.json();

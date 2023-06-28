@@ -26,7 +26,7 @@ const Layout = () => {
             <BrowserRouter basename={basename}>
                 <ScrollToTop>
                     <Navbar />
-                    <div className="d-flex justify-content-center flex-grow-1">
+                    <div >
                         <Routes>
                             <Route element={<Home />} path="/" />
                             <Route element={<Signup />} path="/auth" />
