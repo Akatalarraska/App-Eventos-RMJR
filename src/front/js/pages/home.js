@@ -9,8 +9,9 @@ export const Home = () => {
 	const [eventos, setEventos] = useState([]);
 
 	// Realizar la solicitud GET para obtener los eventos de la base de datos
+	
 	useEffect(() => {
-		fetch(process.env.BACKEND_URL + "/api/eventos")
+		fetch("https://akatalarraska-laughing-spoon-wrv5vv69wx93v57q-3001.preview.app.github.dev//api/eventos")
 		  .then(response => {
 			if (response.ok) {
 			  return response.json();
@@ -18,13 +19,13 @@ export const Home = () => {
 			throw new Error("Error de respuesta: " + response.status);
 		  })
 		  .then(data => {
-			// Almacenar los eventos en el estado
 			setEventos(data);
 		  })
 		  .catch(error => {
 			console.error(error);
 		  });
 	  }, []);
+	
 
 
 	return (
@@ -116,26 +117,25 @@ export const Home = () => {
 					<h3>Restaurants & Caterings</h3>
 				</div>
 				
-
-				<div className="eventcard" >
+				<h2> Eventos</h2>
+				<div className="eventcard">
 					<div className="container marketing">
-					<div className="row">
-						<h2>Un evento</h2>
+						<div className="row">
 						{eventos.map(evento => (
-						<div className="col-lg-4" key={evento.id}>
+							<div className="col-lg-4" key={evento.id}>
 							<img
-							className="bd-placeholder-img rounded-circle"
-							width="240"
-							height="240"
-							src={evento.imagen}
-							role="img"
-							alt="Evento"
+								className="bd-placeholder-img rounded-circle"
+								width="240"
+								height="240"
+								src={evento.imagen}
+								role="img"
+								alt="Evento"
 							/>
 							<h2 className="fw-normal">{evento.nombre}</h2>
 							<p>{evento.descripcion}</p>
-						</div>
+							</div>
 						))}
-					</div>
+						</div>
 					</div>
 				</div>
 							
