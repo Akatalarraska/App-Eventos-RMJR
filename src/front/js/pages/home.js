@@ -111,49 +111,28 @@ export const Home = () => {
 
 				<h2>Expanding Cards</h2>
 
+				
+
 				<div className="expanding"> 
-					<div className="panel" style={{backgroundImage: "url('https://www.taglyancomplex.com/old-blog-pics/wp-content/uploads/2014/09/cater-food.jpg')"}}>
+					<div className="panel" style={{backgroundImage: "url('./src/front/img/caterfood.jpg')"}}>
 					</div>
 					<h3>Restaurants & Caterings</h3>
 				</div>
 				
-				<h2> Eventos</h2>
-				<div className="eventcard">
-					<div className="container marketing">
-						<div className="row">
-						{eventos.map(evento => (
-							<div className="col-lg-4" key={evento.id}>
-							<img
-								className="bd-placeholder-img rounded-circle"
-								width="240"
-								height="240"
-								src={evento.imagen}
-								role="img"
-								alt="Evento"
-							/>
-							<h2 className="fw-normal">{evento.nombre}</h2>
-							<p>{evento.descripcion}</p>
-							</div>
-						))}
-						</div>
-					</div>
-				</div>
-							
-				
+				/* 
+				meter el map en un bucle for  
+				*/
 
-				<div className="row featurette">
-					<div className="col-md-7">
-						<h2 className="featurette-heading fw-normal lh-1">Próximos eventos<span className="text-body-secondary">Ven a conocer los próximos eventos que etán sucediendo a tu alrededor</span></h2>
-						<p className="lead">Some great placeholder content for the first featurette here. Imagine some exciting prose here.</p>
-					</div>
-					<div className="col-md-5">
-						<svg className="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false">
-							<title>Placeholder</title>
-							<rect width="100%" height="100%" fill="var(--bs-secondary-bg)"></rect>
-							<text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">500x500</text>
-						</svg>
-					</div>
-				</div>
+				<h2> Eventos</h2>
+
+				<ExpandingCards />
+				
+							
+
+
+				<hr className="featurette-divider" />
+
+				<hr className="featurette-divider" />
 
 				<hr className="featurette-divider" />
 
