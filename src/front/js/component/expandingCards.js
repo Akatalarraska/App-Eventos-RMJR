@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../../styles/home.css";
+import "../../styles/expandingCards.css";
 
 
 
@@ -45,6 +46,16 @@ export const ExpandingCards = () => {
 						</div>
 					</div>
 				</div>
+
+				<div className="icard" style={{clr: "#009688"}}>
+					<div className="img-box">
+						<img src=""/>
+					</div>
+					<div className="content">
+						<h2>Nombre</h2>
+						<p>descripcion</p>
+					</div>
+				</div>	
 
         </>
     )
