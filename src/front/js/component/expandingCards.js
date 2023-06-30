@@ -25,14 +25,14 @@ export const ExpandingCards = () => {
       <div className="container marketing">
         <div className="row">
           {eventos.map(evento => (
-            <div className="col-lg-3 col-sm-6" key={evento.id}>
+            <div className="col-lg-4 col-sm-6" key={evento.id}>
               <div className="flip-card">
                 <div className="flip-card-inner">
                   <div className="flip-card-front">
                     <img
                       className="bd-placeholder-img rounded"
-                      width="240"
-                      height="200"
+                      width="400"
+                      height="400"
                       src={evento.imagen}
                       alt={evento.nombre}
                     />

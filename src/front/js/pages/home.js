@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import { ExpandingCards } from "../component/expandingCards";
+import { Carousel } from "../component/carousel";
 import "../../styles/home.css";
 
 
@@ -8,24 +9,6 @@ export const Home = () => {
 	const { store, actions } = useContext(Context);
 	const [eventos, setEventos] = useState([]);
 
-	// Realizar la solicitud GET para obtener los eventos de la base de datos
-	
-	useEffect(() => {
-		fetch("https://akatalarraska-laughing-spoon-wrv5vv69wx93v57q-3001.preview.app.github.dev//api/eventos")
-		  .then(response => {
-			if (response.ok) {
-			  return response.json();
-			}
-			throw new Error("Error de respuesta: " + response.status);
-		  })
-		  .then(data => {
-			setEventos(data);
-		  })
-		  .catch(error => {
-			console.error(error);
-		  });
-	  }, []);
-	
 
 
 	return (
@@ -127,7 +110,7 @@ export const Home = () => {
 
 				<ExpandingCards />
 				
-							
+				<Carousel />		
 
 
 				<hr className="featurette-divider" />
@@ -136,19 +119,7 @@ export const Home = () => {
 
 				<hr className="featurette-divider" />
 
-				<div className="row featurette">
-					<div className="col-md-7 order-md-2">
-						<h2 className="featurette-heading fw-normal lh-1">Inspirate del pasado y superate en los siguientes <span className="text-body-secondary">See for yourself.</span></h2>
-						<p className="lead">Another featurette? Of course. More placeholder content here to give you an idea of how this layout would work with some actual real-world content in place.</p>
-					</div>
-					<div className="col-md-5 order-md-1">
-						<svg className="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false">
-							<title>Placeholder</title>
-							<rect width="100%" height="100%" fill="var(--bs-secondary-bg)"></rect>
-							<text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">500x500</text>
-						</svg>
-					</div>
-				</div>
+				
 			</div>	
 
 				<hr className="featurette-divider" />
