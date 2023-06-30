@@ -37,15 +37,18 @@ export const ExpandingCards = () => {
                       alt={evento.nombre}
                     />
                   </div>
-                  <div className="flip-card-back">
-                    <h6 className="fw-normal pt-2">{evento.descripcion}</h6>
-					<p>{evento.ubicacion}</p>
-					<p>{evento.fecha_inicio + "~" + evento.fecha_fin}</p>
-					<p>{evento.personas} personas</p>
-                  </div>
+				  <div className="flip-card-back">
+					<img src={evento.imagen} alt={evento.nombre} />
+					<div className="flip-card-back-content">
+						<h6 className="fw-normal pt-2">{evento.descripcion}</h6>
+						<p>{evento.ubicacion}</p>
+						<p>{evento.fecha_inicio + "~" + evento.fecha_fin}</p>
+						<p>{evento.personas} personas</p>
+					</div>
+					</div>
                 </div>
               </div>
-              <h2 className="fw-normal">{evento.nombre}</h2>
+              <h3 className="fw-normal">{evento.nombre}</h3>
               
             </div>
           ))}
