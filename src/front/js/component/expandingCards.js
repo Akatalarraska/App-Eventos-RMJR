@@ -5,7 +5,7 @@ export const ExpandingCards = () => {
   const [eventos, setEventos] = useState([]);
 
   useEffect(() => {
-    fetch("https://akatalarraska-laughing-spoon-wrv5vv69wx93v57q-3001.preview.app.github.dev//api/eventos")
+    fetch("https://akatalarraska-didactic-trout-pv4x575rp9pf65pj-3001.preview.app.github.dev/api/eventos")
       .then(response => {
         if (response.ok) {
           return response.json();

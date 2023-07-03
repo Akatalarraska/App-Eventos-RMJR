@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import { ExpandingCards } from "../component/expandingCards";
-import { Carousel } from "../component/carousel";
+
 import "../../styles/home.css";
 
 
@@ -92,15 +92,6 @@ export const Home = () => {
 
 				<hr className="featurette-divider" />
 
-				<h2>Expanding Cards</h2>
-
-				
-
-				<div className="expanding"> 
-					<div className="panel" style={{backgroundImage: "url('./src/front/img/caterfood.jpg')"}}>
-					</div>
-					<h3>Restaurants & Caterings</h3>
-				</div>
 				
 				/* 
 				meter el map en un bucle for  
@@ -110,7 +101,7 @@ export const Home = () => {
 
 				<ExpandingCards />
 				
-				<Carousel />		
+						
 
 
 				<hr className="featurette-divider" />
