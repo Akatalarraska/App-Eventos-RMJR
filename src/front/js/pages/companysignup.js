@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useContext } from "react";
 import { Context } from "../store/appContext";
-import "../../styles/companysignup2.css";
+import "../../styles/companysignup.css";
 import businessImage from "../../img/business.jpg";
 import { useNavigate } from "react-router-dom";
 
