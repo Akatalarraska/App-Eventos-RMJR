@@ -10,7 +10,7 @@ import signupImage4 from "../../img/signup-login4.jpg";
 
 import "../../styles/signup.css";
 
-export const Signup2 = () => {
+export const Signup = () => {
 
 
     const [name, setName] = useState("");
