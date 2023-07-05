@@ -6,8 +6,8 @@ const toggleMenu = () => {
 };
 
 export const Navbar = () => (
-  <div className="container navbar">
-    <div class="back"></div>
+  <div className="container navbar d-flex justify-content-center">
+    <div className="back"></div>
     <nav>
       <a href="#">Home</a>
       <a href="#">Works</a>
@@ -17,3 +17,5 @@ export const Navbar = () => (
     </nav>
   </div>
 );
+
+{/* <div className="back"></div> */ }

@@ -55,7 +55,7 @@ class User_Empresa(db.Model):
     
 
     def __repr__(self):
-        return f'<User {self.name}>'
+        return f'<User {self.role}>'
 
     def serialize(self):
         return {
@@ -71,6 +71,7 @@ class Evento(db.Model):
     empresa_id = db.Column(db.Integer, db.ForeignKey('empresa.id'))
     nombre = db.Column(db.String(40), unique=False, nullable=False)
     descripcion = db.Column(db.String(140), unique=False, nullable=False)
+    imagen = db.Column(db.String(200), unique=False, nullable=True)
     ubicacion = db.Column(db.String(40), unique=False, nullable=False)
     fecha_inicio = db.Column(db.String(10), unique=False, nullable=False)
     fecha_fin = db.Column(db.String(10), unique=False, nullable=False)
@@ -84,8 +85,18 @@ class Evento(db.Model):
         return f'<Evento {self.id}>'
 
     def serialize(self):
+
         return {
             "id": self.id,
+            "imagen": self.imagen,
+            "nombre": self.nombre,
+            "descripcion": self.descripcion,
+            "ubicacion": self.ubicacion,
+            "fecha_inicio": self.fecha_inicio,
+            "fecha_fin": self.fecha_fin,
+            "personas": self.personas,
+            "free": self.free,
+            "importe": self.importe
             # do not serialize the password, its a security breach
         }
 

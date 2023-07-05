@@ -2,112 +2,124 @@
     General Styles used on every website (Don't Repeat Yourself)
 */
 #principal {
-    margin-top: 110px;
+  margin-top: 110px;
 }
 h1{
-  color: rgb(111, 103, 228)
+color: rgb(111, 103, 228)
 }
 
 @import url('https://fonts.googleapis.com/css?family=Oswald:500');
+
 .back{
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background: url(https://images.unsplash.com/photo-1531685250784-7569952593d2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80) no-repeat top center #efeff1;
-  background-size: cover;
-  z-index: -1;
+
+position: fixed;
+left: 0;
+top: 0;
+width: 100%;
+height: 100%;
+background-color: white;
+/*
+background: url(https://images.unsplash.com/photo-1531685250784-7569952593d2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80) no-repeat top center #efeff1; 
+background-size: cover;
+*/
+z-index: -1;
+
 
 }
-.thx{
-  position: fixed;
-  left:50%;
-  transform:translateX(-50%);
-  bottom: 15px;
-}
+/* .thx{
+position: fixed;
+left:50%;
+transform:translateX(-50%);
+bottom: 15px;
+} */
 nav{
-  width: 100%;
-  position: fixed;
-  top:50px;
-  text-align:center;
+min-width: 100%;
+height: 4em;
+position: fixed;
+top: 0;
+left: 0;
+text-align: center;
+align-items: center;
+padding-top: 1em;
+z-index: 999;
+background-color:white;
 }
 nav a{
-  font-family: 'Oswald', sans-serif;
-  font-weight:500;
-  text-transform:uppercase;
-  text-decoration:none;
-  color:#16151b;
-  margin:0 15px;
-  font-size:16px;
-  letter-spacing:1px;
-  position:relative;
-  display:inline-block;
+font-family: 'Oswald', sans-serif;
+font-weight:500;
+text-transform:uppercase;
+text-decoration:none;
+color:#16151b;
+margin:0 10px;
+font-size:14px;
+letter-spacing:1px;
+position:relative;
+display:inline-block;
 }
 nav a:before{
-  content:'';
-  position: absolute;
-  width: 100%;
-  height: 3px;
-  background:#16151b;
-  top:47%;
-  animation:out 0.2s cubic-bezier(1, 0, 0.58, 0.97) 1 both;
+content:'';
+position: absolute;
+width: 100%;
+height: 3px;
+background:#16151b;
+top:47%;
+animation:out 0.2s cubic-bezier(1, 0, 0.58, 0.97) 1 both;
 }
 nav a:hover:before{
-  animation:in 0.2s cubic-bezier(1, 0, 0.58, 0.97) 1 both;
+animation:in 0.2s cubic-bezier(1, 0, 0.58, 0.97) 1 both;
 
 }
 @keyframes in{
-  0%{
-    width: 0;
-    left:0;
-    right:auto;
-  }
-  100%{
-    left:0;
-    right:auto;
-    width: 100%;
-  }
+0%{
+  width: 0;
+  left:0;
+  right:auto;
+}
+100%{
+  left:0;
+  right:auto;
+  width: 100%;
+}
 }
 @keyframes out{
-  0%{
-    width:100%;
-    left: auto;
-    right: 0;
-  }
-  100%{
-    width: 0;
-    left: auto;
-    right: 0;
-  }
+0%{
+  width:100%;
+  left: auto;
+  right: 0;
+}
+100%{
+  width: 0;
+  left: auto;
+  right: 0;
+}
 }
 @keyframes show{
-  0%{
-    opacity:0;
-    transform:translateY(-10px);
-  }
-  100%{
-    opacity:1;
-    transform:translateY(0);
-  }
+0%{
+  opacity:0;
+  transform:translateY(-10px);
+}
+100%{
+  opacity:1;
+  transform:translateY(0);
+}
 }
 
 nav a:nth-child(1) {
-    animation: show 0.2s 0.1s ease 1 both;
-  }
-  
+  animation: show 0.2s 0.1s ease 1 both;
+}
+
 nav a:nth-child(2) {
-    animation: show 0.2s 0.2s ease 1 both;
-  }
-  
+  animation: show 0.2s 0.2s ease 1 both;
+}
+
 nav a:nth-child(3) {
-    animation: show 0.2s 0.3s ease 1 both;
-  }
-  
+  animation: show 0.2s 0.3s ease 1 both;
+}
+
 nav a:nth-child(4) {
-    animation: show 0.2s 0.4s ease 1 both;
-  }
-  
+  animation: show 0.2s 0.4s ease 1 both;
+}
+
 nav a:nth-child(5) {
-    animation: show 0.2s 0.5s ease 1 both;
-  }
+  animation: show 0.2s 0.5s ease 1 both;
+}
