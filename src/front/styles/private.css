@@ -1,7 +1,6 @@
-
 .card {
-	width: 350px;
-	height: 450px;
+	width: 250px;
+	height: 350px;
 	color: #151515;
 	perspective: 800px;
 	border:#151515 1px solid;
@@ -40,31 +39,37 @@
 	border-bottom: #151515 1px solid;
 }
 
+.card__image--score {
+	width: 100%;
+	height: 100%;
+	object-fit: scale-down;
+	border-bottom: #151515 1px solid;
+}
+
 .card__body {
 	padding: 16px;
-	font-size: 18px;
-
+	font-size: 14px;
 }
+
 .card__body--flex {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 }
 .card__title {
-	font-size: 20px;
+	font-size: 15px;
 	text-transform: uppercase;
 	margin-right: 10px;
 
 }
 
 .btn-custom {
-	font-size: 1.5rem;
+	font-size: 1.25rem;
 	background-color: #37459A;
 	color: white;
   }
 
 .btn--body-custom {
-	font-size: 1.5rem;
 	background-color: #777DBD;
 	opacity: 0.9;
 
@@ -74,12 +79,4 @@
 	opacity: 1;
 }
   
-
-@media (max-width: 775.98px) {
-	.card-container, .btn-custom {
-	  margin: 10px;
-	}
-  }
-  
-
 
