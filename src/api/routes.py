@@ -11,8 +11,10 @@ from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identi
 api = Blueprint('api', __name__)
 
 
-@api.route('/auth', methods=['POST'])
-def handle_auth():
+# RUTA PARA REGISTRAR UN USUARIO
+
+@api.route('/signup', methods=['POST'])
+def handle_signup():
 
     body = request.get_json()
 
@@ -26,37 +28,44 @@ def handle_auth():
     if "password" not in body:
         raise APIException('You need to specify the password', status_code=400)
 
-    if "option" not in body:
-        raise APIException('You need to specify the option (signup or login)', status_code=400)
+    user1 = User(email=body["email"], password=body["password"], dni=body["dni"], name=body["name"])
+    db.session.add(user1)
+    db.session.commit()
 
-    option = body["option"]
+    return jsonify("user signup ok"), 200
 
-    if option == "signup":
-        user = User(email=body["email"], password=body["password"], dni=body["dni"], name=body["name"]) 
-        db.session.add(user)
-        db.session.commit()
-        return jsonify({"message": "User registered successfully",
-                    "id": user.id,
-                    "email": user.email,
-                    })
-    
-    elif option == "login":
-        user = User.query.filter_by(email=body["email"], password=body["password"]).first()
-        if user is None:
-            raise APIException('User not found', status_code=404)
+
+# RUTA PARA LOGEARSE
+
+@api.route('/login', methods=['POST'])
+def handle_login():
+
+    body = request.get_json()
+
+    if body is None:
+        raise APIException(
+            "You need to specify the request body as a json object", status_code=400)
+
+    if "email" not in body:
+        raise APIException('You need to specify the email', status_code=400)
+
+    if "password" not in body:
+        raise APIException('You need to specify the password', status_code=400)
+
+    user = User.query.filter_by(email=body["email"], password=body["password"]).first()
+    if user is None:
+        raise APIException('User not found', status_code=404)
         
-        token = create_access_token(identity=user.id)
+    token = create_access_token(identity=user.id)
         
-        return jsonify({"message": "User logged in successfully",
+    return jsonify({"message": "User logged in successfully",
                     "id": user.id,
                     "email": user.email,
                     "token": token
                     })
-    else:
-        raise APIException('Invalid action specified', status_code=400)
 
 
-
+# RUTA PARA REGISTRAR UNA EMPRESA
 @api.route('/companysignup', methods=['POST'])
 def handle_companysignup():
         
@@ -69,7 +78,7 @@ def handle_companysignup():
         if "email" not in body:
             raise APIException('You need to specify the email', status_code=400)
     
-        empresa = Empresa(email=body["email"], cif=body["vat"], razon_social=body["companyName"], direccion=body["address"], poblacion=body["city"], telefono=body["phone"], codigo_postal=body["postCode"])
+        empresa = Empresa(email=body["email"], cif=body["cif"], razon_social=body["razonSocial"], direccion=body["direccion"], poblacion=body["poblacion"], telefono=body["telefono"], codigo_postal=body["codigoPostal"])
         db.session.add(empresa)
         db.session.commit()
     
@@ -86,62 +95,24 @@ def handle_companysignup():
 
         print(response)
         return jsonify(response), 200
+
+
+#RUTA PARA ACCEDER A AREA PRIVADA DE USUARIO
+@api.route('/private', methods=['POST'])
+@jwt_required()
+def handle_private():
+    
+        user_id = get_jwt_identity()
+        user = User.query.get(user_id)
+        token = create_access_token(identity=user.id)
+    
+        return jsonify({"id": user.id,
+                        "email": user.email,
+                        "name": user.name,
+                        "token": token,
+                        }), 200
     
 
 
 if __name__ == '__main__':
     api.run()
-
-
-# Guardado comentado por si acaso se necesita cambiar a diferentes rutas signup y login
-
-
-#ruta para crear un usuario
-
-# @api.route('/signup', methods=['POST'])
-# def handle_signup():
-
-#     body = request.get_json()
-
-#     if body is None:
-#         raise APIException(
-#             "You need to specify the request body as a json object", status_code=400)
-
-#     if "email" not in body:
-#         raise APIException('You need to specify the email', status_code=400)
-
-#     if "password" not in body:
-#         raise APIException('You need to specify the password', status_code=400)
-
-#     user1 = User(email=body["email"], password=body["password"], dni=body["dni"], name=body["name"])
-#     db.session.add(user1)
-#     db.session.commit()
-
-#     return jsonify("user signup ok"), 200
-
-
-
-# #ruta definida para el login
-
-# @api.route('/login', methods=['POST'])
-# def handle_login():
-
-#     body = request.get_json()
-
-#     if body is None:
-#         raise APIException(
-#             "You need to specify the request body as a json object", status_code=400)
-
-#     if "email" not in body:
-#         raise APIException('You need to specify the email', status_code=400)
-
-#     if "password" not in body:
-#         raise APIException('You need to specify the password', status_code=400)
-
-#     user1 = User.query.filter_by(
-#         email=body["email"], password=body["password"]).first()
-#     if user1 is None:
-#         raise APIException('User not found', status_code=404)
-
-#     return jsonify("user login ok"), 200
-
