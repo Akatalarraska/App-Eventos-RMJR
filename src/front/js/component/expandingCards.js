@@ -44,6 +44,9 @@ export const ExpandingCards = () => {
 						<p>{evento.ubicacion}</p>
 						<p>{evento.fecha_inicio + "~" + evento.fecha_fin}</p>
 						<p>{evento.personas} personas</p>
+            
+            <button class="button-64" role="button"><span class="text">+ info</span></button>
+
 					</div>
 					</div>
                 </div>
