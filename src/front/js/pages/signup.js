@@ -4,6 +4,7 @@ import { Context } from "../store/appContext";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { TermsAndConditions } from "../component/termsandconditions";
 
 
 import signupImage4 from "../../img/signup-login4.jpg";
@@ -34,7 +35,15 @@ export const Signup = () => {
         }
     };
 
+    const [showModal, setShowModal] = useState(false);
 
+    const openModal = () => {
+        setShowModal(true);
+    };
+
+    const closeModal = () => {
+        setShowModal(false);
+    };
 
     return (
 
@@ -108,6 +117,33 @@ export const Signup = () => {
                                 />
                             </div>
                         </div>
+                        <div className="row m-3 d-flex justify-content-center" >
+                                <div className="col-xl-6 col-lg-6 d-flex justify-content-center">
+                                    <div className="form-check">
+                                        <input className="form-check-input" type="checkbox" id="gridCheck" required />
+                                        <label className="form-check-label" htmlFor="gridCheck">
+                                            Acepto los{" "}
+                                            <span
+                                                className="conditions-link"
+                                                onClick={openModal}
+                                            >
+                                                términos y condiciones
+                                            </span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            {showModal && (
+                                <div className="modal-overlay">
+                                    <div className="modal-content">
+                                        <h2>Terms and Conditions</h2>
+                                        {<TermsAndConditions/>}
+                                        <button className="close-button" onClick={closeModal}>
+                                            Close
+                                        </button>
+                                    </div>
+                                </div>
+                            )}
                         <div className="row m-3 d-flex justify-content-center" >
                             <div className="col-xl-6 col-lg-6 d-flex justify-content-center">
                                 <button type="submit" className="btn btn-lg btn-dark text-white btn-user-signup">
