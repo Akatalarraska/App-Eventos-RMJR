@@ -1,0 +1,23 @@
+.carrousel {
+    background: #111111;
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+.slide {
+    padding-top: 50px;
+    padding-bottom: 80px;
+  }
+  
+.slide .slide-content {
+    background-position: center;
+    background-size: cover;
+    width: 300px;
+    height: 300px;
+    -webkit-box-reflect: below 1px linear-gradient(transparent, transparent, #0006);
+  }
+  

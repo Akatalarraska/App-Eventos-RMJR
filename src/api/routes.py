@@ -8,7 +8,15 @@ from api.models import db, User, Evento, Empresa, User_Empresa
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
 
+
 api = Blueprint('api', __name__)
+
+@api.route('/eventos', methods=['GET'])
+def obtener_eventos():
+    eventos = Evento.query.all()
+    lista_eventos = [evento.serialize() for evento in eventos]
+    return jsonify(lista_eventos), 200
+
 
 
 # RUTA PARA REGISTRAR UN USUARIO

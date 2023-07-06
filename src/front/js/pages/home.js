@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import { ExpandingCards } from "../component/expandingCards";
+
 import "../../styles/home.css";
 
 
@@ -8,23 +9,6 @@ export const Home = () => {
 	const { store, actions } = useContext(Context);
 	const [eventos, setEventos] = useState([]);
 
-	// Realizar la solicitud GET para obtener los eventos de la base de datos
-	useEffect(() => {
-		fetch("https://api.example.com/eventos")
-		  .then(response => {
-			if (response.ok) {
-			  return response.json();
-			}
-			throw new Error("Error de respuesta: " + response.status);
-		  })
-		  .then(data => {
-			// Almacenar los eventos en el estado
-			setEventos(data);
-		  })
-		  .catch(error => {
-			console.error(error);
-		  });
-	  }, []);
 
 
 	return (
@@ -108,68 +92,25 @@ export const Home = () => {
 
 				<hr className="featurette-divider" />
 
-				<h2>Expanding Cards</h2>
-
-				<div className="expanding"> 
-					<div className="panel" style={{backgroundImage: "url('https://www.taglyancomplex.com/old-blog-pics/wp-content/uploads/2014/09/cater-food.jpg')"}}>
-					</div>
-					<h3>Restaurants & Caterings</h3>
-				</div>
 				
+				/* 
+				meter el map en un bucle for  
+				*/
 
-				<div className="eventcard" >
-					<div className="container marketing">
-					<div className="row">
-						<h2>Un evento</h2>
-						{eventos.map(evento => (
-						<div className="col-lg-4" key={evento.id}>
-							<img
-							className="bd-placeholder-img rounded-circle"
-							width="240"
-							height="240"
-							src={evento.imagen}
-							role="img"
-							alt="Evento"
-							/>
-							<h2 className="fw-normal">{evento.nombre}</h2>
-							<p>{evento.descripcion}</p>
-						</div>
-						))}
-					</div>
-					</div>
-				</div>
-							
+				<h2> Eventos</h2>
+
+				<ExpandingCards />
 				
+						
 
-				<div className="row featurette">
-					<div className="col-md-7">
-						<h2 className="featurette-heading fw-normal lh-1">Próximos eventos<span className="text-body-secondary">Ven a conocer los próximos eventos que etán sucediendo a tu alrededor</span></h2>
-						<p className="lead">Some great placeholder content for the first featurette here. Imagine some exciting prose here.</p>
-					</div>
-					<div className="col-md-5">
-						<svg className="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false">
-							<title>Placeholder</title>
-							<rect width="100%" height="100%" fill="var(--bs-secondary-bg)"></rect>
-							<text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">500x500</text>
-						</svg>
-					</div>
-				</div>
 
 				<hr className="featurette-divider" />
 
-				<div className="row featurette">
-					<div className="col-md-7 order-md-2">
-						<h2 className="featurette-heading fw-normal lh-1">Inspirate del pasado y superate en los siguientes <span className="text-body-secondary">See for yourself.</span></h2>
-						<p className="lead">Another featurette? Of course. More placeholder content here to give you an idea of how this layout would work with some actual real-world content in place.</p>
-					</div>
-					<div className="col-md-5 order-md-1">
-						<svg className="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false">
-							<title>Placeholder</title>
-							<rect width="100%" height="100%" fill="var(--bs-secondary-bg)"></rect>
-							<text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">500x500</text>
-						</svg>
-					</div>
-				</div>
+				<hr className="featurette-divider" />
+
+				<hr className="featurette-divider" />
+
+				
 			</div>	
 
 				<hr className="featurette-divider" />
