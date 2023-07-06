@@ -1,237 +1,127 @@
-import React, { useEffect, useState, useContext, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import React from "react";
+import { useState } from "react";
 import { Context } from "../store/appContext";
-import "../../styles/signup.css";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
+
+import signupImage4 from "../../img/signup-login4.jpg";
+
+import "../../styles/signup.css";
 
 export const Signup = () => {
-  const [name, setName] = useState("");
-  const [dni, setDni] = useState("");
-  const [signupEmail, setSignupEmail] = useState("");
-  const [signupPassword, setSignupPassword] = useState("");
-  const [loginEmail, setLoginEmail] = useState("");
-  const [loginPassword, setLoginPassword] = useState("");
-  const [option, setOption] = useState("signup");
 
-  const loginFormRef = useRef(null);
 
-  const { store, actions } = useContext(Context);
+    const [name, setName] = useState("");
+    const [dni, setDni] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
 
-  const navigate = useNavigate();
+    const { store, actions } = useContext(Context);
 
-  useEffect(() => {
+    const navigate = useNavigate();
 
-    /// Lógica para cambiar vista entre login y signup
-    const loginBtn = document.getElementById("login");
-    const signupBtn = document.getElementById("signup");
+    const handleSignupSubmit = (e) => {
+        e.preventDefault();
+        actions.userSignup(name, dni, email, password);
+        if (store.user) {
+            alert("Usuario registrado correctamente, ya puedes iniciar sesión");
+            navigate("/login");
 
-    const handleLoginClick = (e) => {
-      let parent = e.target.parentNode.parentNode;
-      Array.from(e.target.parentNode.parentNode.classList).find((element) => {
-        if (element !== "slide-up") {
-          parent.classList.add("slide-up");
         } else {
-          signupBtn.parentNode.classList.add("slide-up");
-          parent.classList.remove("slide-up");
+            alert("Error al registrar usuario, inténtalo de nuevo");
         }
-      });
-      setOption("login");
     };
 
-    const handleSignupClick = (e) => {
-      let parent = e.target.parentNode;
-      Array.from(e.target.parentNode.classList).find((element) => {
-        if (element !== "slide-up") {
-          parent.classList.add("slide-up");
-        } else {
-          loginBtn.parentNode.parentNode.classList.add("slide-up");
-          parent.classList.remove("slide-up");
-        }
-      });
-      setOption("signup");
-    };
-
-    loginBtn.addEventListener("click", handleLoginClick);
-    signupBtn.addEventListener("click", handleSignupClick);
-
-    return () => {
-      loginBtn.removeEventListener("click", handleLoginClick);
-      signupBtn.removeEventListener("click", handleSignupClick);
-    };
-  }, []);
 
 
-  /// Lógica para gestión de signup y login
-  const handleSignup = (event) => {
-    event.preventDefault();
-    actions.userSignup(name, dni, signupEmail, signupPassword, option);
-  };
-
-  const handleLogin = (event) => {
-    event.preventDefault();
-    actions.userLogin(loginEmail, loginPassword, option);
-    if (store.token) {
-      navigate("/Home");
-    }
-  };
+    return (
 
 
+        <div className="container mt-5">
+            <div className="row d-flex justify-content-center align-items-center">
+                <div className="col-xl-6 col-lg-6">
+                    <form className="signup user-signup-form m-5" onSubmit={handleSignupSubmit}>
+                        <h3 className="fw-bold mt-5 mb-2 text-center text-black">
+                            Registro de usuario
+                        </h3>
+                        <div className="row m-3 d-flex justify-content-center" >
+                            <div className="col-xl-6 col-lg-6">
+                                <input
+                                    type="text"
+                                    id="name"
+                                    name="name"
+                                    className="form-control form-control-user-signup form-control-lg"
+                                    placeholder="Nombre"
+                                    required
+                                    value={name}
+                                    onChange={(event) => setName(event.target.value)
+                                    }
+                                />
+                            </div>
+                        </div>
+                        <div className="row m-3 d-flex justify-content-center" >
 
+                            <div className="col-xl-6 col-lg-6">
+                                <input
+                                    type="text"
+                                    id="dni"
+                                    name="dni"
+                                    className="form-control form-control-user-signup form-control-lg"
+                                    placeholder="DNI"
+                                    required
+                                    value={dni}
+                                    onChange={(event) => setDni(event.target.value)}
+                                />
+                            </div>
+                        </div>
 
+                        <div className="row m-3  d-flex justify-content-center" >
+                            <div className="col-xl-6 col-lg-6">
+                                <input
+                                    type="text"
+                                    id="email"
+                                    name="email"
+                                    className="form-control form-control-user-signup form-control-lg"
+                                    placeholder="Email"
+                                    autoComplete="email"
+                                    required
+                                    value={email}
+                                    onChange={(event) => setEmail(event.target.value)}
+                                />
+                            </div>
+                        </div>
 
-  return (
-    <div className="form-structor">
-      <form
-        className="signup"
-        onSubmit={handleSignup}
-      >
-        <h2 className="form-title" id="signup">
-          Sign up
-        </h2>
-        <div className="form-holder">
-          <input
-            type="text"
-            id="name"
-            name="name"
-            className="input"
-            placeholder="Name"
-            autoComplete="name"
-            required
-            value={name}
-            onChange={(event) => setName(event.target.value)}
-          />
-          <input
-            type="text"
-            id="dni"
-            name="dni"
-            className="input"
-            placeholder="DNI"
-            required
-            value={dni}
-            onChange={(event) => setDni(event.target.value)}
-          />
-          <input
-            type="email"
-            id="signupEmail"
-            name="signupEmail"
-            className="input"
-            placeholder="Email"
-            autoComplete="username"
-            required
-            value={signupEmail}
-            onChange={(event) => setSignupEmail(event.target.value)}
-          />
-          <input
-            type="password"
-            id="signupPassword"
-            name="signupPassword"
-            className="input"
-            placeholder="Password"
-            autoComplete="current-password"
-            required
-            value={signupPassword}
-            onChange={(event) => setSignupPassword(event.target.value)}
-          />
-        </div>
-        <button className="submit-btn">Sign up</button>
-
-        <div className="row mb-4 additional-elements">
-          <div className="col-md-12 d-flex justify-content-center">
-            {/* Checkbox */}
-            <div className="form-check mb-3 mb-md-0">
-              <input
-                className="form-check-input"
-                name="signupCheck"
-                type="checkbox"
-                autoComplete="signupCheck"
-                defaultValue=""
-                id="signupCheck"
-                defaultChecked=""
-              />
-              <label className="form-check-label" htmlFor="loginCheck">
-                {" "}
-                Remember me{" "}
-              </label>
+                        <div className="row m-3  d-flex justify-content-center" >
+                            <div className="col-xl-6 col-lg-6">
+                                <input
+                                    type="text"
+                                    id="Password"
+                                    name="Password"
+                                    className="form-control form-control-user-signup form-control-lg"
+                                    placeholder="Password"
+                                    required
+                                    value={password}
+                                    onChange={(event) => setPassword(event.target.value)
+                                    }
+                                />
+                            </div>
+                        </div>
+                        <div className="row m-3 d-flex justify-content-center" >
+                            <div className="col-xl-6 col-lg-6 d-flex justify-content-center">
+                                <button type="submit" className="btn btn-lg btn-dark text-white btn-user-signup">
+                                    Registrar
+                                </button>
+                            </div>
+                        </div>
+                        <p className="text-center mt-3">Ya tienes una cuenta? <Link to="/login">Inicia sesión</Link></p>
+                    </form>
+                </div>
+                <div className="col-xl-6 col-lg-6 text-align-center">
+                    <img src={signupImage4} alt="Imagen de registro de usuario" className="img-user-signup" />
+                </div>
             </div>
-          </div>
         </div>
-        <div className="text-center mb-3 additional-elements">
-          <p>Sign up with:</p>
-          <button type="button" className="btn btn-dark btn-floating mx-1">
-            <i className="fab fa-facebook-f" />
-          </button>
-          <button type="button" className="btn btn-dark btn-floating mx-1">
-            <i className="fab fa-google" />
-          </button>
-          <button type="button" className="btn btn-dark btn-floating mx-1">
-            <i className="fab fa-twitter" />
-          </button>
-          <button type="button" className="btn btn-dark btn-floating mx-1">
-            <i className="fab fa-linkedin" />
-          </button>
-          <div className="text-center pt-2">Already have an account? <br></br>Click <span onClick={() => loginFormRef.current.scrollIntoView({ behavior: "smooth" })}>Log In</span>  to enter your details</div>
-        </div>
-      </form>
-
-      <form
-        ref={loginFormRef}
-        id="login-form"
-        className="login slide-up"
-        onSubmit={handleLogin}>
-        <div className="center">
-          <h2 className="form-title" id="login">
-            Log in
-          </h2>
-          <div className="form-holder">
-            <input
-              type="email"
-              id="loginEmail"
-              name="loginEmail"
-              className="input"
-              placeholder="Email"
-              autoComplete="username"
-              required
-              value={loginEmail}
-              onChange={(event) => setLoginEmail(event.target.value)}
-            />
-            <input
-              type="password"
-              id="loginPassword"
-              name="loginPassword"
-              className="input"
-              placeholder="Password"
-              autoComplete="current-password"
-              required
-              value={loginPassword}
-              onChange={(event) => setLoginPassword(event.target.value)}
-            />
-          </div>
-          <button className="submit-btn">Log in</button>
-          <div className="row mb-4">
-            <div className="col-md-6 d-flex justify-content-center">
-              {/* Checkbox */}
-              <div className="form-check mb-3 mb-md-0">
-                <input
-                  className="form-check-input"
-                  autoComplete="loginCheck"
-                  type="checkbox"
-                  defaultValue=""
-                  id="loginCheck"
-                  defaultChecked=""
-                />
-                <label className="form-check-label" htmlFor="loginCheck">
-                  {" "}
-                  Remember me{" "}
-                </label>
-              </div>
-            </div>
-            <div className="col-md-6 d-flex justify-content-center">
-              {/* Simple link */}
-              <a href="#!">Forgot password?</a>
-            </div>
-          </div>
-        </div>
-      </form>
-    </div>
-  );
+    );
 };

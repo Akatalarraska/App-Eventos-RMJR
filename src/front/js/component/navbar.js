@@ -9,13 +9,15 @@ export const Navbar = () => (
   <div className="container navbar d-flex justify-content-center">
     <div className="back"></div>
     <nav>
-      <a href="#">Home</a>
-      <a href="#">Works</a>
-      <a href="#">Partners</a>
-      <a href="#">Private Area</a>
-      <a href="#">Sign Up // Log in</a>
+      <Link to="/">Home</Link>
+      <Link to="/">Eventos</Link>
+      <Link to="/">Partners</Link>
+      <Link to="/private">Private Area</Link>
+      <Link to="/signup">Sign Up</Link>
+      <Link to="/login">Log in</Link>
+
     </nav>
   </div>
 );
 
-{/* <div className="back"></div> */ }
+

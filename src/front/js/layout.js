@@ -10,6 +10,9 @@ import injectContext from "./store/appContext";
 import {Signup} from "./pages/signup"
 import {CompanySignup} from "./pages/companysignup"
 import { Event } from "./pages/event";
+import {Private} from "./pages/private"
+import {Login} from "./pages/login"
+
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
@@ -27,17 +30,17 @@ const Layout = () => {
             <BrowserRouter basename={basename}>
                 <ScrollToTop>
                     <Navbar />
-                    <div >
                         <Routes>
                             <Route element={<Home />} path="/" />
-                            <Route element={<Signup />} path="/auth" />
+                            <Route element={<Signup />} path="/signup" />
+                            <Route element={<Login />} path="/login" />
                             <Route element={<CompanySignup />} path="/companysignup" />
+                            <Route element={<Private />} path="/private" />
                             <Route element={<Demo />} path="/demo" />
                             <Route element={<Single />} path="/single/:theid" />
                             <Route element={<Event />} path="/event" />
                             <Route element={<h1>Not found!</h1>} />
                         </Routes>
-                    </div>    
                     <Footer />
                 </ScrollToTop>
             </BrowserRouter>
