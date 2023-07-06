@@ -8,7 +8,7 @@ export const Event = () => {
     const [eventos, setEventos] = useState([]);
 
     useEffect(() => {
-        fetch("https://akatalarraska-didactic-trout-pv4x575rp9pf65pj-3001.preview.app.github.dev/api/eventos")
+        fetch(process.env.BACKEND_URL + "/api/eventos")
           .then(response => {
             if (response.ok) {
               return response.json();
