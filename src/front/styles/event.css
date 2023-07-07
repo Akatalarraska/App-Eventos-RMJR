@@ -1,3 +1,6 @@
+h2{
+  color: rgb(111, 103, 228)
+  }
 .botones{
     display: flex;
     justify-content: space-between;
@@ -184,6 +187,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    border: solid grey 2px;
   }
   
   .comment-form-container {
@@ -230,8 +234,8 @@
   fill: transparent;
   stroke: var(--stroke);
   stroke-linejoin: bevel;
-  stroke-dasharray: 12;
-  animation: idle 4s linear infinite;
+  stroke-dasharray: 3;
+  animation: idle 5s linear infinite;
   transition: stroke 0.2s, fill 0.5s;
 }
 
@@ -253,7 +257,7 @@
   stroke-opacity: 0;
   stroke-dasharray: 0;
   stroke-linejoin: miter;
-  stroke-width: 8px;
+  stroke-width: 18px;
 }
 
 @keyframes yippee {

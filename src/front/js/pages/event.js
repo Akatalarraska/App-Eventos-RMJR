@@ -71,7 +71,7 @@ export const Event = () => {
                               <div className="comment-form-overlay">
                                 <div className="comment-form-container">
                                   <h2>Leave a Comment</h2>
-                                  <div className="rating">
+                                  <div className="rating m-3">
                                     <input
                                       type="radio"
                                       name="star-radio"
