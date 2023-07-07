@@ -71,7 +71,7 @@ class Evento(db.Model):
     empresa_id = db.Column(db.Integer, db.ForeignKey('empresa.id'))
     nombre = db.Column(db.String(40), unique=False, nullable=False)
     descripcion = db.Column(db.String(140), unique=False, nullable=False)
-    imagen = db.Column(db.String(200), unique=False, nullable=True)
+    imagen = db.Column(db.String(400), unique=False, nullable=True)
     ubicacion = db.Column(db.String(40), unique=False, nullable=False)
     fecha_inicio = db.Column(db.String(10), unique=False, nullable=False)
     fecha_fin = db.Column(db.String(10), unique=False, nullable=False)
@@ -105,7 +105,7 @@ class Valoracion(db.Model):
     evento_id = db.Column(db.Integer, db.ForeignKey('evento.id'))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     estrellas = db.Column(db.Integer, unique=False, nullable=False)
-    comentario = db.Column(db.String(120), unique=True, nullable=False)
+    comentario = db.Column(db.String(1000), unique=True, nullable=False)
 
     def __repr__(self):
         return f'<Valoracion {self.evento_id}>'
