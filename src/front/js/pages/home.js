@@ -1,8 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import { ExpandingCards } from "../component/expandingCards";
-
+import { Carousel } from "../component/carousel";
 import "../../styles/home.css";
+
 
 
 export const Home = () => {
@@ -56,7 +57,7 @@ export const Home = () => {
 						
 						<h2 className="fw-normal">Gestiona tus eventos de manera fácil y directa.</h2>
 						<p>Some representative placeholder content for the three columns of text below the carousel. This is the first column.</p>
-						<p><a className="btn btn-secondary" href="#">View details »</a></p>
+						
 					</div>
 					<div className="col-lg-4">
 						<img className="bd-placeholder-img rounded-circle" width="240" height="240" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false" src="https://media.discordapp.net/attachments/1098506224703635488/1120429161543118928/b0a0a45a-6629-4c22-a0f9-3e879b6111bd.jpg?width=577&height=577"/>
@@ -65,7 +66,7 @@ export const Home = () => {
 						
 						<h2 className="fw-normal">Transforma tus eventos empresariales en experiencias únicas</h2>
 						<p>Another exciting bit of representative placeholder content. This time, we've moved on to the second column.</p>
-						<p><a className="btn btn-secondary" href="#">View details »</a></p>
+						
 					</div>
 					<div className="col-lg-4">
 					<img className="bd-placeholder-img rounded-circle" width="240" height="240" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false" src="https://media.discordapp.net/attachments/1098506224703635488/1120427093788991629/df7ff3fd-367e-48cb-9dc4-a8fffae8e75b.jpg?width=577&height=577"/>
@@ -73,7 +74,7 @@ export const Home = () => {
 							<rect width="100%" height="100%" fill="var(--bs-secondary-color)"/>
 						<h2 className="fw-normal">Eleva tu marca con eventos de clase mundial diseñados exclusivamente para ti</h2>
 						<p>And lastly this, the third column of representative placeholder content.</p>
-						<p><a className="btn btn-secondary" href="#">View details »</a></p>
+						
 					</div>
 				</div>
 
@@ -101,7 +102,7 @@ export const Home = () => {
 
 				<ExpandingCards />
 				
-						
+				<Carousel />		
 
 
 				<hr className="featurette-divider" />

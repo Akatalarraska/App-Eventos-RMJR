@@ -1,0 +1,371 @@
+h2{
+  color: rgb(111, 103, 228)
+  }
+.botones{
+    display: flex;
+    justify-content: space-between;
+}
+.fancy {
+    background-color: transparent;
+    border: 2px solid #000;
+    border-radius: 0;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    float: right;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    margin: 0;
+    outline: none;
+    overflow: visible;
+    padding: 1.25em 2em;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    text-transform: none;
+    transition: all 0.3s ease-in-out;
+    user-select: none;
+    font-size: 13px;
+   }
+   
+   .fancy::before {
+    content: " ";
+    width: 1.5625rem;
+    height: 2px;
+    background: black;
+    top: 50%;
+    left: 1.5em;
+    position: absolute;
+    transform: translateY(-50%);
+    transform-origin: center;
+    transition: background 0.3s linear, width 0.3s linear;
+   }
+   
+   .fancy .text {
+    font-size: 1.125em;
+    line-height: 1.33333em;
+    padding-left: 2em;
+    display: block;
+    text-align: left;
+    transition: all 0.3s ease-in-out;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: black;
+   }
+   
+   .fancy .top-key {
+    height: 2px;
+    width: 1.5625rem;
+    top: -2px;
+    left: 0.625rem;
+    position: absolute;
+    background: #e8e8e8;
+    transition: width 0.5s ease-out, left 0.3s ease-out;
+   }
+   
+   .fancy .bottom-key-1 {
+    height: 2px;
+    width: 1.5625rem;
+    right: 1.875rem;
+    bottom: -2px;
+    position: absolute;
+    background: #e8e8e8;
+    transition: width 0.5s ease-out, right 0.3s ease-out;
+   }
+   
+   .fancy .bottom-key-2 {
+    height: 2px;
+    width: 0.625rem;
+    right: 0.625rem;
+    bottom: -2px;
+    position: absolute;
+    background: #e8e8e8;
+    transition: width 0.5s ease-out, right 0.3s ease-out;
+   }
+   
+   .fancy:hover {
+    color: white;
+    background: black;
+   }
+   
+   .fancy:hover::before {
+    width: 0.9375rem;
+    background: white;
+   }
+   
+   .fancy:hover .text {
+    color: white;
+    padding-left: 1.5em;
+   }
+   
+   .fancy:hover .top-key {
+    left: -2px;
+    width: 0px;
+   }
+   
+   .fancy:hover .bottom-key-1,
+    .fancy:hover .bottom-key-2 {
+    right: 0;
+    width: 0;
+   }
+
+
+   .buttoncom {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 6px 12px;
+    gap: 8px;
+    height: 32px;
+    width: 124px;
+    border: none;
+    background: #056bfae0;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+  
+  .lable {
+    line-height: 20px;
+    font-size: 17px;
+    color: #fff;
+    font-family: sans-serif;
+    letter-spacing: 1px;
+  }
+  
+  .buttoncom:hover {
+    background: #056DFA;
+  }
+  
+  .buttoncom:hover .svg-icon {
+    animation: msg 2s linear infinite;
+  }
+  
+  @keyframes msg {
+    0% {
+      transform: translate(0, 0) scale(1);
+    }
+  
+    15% {
+      transform: translateX(1px);
+    }
+  
+    30% {
+      transform: scale(1.1);
+    }
+  
+    45% {
+      transform: translateY(1px);
+    }
+  
+    60% {
+      transform: translateY(0px);
+    }
+  
+    75% {
+      transform: scale(1);
+    }
+  
+    90% {
+      transform: translateX(-px);
+    }
+  
+    100% {
+      transform: translate(0, 0) scale(1);
+    }
+  }
+
+
+                                          /* CSS de la parte de valoración x parte del cliente */
+  .comment-form-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: solid grey 2px;
+  }
+  
+  .comment-form-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+  }
+  
+  .comment-form-container h2 {
+    margin-top: 0;
+  }
+  
+  .comment-form-container textarea {
+    width: 100%;
+    height: 100px;
+    margin-bottom: 10px;
+  }
+  
+  .comment-form-container button {
+    margin-right: 10px;
+  }
+
+                                                        /* Formulario de estrellas */
+.rating {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 0.3rem;
+  --stroke: #666;
+  --fill: #ffc73a;
+}
+
+.rating input {
+  appearance: unset;
+}
+
+.rating label {
+  cursor: pointer;
+}
+
+.rating svg {
+  width: 3rem;
+  height: 3rem;
+  overflow: visible;
+  fill: transparent;
+  stroke: var(--stroke);
+  stroke-linejoin: bevel;
+  stroke-dasharray: 3;
+  animation: idle 5s linear infinite;
+  transition: stroke 0.2s, fill 0.5s;
+}
+
+@keyframes idle {
+  from {
+    stroke-dashoffset: 24;
+  }
+}
+
+.rating label:hover svg {
+  stroke: var(--fill);
+}
+
+.rating input:checked ~ label svg {
+  transition: 0s;
+  animation: idle 4s linear infinite, yippee 0.75s backwards;
+  fill: var(--fill);
+  stroke: var(--fill);
+  stroke-opacity: 0;
+  stroke-dasharray: 0;
+  stroke-linejoin: miter;
+  stroke-width: 18px;
+}
+
+@keyframes yippee {
+  0% {
+    transform: scale(1);
+    fill: var(--fill);
+    fill-opacity: 0;
+    stroke-opacity: 1;
+    stroke: var(--stroke);
+    stroke-dasharray: 10;
+    stroke-width: 1px;
+    stroke-linejoin: bevel;
+  }
+
+  30% {
+    transform: scale(0);
+    fill: var(--fill);
+    fill-opacity: 0;
+    stroke-opacity: 1;
+    stroke: var(--stroke);
+    stroke-dasharray: 10;
+    stroke-width: 1px;
+    stroke-linejoin: bevel;
+  }
+
+  30.1% {
+    stroke: var(--fill);
+    stroke-dasharray: 0;
+    stroke-linejoin: miter;
+    stroke-width: 8px;
+  }
+
+  60% {
+    transform: scale(1.2);
+    fill: var(--fill);
+  }
+}
+
+
+        /* buttons save /  cancel */ 
+
+.buton {
+  border: none;
+  display: block;
+  position: relative;
+  padding: 0.7em 2.4em;
+  font-size: 18px;
+  background: transparent;
+  cursor: pointer;
+  user-select: none;
+  overflow: hidden;
+  color: royalblue;
+  z-index: 1;
+  font-family: inherit;
+  font-weight: 500;
+}
+
+.buton span {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  z-index: -1;
+  border: 4px solid royalblue;
+}
+
+.buton span::before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 8%;
+  height: 500%;
+  background: var(--lightgray);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-60deg);
+  transition: all 0.3s;
+}
+
+.buton:hover span::before {
+  transform: translate(-50%, -50%) rotate(-90deg);
+  width: 100%;
+  background: royalblue;
+}
+
+.buton:hover {
+  color: white;
+}
+
+.buton:active span::before {
+  background: #2751cd;
+}
+
+
+#cancel span::before {
+  border-color: red;
+}
+
+#cancel:hover {
+  color: white;
+}
+
+#cancel:hover span::before {
+  background: red;
+}
+
+#cancel:active span::before {
+  background: darkred;
+}

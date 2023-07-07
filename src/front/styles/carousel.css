@@ -1,23 +1,86 @@
-.carrousel {
-    background: #111111;
-    margin: 0;
-    height: 100vh;
-    width: 100vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+@import url("https://fonts.googleapis.com/css?family=DM+Sans:400,500,700&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+input[type=radio] {
+  display: none;
+}
+
+#carrussel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 10px;
+  font-family: 'DM Sans', sans-serif;
+  transition: background .4s ease-in;
+  background-color: #ded7e6;
   
-.slide {
-    padding-top: 50px;
-    padding-bottom: 80px;
+  &.blue {
+    background-color: #a64274;
   }
+}
+
+.carru1 {
+ 
+  width: 120px;
+  height: 200px;
+  left: auto;
+  right: auto;
+  margin: auto;
+  transition: transform .4s ease;
+  cursor: pointer;
+}
+
+.container5 {
+  width: 100%;
+  max-width: 800px;
+  max-height: 600px;
+  height: 100%;
+  transform-style: preserve-3d;
+  display: flex;
+  justify-content: center;
+  flex-direction:row;
+  align-items: center;
+}
+
+.cartas {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin-bottom: 20px;
+}
+
+.cartas img {
+  /* Ajusta el tamaño de las imágenes dentro de cada tarjeta */
+  width: 200px;
+  height: 350px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+#item-1:checked ~ .cartas #song-3, #item-2:checked ~ .cartas #song-1, #item-3:checked ~ .cartas #song-2 {
+  transform: translatex(-40%) scale(.8);
+  opacity: .4;
+  z-index: 0;
+}
+
+#item-1:checked ~ .cartas #song-2, #item-2:checked ~ .cartas #song-3, #item-3:checked ~ .cartas #song-1 {
+  transform: translatex(40%) scale(.8);
+  opacity: .4;
+  z-index: 0;
+}
+
+#item-1:checked ~ .cartas #song-1, #item-2:checked ~ .cartas #song-2, #item-3:checked ~ .cartas #song-3 {
+  transform: translatex(0) scale(1);
+  opacity: 1;
+  z-index: 1;
   
-.slide .slide-content {
-    background-position: center;
-    background-size: cover;
-    width: 300px;
-    height: 300px;
-    -webkit-box-reflect: below 1px linear-gradient(transparent, transparent, #0006);
+  img {
+    box-shadow: 0px 0px 5px 0px rgba(81, 81, 81, 0.47);
   }
-  
+}
+
+
+
