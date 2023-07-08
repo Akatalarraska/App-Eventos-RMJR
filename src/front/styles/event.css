@@ -1,6 +1,17 @@
 h2{
   color: rgb(111, 103, 228)
   }
+
+  .eventimg{
+    width: 100%;
+    max-width: 100rem;
+  }
+
+
+
+
+
+
 .botones{
     display: flex;
     justify-content: space-between;
