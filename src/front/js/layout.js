@@ -38,7 +38,7 @@ const Layout = () => {
                             <Route element={<Private />} path="/private" />
                             <Route element={<Demo />} path="/demo" />
                             <Route element={<Single />} path="/single/:theid" />
-                            <Route element={<Event />} path="/event" />
+                            <Route element={<Event />} path="/event/:eventId" />
                             <Route element={<h1>Not found!</h1>} />
                         </Routes>
                     <Footer />
