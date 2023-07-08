@@ -105,6 +105,60 @@ def handle_companysignup():
         return jsonify(response), 200
 
 
+
+# RUTA PARA CREAR UN EVENTO
+@api.route('/crearevento', methods=['POST'])
+def handle_crearevento():
+            
+            body = request.get_json()
+        
+            if body is None:
+                raise APIException(
+                    "You need to specify the request body as a json object", status_code=400)
+        
+            if "nombre" not in body:
+                raise APIException('You need to specify the name', status_code=400)
+        
+            if "fechaInicio" not in body:
+                raise APIException('You need to specify the date of start', status_code=400)
+            
+            if "fechaFin" not in body:
+                raise APIException('You need to specify the end date', status_code=400)
+            
+            if "ubicacion" not in body:
+                raise APIException('You need to specify the location', status_code=400)
+    
+            if "descripcion" not in body:
+                raise APIException('You need to specify the description', status_code=400)
+    
+            if "personas" not in body:
+                raise APIException('You need to specify the participants', status_code=400)
+
+    
+    
+            evento = Evento(nombre=body["nombre"], fecha_inicio=body["fechaInicio"], fecha_fin=body["fechaFin"], descripcion=body["descripcion"], imagen=body["imagen"], ubicacion=body["ubicacion"], personas=body["personas"], free=body["free"], importe=body["importe"])
+            db.session.add(evento)
+            db.session.commit()
+        
+            response = {
+            "message": "Evento creado correctamente",
+            "nombre": evento.nombre,
+            "fechaInicio": evento.fecha_inicio,
+            "fechFin": evento.fecha_fin,
+            "descripcion": evento.descripcion,
+            "ubicacion": evento.ubicacion,
+            "personas": evento.personas,
+            "free": evento.free,
+            "importe": evento.importe,
+            "empresa_id": evento.empresa_id,
+            "user_id": evento.user_id
+            }
+
+            print(response)
+            return jsonify(response), 200
+
+
+
 #RUTA PARA ACCEDER A AREA PRIVADA DE USUARIO
 @api.route('/private', methods=['POST'])
 @jwt_required()
