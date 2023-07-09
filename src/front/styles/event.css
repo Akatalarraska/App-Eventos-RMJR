@@ -57,6 +57,7 @@ p, h4{
 
 .botones{
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
 }
 .fancy {
@@ -81,6 +82,7 @@ p, h4{
     transition: all 0.3s ease-in-out;
     user-select: none;
     font-size: 13px;
+    margin-top: 5px
    }
    
    .fancy::before {
@@ -164,6 +166,11 @@ p, h4{
     width: 0;
    }
 
+   @media (min-width: 576px) {
+    .fancy {
+      flex-basis: auto; /* Vuelve al ancho auto para evitar el ajuste completo en pantallas más grandes */
+    }
+  }
 
    .buttoncom {
     display: flex;
@@ -177,6 +184,7 @@ p, h4{
     background: #056bfae0;
     border-radius: 20px;
     cursor: pointer;
+    margin-top: 5px
   }
   
   .lable {
