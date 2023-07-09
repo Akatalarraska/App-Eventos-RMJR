@@ -37,8 +37,10 @@ const Layout = () => {
                             <Route element={<Login />} path="/login" />
                             <Route element={<CompanySignup />} path="/companysignup" />
                             <Route element={<Private />} path="/private" />
+                            <Route element={<Event />} path="/event/:eventId" />
                             <Route element={<CreateEvent />} path="/crearevento" />
-                            <Route element={<Event />} path="/event" />
+                            
+
                             <Route element={<h1>Not found!</h1>} />
                         </Routes>
                     <Footer />

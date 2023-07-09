@@ -43,12 +43,12 @@ export const Home = () => {
 				</button>
 			</div>
 
-			<hr className="featurette-divider" />
+			<hr className="featurette-divider mt-5 mb-5" />
 
 		
-			<h1>PLAN, CREATE, PROMOTE AND EXECUTE EVENTS</h1>
+			<h1 className="mt-5 mb-5">PLAN, CREATE, PROMOTE AND EXECUTE EVENTS</h1>
 
-			<div className="container marketing">
+			<div className="container marketing mb-5">
 				<div className="row">
 					<div className="col-lg-4">
 						<img className="bd-placeholder-img rounded-circle" width="240" height="240" src="https://media.discordapp.net/attachments/1098506224703635488/1120423175319203950/a48010cd-daa7-4fce-8165-43bee2fd1192.jpg?width=577&height=577" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"/>
@@ -78,11 +78,11 @@ export const Home = () => {
 					</div>
 				</div>
 
-				<hr className="featurette-divider" />
+				<hr className="featurette-divider mt-5 mb-5" />
 
-				<h1>Tipos de eventos y servicios</h1>
+				<h1 className="mt-5">Tipos de eventos y servicios</h1>
 
-				<section>
+				<section className="mt-5 mb-5">
 					<img src="https://www.rwlasvegas.com/wp-content/uploads/2022/05/crockfords-las-vegas-standard-deluxe-bedroom_1000x880.jpg" alt="Hoteles"/>
 					<img src="https://eventosempresa.fosburycafe.es/wp-content/uploads/2021/05/P1000415.jpg" data-text="Restaurantes..."/>
 					<img src="https://premiumcartransfers.com/wp-content/uploads/2016/05/transfers-eventos-chofer.jpg"data-text="Transfers"/>
@@ -91,7 +91,7 @@ export const Home = () => {
 					<img src="https://impulsapopular.com/wp-content/uploads/2020/01/4624-Lanzamiento-de-productos-qu%C3%A9-elementos-tener-en-cuenta.jpg" data-text="Lanzamientos de producto"/>
 				</section>
 
-				<hr className="featurette-divider" />
+				<hr className="featurette-divider mt-5 mb-5" />
 
 				
 				/* 
@@ -105,9 +105,9 @@ export const Home = () => {
 				<Carousel />		
 
 
-				<hr className="featurette-divider" />
+				<hr className="featurette-divider mt-5 mb-5" />
 
-				<hr className="featurette-divider" />
+				<hr className="featurette-divider mt-5 mb-5" />
 
 				<hr className="featurette-divider" />
 

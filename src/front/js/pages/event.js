@@ -1,59 +1,88 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import "../../styles/event.css";
 
-
 export const Event = () => {
-    const [eventos, setEventos] = useState([]);
-    const [showCommentForm, setShowCommentForm] = useState(false);
-    const [comment, setComment] = useState('');
-    const [stars, setStars] = useState(0);
+  const [eventos, setEventos] = useState([]);
+  const [showCommentForm, setShowCommentForm] = useState(false);
+  const [comment, setComment] = useState('');
+  const [stars, setStars] = useState(0);
+  const { eventId } = useParams();
 
-    const handleCommentClick = () => {
-      setShowCommentForm(true);
-    };
+  const handleCommentClick = () => {
+    setShowCommentForm(true);
+  };
 
-    const handleCommentSubmit = () => {
-      // Aquí puedes enviar el comentario al backend y realizar las operaciones necesarias
-      // para guardar la valoración en la base de datos
-      // ...
+  const handleCommentSubmit = () => {
+    // Aquí puedes enviar el comentario al backend y realizar las operaciones necesarias
+    // para guardar la valoración en la base de datos
+    // ...
+
+    // Una vez que se envía el comentario, puedes cerrar la ventana emergente
+    setShowCommentForm(false);
+    setComment('');
+  };
+
+  useEffect(() => {
+    fetch(process.env.BACKEND_URL + "/api/eventos")
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("Error de respuesta: " + response.status);
+      })
+      .then(data => {
+        setEventos(data);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }, []);
+
+  console.log("eventos:", eventos); // Agrega este console.log para verificar los eventos obtenidos
+
+
+  const evento = eventos.find(evento => evento.id === Number(eventId));
+  if (!evento) {
+    return <p>Evento no encontrado</p>;
+}
   
-      // Una vez que se envía el comentario, puedes cerrar la ventana emergente
-      setShowCommentForm(false);
-      setComment('');
-    };
-
-    useEffect(() => {
-        fetch(process.env.BACKEND_URL + "/api/eventos")
-          .then(response => {
-            if (response.ok) {
-              return response.json();
-            }
-            throw new Error("Error de respuesta: " + response.status);
-          })
-          .then(data => {
-            setEventos(data);
-          })
-          .catch(error => {
-            console.error(error);
-          });
-      }, []);
     
     return (
         <div>
-
-            {eventos.map(evento => (
-                <div key={evento.id}>
+              
                     <div className="container my-5" >
-                        <h1 className="fw-normal text-body-emphasis">{evento.nombre}</h1>
-                        <img src={evento.imagen} />
-                        <div className="position-relative p-5 text-center text-muted bg-body border border-dashed rounded-5">
-                            <button type="button" className="position-absolute top-0 end-0 p-3 m-3 btn-close bg-secondary bg-opacity-10 rounded-pill" ></button>
-                            <h4 className="col-lg-6 mx-auto mb-4 text-body-emphasis">{evento.descripcion} </h4>
-                            <p>{evento.ubicacion}</p>
-                            <p>{evento.fecha_inicio + "~" + evento.fecha_fin}</p>
-                            <p>{evento.personas} personas</p>
-                            <p>{evento.free} It's free?</p>
-                            <p>{evento.importe} €</p>
+                        
+                        <img className="eventimg" src={evento.imagen} />
+                        <h1 className="fw-normal text-body-emphasis mt-2">{evento.nombre}</h1>
+                        <div className="position-relative p-5  event-container">
+                            <h4 className="col-lg-6  mb-4 text-body-emphasis">
+                              <i className="fa-regular fa-clipboard"></i>
+                              <span className="description">{evento.descripcion}</span>
+                            </h4>
+                            <p>
+                              <i className="fa-solid fa-location-dot"></i>
+                              <span className="icon-text">{evento.ubicacion}</span>
+                            </p>
+                            <p>
+                              <i className="fa-regular fa-calendar"></i>
+                              <span className="icon-text">
+                                {evento.fecha_inicio} ~ {evento.fecha_fin}
+                              </span>
+                            </p>
+                            <p>
+                              <i className="fa-solid fa-people-group"></i>
+                              <span className="icon-text">{evento.personas} personas</span>
+                            </p>
+                            <p>
+                              <i className="fa-solid fa-coins"></i>
+                              <span className="icon-text">{evento.importe} €</span>
+                            </p>
+                            <p>
+                              <i className="fa-regular fa-money-check"></i>
+                              <span className="icon-text">It's free?</span>
+                            </p>
+
                             <div className="botones">
                               <button className="buttoncom" onClick={handleCommentClick}>
                                 <svg className="svg-icon" fill="none" height="22" viewBox="0 0 20 20" width="22" xmlns="http://www.w3.org/2000/svg"><g stroke="#fff" strokeLinecap="round" strokeWidth="1.5"><path d="m6.66669 6.66667h6.66671"></path><path clipRule="evenodd" d="m3.33331 5.00001c0-.92047.74619-1.66667 1.66667-1.66667h10.00002c.9205 0 1.6666.7462 1.6666 1.66667v6.66669c0 .9205-.7461 1.6666-1.6666 1.6666h-4.8274c-.1105 0-.21654.044-.29462.122l-2.50004 2.5c-.26249.2625-.71129.0766-.71129-.2945v-1.9108c0-.2301-.18655-.4167-.41667-.4167h-1.25c-.92048 0-1.66667-.7461-1.66667-1.6666z" fillRule="evenodd"></path><path d="m6.66669 10h2.5"></path></g></svg>
@@ -65,7 +94,7 @@ export const Event = () => {
                                 <span className="bottom-key-1"></span>
                                 <span className="bottom-key-2"></span>
                               </a>
-                            </div>
+                        </div>
 
                             {showCommentForm && (
                               <div className="comment-form-overlay">
@@ -158,10 +187,7 @@ export const Event = () => {
                         </div>
                     </div>
             
-             
-           
                 </div> 
-                ))}
-        </div>
-    )
-}
+                )}
+       
+    
