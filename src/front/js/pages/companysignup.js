@@ -9,6 +9,8 @@ import { TermsAndConditions } from "../component/termsandconditions";
 
 
 export const CompanySignup = () => {
+
+    
     const [razonSocial, setRazonSocial] = useState("");
     const [cif, setCif] = useState("");
     const [direccion, setDireccion] = useState("");

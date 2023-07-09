@@ -9,8 +9,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			company: {
 			},
+			
+			event: {
+				nombre: "",
+				descripcion: "",
+				imagen: "",
+				ubicacion: "",
+				fechaInicio: "",
+				fechaFin: "",
+				personas: "",
+				free: false,
+				importe: ""
+			},
 
-
+			cities: ["Albacete", "Alicante", "Almería", "Ávila", "Badajoz", "Barcelona", "Bilbao", "Burgos", "Castellón", "Ceuta", "Ciudad Real", "Cuenca", "Cáceres", "Cádiz", "Córdoba", "Gerona", "Granada", "Guadalajara", "Huelva", "Huesca", "Jaén", "La Coruña", "Las Palmas de Gran Canaria", "León", "Logroño", "Lugo", "Lérida", "Madrid", "Melilla", "Murcia", "Málaga", "Orense", "Oviedo", "Palencia", "Palma de Mallorca", "Pamplona", "Pontevedra", "Salamanca", "San Sebastián", "Santa Cruz de Tenerife", "Santander", "Segovia", "Sevilla", "Soria", "Tarragona", "Teruel", "Toledo", "Valencia", "Valladolid", "Vitoria", "Zamora", "Zaragoza"],
 		},
 		actions: {
 
@@ -98,6 +110,42 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.catch(error => console.log("Error creating company", error));
 			},
 
+
+			createEvent: (nombre, descripcion, imagen, ubicacion, fechaInicio, fechaFin, personas, free, importe) => {
+
+				const newEvent = {
+					nombre: nombre,
+					descripcion: descripcion,
+					imagen: imagen,
+					ubicacion: ubicacion,
+					fechaInicio: fechaInicio,
+					fechaFin: fechaFin,
+					personas: personas,
+					free: free,
+					importe: importe,
+
+				}
+
+				fetch(process.env.BACKEND_URL + "/api/crearevento", {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json"
+					},
+					body: JSON.stringify(newEvent)
+				})
+					.then(resp => resp.json())
+					.then(data => {
+						setStore({ event: newEvent });
+						console.log("data", data);
+					})
+					.catch(error => console.log("Error creating event", error));
+			},
+
+			
+
+
+
+			  
 		}
 	};
 };

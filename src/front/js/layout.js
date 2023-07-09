@@ -16,6 +16,7 @@ import {Login} from "./pages/login"
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
+import { CreateEvent } from "./pages/createevent";
 
 //create your first component
 const Layout = () => {
@@ -36,9 +37,10 @@ const Layout = () => {
                             <Route element={<Login />} path="/login" />
                             <Route element={<CompanySignup />} path="/companysignup" />
                             <Route element={<Private />} path="/private" />
-                            <Route element={<Demo />} path="/demo" />
-                            <Route element={<Single />} path="/single/:theid" />
                             <Route element={<Event />} path="/event/:eventId" />
+                            <Route element={<CreateEvent />} path="/crearevento" />
+                            
+
                             <Route element={<h1>Not found!</h1>} />
                         </Routes>
                     <Footer />
