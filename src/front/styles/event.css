@@ -1,12 +1,26 @@
-h2{
-  color: rgb(111, 103, 228)
-  }
+.eventimg {
+  width: 80%;
+  
+  max-height: 500px;
+  display: block;
+  margin: 0 auto;
+  border-radius: 12px;
+}
 
-  .eventimg{
-    width: 100%;
-    max-width: 100rem;
-  }
+h1 {
+  text-align: center;
+  margin-top: 2rem;
+  color: rgb(111, 103, 228);
+}
 
+.position-relative {
+  width: 80%;
+  margin: 0 auto;
+  border: solid rgb(196, 190, 190) 2px;
+  border-radius: 12px;
+  padding: 5%;
+  text-align: center;
+}
 
 
 

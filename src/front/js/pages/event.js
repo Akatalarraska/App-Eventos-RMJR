@@ -55,7 +55,7 @@ export const Event = () => {
                         
                         <img className="eventimg" src={evento.imagen} />
                         <h1 className="fw-normal text-body-emphasis mt-2">{evento.nombre}</h1>
-                        <div className="position-relative p-5 text-center text-muted bg-body border border-dashed rounded-5">
+                        <div className="position-relative p-5 text-center">
                             
                             <h4 className="col-lg-6 mx-auto mb-4 text-body-emphasis"><i className="fa-regular fa-clipboard"></i>{evento.descripcion} </h4>
                             <p><i className="fa-solid fa-location-dot"></i>{evento.ubicacion}</p>
