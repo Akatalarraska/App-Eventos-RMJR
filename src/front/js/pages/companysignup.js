@@ -37,7 +37,7 @@ export const CompanySignup = () => {
         setRegistrationCompleted(true)
         setTimeout(() => {
             navigate("/private");
-        }, 5000);
+        }, 10000);
 
     };
 
@@ -71,7 +71,7 @@ export const CompanySignup = () => {
                             En unos segundos volverás a tu área privada.
                         </p>
                     </div>
-                    <div className="row d-flex justify-content-center">
+                    <div className="row d-flex justify-content-center mb-5">
                         <span className="loader"></span>
                     </div>
                 </div>

@@ -109,7 +109,7 @@ export const CreateEvent = () => {
 
                         <div className="row m-3 d-flex justify-content-center " >
                             <div className="col-xl-2 col-lg-2">
-                                <label htmlFor="fechaInicio" className='ms-1'>Fecha de inicio</label>
+                                <label htmlFor="Fecha de inicio" className='ms-1'>Fecha de inicio</label>
                                 <input
                                     type="date"
                                     id="Fecha de inicio"
@@ -123,7 +123,7 @@ export const CreateEvent = () => {
                                 />
                             </div>
                             <div className="col-xl-2 col-lg-2">
-                                <label htmlFor="fechaFIn" className='ms-1'>Fecha de fin</label>
+                                <label htmlFor="Fecha de fin" className='ms-1'>Fecha de fin</label>
                                 <input
                                     type="date"
                                     id="Fecha de fin"
@@ -180,7 +180,7 @@ export const CreateEvent = () => {
                                         checked={free}
                                         onChange={handleCheckboxChange}
                                     />
-                                    <label className="form-check-label m-2" htmlFor="flexCheckDefault">
+                                    <label className="form-check-label m-2" htmlFor="free">
                                         Marcar si el evento es gratuito
                                     </label>
                                 </div>
