@@ -3,7 +3,7 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
 
-from api.models import db, User, Evento, Empresa, User_Empresa
+from api.models import db, User, Evento, Empresa, User_Empresa , Valoracion, Factura
 
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
@@ -17,6 +17,16 @@ def obtener_eventos():
     lista_eventos = [evento.serialize() for evento in eventos]
     return jsonify(lista_eventos), 200
 
+
+@api.route('/valoraciones', methods=["POST"])
+def create_valoracion():
+    valoracion_data = request.get_json()
+    opinion = Valoracion(**valoracion_data)
+
+    db.session.add(opinion)
+    db.session.commit()
+
+    return jsonify({"message": "Valoración guardada exitosamente"}), 201
 
 
 # RUTA PARA REGISTRAR UN USUARIO

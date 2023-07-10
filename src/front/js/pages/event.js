@@ -5,7 +5,7 @@ import "../../styles/event.css";
 export const Event = () => {
   const [eventos, setEventos] = useState([]);
   const [showCommentForm, setShowCommentForm] = useState(false);
-  const [comment, setComment] = useState('');
+  const [comment, setComment] = useState("");
   const [stars, setStars] = useState(0);
   const { eventId } = useParams();
 
@@ -14,45 +14,61 @@ export const Event = () => {
   };
 
   const handleCommentSubmit = () => {
-    // Aquí puedes enviar el comentario al backend y realizar las operaciones necesarias
-    // para guardar la valoración en la base de datos
-    // ...
+    const valoracionData = {
+      evento_id: eventId,
+      estrellas: stars,
+      comentario: comment,
+    };
 
-    // Una vez que se envía el comentario, puedes cerrar la ventana emergente
-    setShowCommentForm(false);
-    setComment('');
+    fetch(process.env.BACKEND_URL + "/api/valoracion", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(valoracionData),
+    })
+      .then((response) => {
+        if (response.ok) {
+          // La valoración se guardó exitosamente en la base de datos
+          console.log("La valoración se guardó exitosamente");
+         
+        } else {
+          throw new Error("Error de respuesta: " + response.status);
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+        console.log("No e ha enviado tu valoración")// Maneja el error de alguna manera apropiada
+        // ...
+      });
   };
 
   useEffect(() => {
     fetch(process.env.BACKEND_URL + "/api/eventos")
-      .then(response => {
+      .then((response) => {
         if (response.ok) {
           return response.json();
         }
         throw new Error("Error de respuesta: " + response.status);
       })
-      .then(data => {
+      .then((data) => {
         setEventos(data);
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
       });
   }, []);
 
-  console.log("eventos:", eventos); // Agrega este console.log para verificar los eventos obtenidos
+  // console.log("eventos:", eventos); // Agrega este console.log para verificar los eventos obtenidos
 
-
-  const evento = eventos.find(evento => evento.id === Number(eventId));
+  const evento = eventos.find((evento) => evento.id === Number(eventId));
   if (!evento) {
     return <p>Evento no encontrado</p>;
-}
-  
-    
+  }
+   
     return (
         <div>
-              
                     <div className="container my-5" >
-                        
                         <img className="eventimg" src={evento.imagen} />
                         <h1 className="fw-normal text-body-emphasis mt-2">{evento.nombre}</h1>
                         <div className="position-relative p-5  event-container">
@@ -104,38 +120,12 @@ export const Event = () => {
                                     <input
                                       type="radio"
                                       name="star-radio"
-                                      id="star-1"
-                                      value="1"
-                                      checked={stars === 1}
-                                      onChange={() => setStars(1)}
+                                      id="star-5"
+                                      value="5"
+                                      checked={stars === 5}
+                                      onChange={() => setStars(5)}
                                     />
-                                    <label htmlFor="star-1">
-                                      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z" />
-                                      </svg>
-                                    </label>
-                                    <input
-                                      type="radio"
-                                      name="star-radio"
-                                      id="star-2"
-                                      value="2"
-                                      checked={stars === 2}
-                                      onChange={() => setStars(2)}
-                                    />
-                                    <label htmlFor="star-2">
-                                      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z" />
-                                      </svg>
-                                    </label>
-                                    <input
-                                      type="radio"
-                                      name="star-radio"
-                                      id="star-3"
-                                      value="3"
-                                      checked={stars === 3}
-                                      onChange={() => setStars(3)}
-                                    />
-                                    <label htmlFor="star-3">
+                                    <label htmlFor="star-5">
                                       <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z" />
                                       </svg>
@@ -156,12 +146,38 @@ export const Event = () => {
                                     <input
                                       type="radio"
                                       name="star-radio"
-                                      id="star-5"
-                                      value="5"
-                                      checked={stars === 5}
-                                      onChange={() => setStars(5)}
+                                      id="star-3"
+                                      value="3"
+                                      checked={stars === 3}
+                                      onChange={() => setStars(3)}
                                     />
-                                    <label htmlFor="star-5">
+                                    <label htmlFor="star-3">
+                                      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z" />
+                                      </svg>
+                                    </label>
+                                    <input
+                                      type="radio"
+                                      name="star-radio"
+                                      id="star-2"
+                                      value="2"
+                                      checked={stars === 2}
+                                      onChange={() => setStars(2)}
+                                    />
+                                    <label htmlFor="star-2">
+                                      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z" />
+                                      </svg>
+                                    </label>
+                                    <input
+                                      type="radio"
+                                      name="star-radio"
+                                      id="star-1"
+                                      value="1"
+                                      checked={stars === 1}
+                                      onChange={() => setStars(1)}
+                                    />
+                                    <label htmlFor="star-1">
                                       <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z" />
                                       </svg>
@@ -189,5 +205,3 @@ export const Event = () => {
             
                 </div> 
                 )}
-       
-    
