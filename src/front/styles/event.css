@@ -63,12 +63,11 @@ p, h4{
 .fancy {
     background-color: transparent;
     border: 2px solid #000;
-    border-radius: 0;
+    border-radius: 10px;
     box-sizing: border-box;
     color: #fff;
     cursor: pointer;
     display: inline-block;
-    float: right;
     font-weight: 700;
     letter-spacing: 0.05em;
     margin: 0;
