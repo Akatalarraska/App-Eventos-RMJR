@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import "../../styles/expandingCards.css";
 
 export const ExpandingCards = () => {
@@ -20,6 +21,14 @@ export const ExpandingCards = () => {
       });
   }, []);
 
+  // Define el eventId aquí antes de usarlo en la línea siguiente
+  const eventId = 1; // Reemplaza esto con el valor correcto del evento que deseas mostrar
+
+  const evento = eventos.find(evento => evento.id === eventId);
+  if (!evento) {
+    return <p>Evento no encontrado</p>;
+  }
+
   return (
     <div className="eventcard">
       <div className="container marketing">
@@ -37,22 +46,23 @@ export const ExpandingCards = () => {
                       alt={evento.nombre}
                     />
                   </div>
-				  <div className="flip-card-back">
-					<img src={evento.imagen} alt={evento.nombre} />
-					<div className="flip-card-back-content">
-						<h6 className="fw-normal pt-2">{evento.descripcion}</h6>
-						<p>{evento.ubicacion}</p>
-						<p>{evento.fecha_inicio + "~" + evento.fecha_fin}</p>
-						<p>{evento.personas} personas</p>
-            
-            <button class="button-64" role="button"><span class="text">+ info</span></button>
-
-					</div>
-					</div>
+                  <div className="flip-card-back">
+                    <img src={evento.imagen} alt={evento.nombre} />
+                    <div className="flip-card-back-content">
+                      <h6 className="fw-normal pt-2">{evento.descripcion}</h6>
+                      <p>{evento.ubicacion}</p>
+                      <p>{evento.fecha_inicio + "~" + evento.fecha_fin}</p>
+                      <p>{evento.personas} personas</p>
+                      <button className="button-64" role="button">
+                        <span className="text">
+                          <Link to={`/event/${evento.id}`}>+ info</Link>
+                        </span>
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
               <h3 className="fw-normal">{evento.nombre}</h3>
-              
             </div>
           ))}
         </div>
