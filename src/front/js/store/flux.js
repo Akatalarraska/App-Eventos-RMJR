@@ -69,6 +69,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 					const data = await response.json()
 					console.log("data", data)
+					sessionStorage.setItem("token", data.token);
 					setStore({
 						user: {
 							email: data.email,
@@ -139,13 +140,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						console.log("data", data);
 					})
 					.catch(error => console.log("Error creating event", error));
-			},
-
-			
-
-
-
-			  
+			},			  
 		}
 	};
 };

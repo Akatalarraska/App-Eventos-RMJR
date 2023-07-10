@@ -64,6 +64,7 @@ export const Signup = () => {
                                     className="form-control form-control-user-signup form-control-lg"
                                     placeholder="Nombre"
                                     required
+                                    autoComplete="name"
                                     value={name}
                                     onChange={(event) => setName(event.target.value)
                                     }
@@ -105,11 +106,12 @@ export const Signup = () => {
                         <div className="row m-3  d-flex justify-content-center" >
                             <div className="col-xl-6 col-lg-6">
                                 <input
-                                    type="text"
+                                    type="password"
                                     id="Password"
                                     name="Password"
                                     className="form-control form-control-user-signup form-control-lg"
                                     placeholder="Password"
+                                    autoComplete="current-password"
                                     required
                                     value={password}
                                     onChange={(event) => setPassword(event.target.value)
