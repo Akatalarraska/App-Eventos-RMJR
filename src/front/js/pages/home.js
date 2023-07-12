@@ -98,7 +98,7 @@ export const Home = () => {
 				meter el map en un bucle for  
 				*/
 
-				<h2> Eventos</h2>
+				<h2 id="event"> Eventos</h2>
 
 				<ExpandingCards />
 				
