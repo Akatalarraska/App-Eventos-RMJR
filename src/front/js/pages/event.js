@@ -10,6 +10,7 @@ export const Event = () => {
   const [comment, setComment] = useState("");
   const [stars, setStars] = useState(0);
   const { eventId } = useParams();
+  const [formSubmitted, setFormSubmitted] = useState(false);
 
   const handleCommentClick = () => {
     setShowCommentForm(true);
@@ -34,6 +35,7 @@ export const Event = () => {
       .then((response) => {
         if (response.ok) {
           console.log("La valoración se guardó exitosamente");
+          setFormSubmitted(true);
         } else {
           throw new Error("Error de respuesta: " + response.status);
         }
@@ -58,7 +60,12 @@ export const Event = () => {
       .catch((error) => {
         console.error(error);
       });
-  }, []);
+  
+    if (formSubmitted) {
+      setShowCommentForm(false);
+      setFormSubmitted(false);
+    }
+  }, [formSubmitted]);
 
   const evento = eventos.find((evento) => evento.id === Number(eventId));
   if (!evento) {
