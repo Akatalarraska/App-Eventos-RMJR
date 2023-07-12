@@ -4,7 +4,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			user: {
 				email: "",
-				token: null
+				token: null,
+				id: ""
 			},
 
 			company: {
@@ -73,7 +74,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					setStore({
 						user: {
 							email: data.email,
-							token: data.token
+							token: data.token,
+							id: data.id
 						}
 					})
 					return data;

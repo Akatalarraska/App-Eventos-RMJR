@@ -102,7 +102,7 @@ export const Home = () => {
 
 				<ExpandingCards />
 				
-				<Carousel />		
+				
 
 
 				<hr className="featurette-divider mt-5 mb-5" />

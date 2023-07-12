@@ -18,7 +18,7 @@ def obtener_eventos():
     return jsonify(lista_eventos), 200
 
 
-@api.route('/valoraciones', methods=["POST"])
+@api.route('/valoracion', methods=["POST"])
 def create_valoracion():
     valoracion_data = request.get_json()
     opinion = Valoracion(**valoracion_data)

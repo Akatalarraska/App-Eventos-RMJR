@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useContext } from "react";
+import { Context } from "../store/appContext";
 import { useParams } from "react-router-dom";
 import "../../styles/event.css";
 
 export const Event = () => {
+  const { store, actions } = useContext(Context);
   const [eventos, setEventos] = useState([]);
   const [showCommentForm, setShowCommentForm] = useState(false);
   const [comment, setComment] = useState("");
@@ -13,8 +15,10 @@ export const Event = () => {
     setShowCommentForm(true);
   };
 
-  const handleCommentSubmit = () => {
+  const handleCommentSubmit = (e) => {
+    e.preventDefault()
     const valoracionData = {
+      user_id: store.user.id,
       evento_id: eventId,
       estrellas: stars,
       comentario: comment,
@@ -29,17 +33,14 @@ export const Event = () => {
     })
       .then((response) => {
         if (response.ok) {
-          // La valoración se guardó exitosamente en la base de datos
           console.log("La valoración se guardó exitosamente");
-         
         } else {
           throw new Error("Error de respuesta: " + response.status);
         }
       })
       .catch((error) => {
         console.error(error);
-        console.log("No e ha enviado tu valoración")// Maneja el error de alguna manera apropiada
-        // ...
+        console.log("No se ha enviado tu valoración")// Maneja el error 
       });
   };
 
@@ -58,8 +59,6 @@ export const Event = () => {
         console.error(error);
       });
   }, []);
-
-  // console.log("eventos:", eventos); // Agrega este console.log para verificar los eventos obtenidos
 
   const evento = eventos.find((evento) => evento.id === Number(eventId));
   if (!evento) {
@@ -115,6 +114,7 @@ export const Event = () => {
                             {showCommentForm && (
                               <div className="comment-form-overlay">
                                 <div className="comment-form-container">
+                                  <form onSubmit={handleCommentSubmit}>
                                   <h2>Leave a Comment</h2>
                                   <div className="rating m-3">
                                     <input
@@ -190,16 +190,15 @@ export const Event = () => {
                                     onChange={(e) => setComment(e.target.value)}
                                   ></textarea>
                                   <div className="botones">
-                                    <button className="buton" onClick={handleCommentSubmit}> Submit
+                                    <button className="buton" type="submit"> Submit
                                       <span></span>
                                     </button>
-                                    
                                     <button className="buton" id="cancel" onClick={() => setShowCommentForm(false)}>Cancel<span></span></button>
                                   </div>
+                                  </form>
                                 </div>
                               </div>
                             )}
-
                         </div>
                     </div>
             
