@@ -1,0 +1,63 @@
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import "../../styles/expandingCards.css";
+
+export const AllEvents = () => {
+  const [eventos, setEventos] = useState([]);
+
+  useEffect(() => {
+    fetch(process.env.BACKEND_URL + "/api/eventos")
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("Error de respuesta: " + response.status);
+      })
+      .then(data => {
+        setEventos(data);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }, []);
+
+  // Define el eventId aquí antes de usarlo en la línea siguiente
+  const eventId = 1; // Reemplaza esto con el valor correcto del evento que deseas mostrar
+
+  const evento = eventos.find(evento => evento.id === eventId);
+  if (!evento) {
+    return <p>Evento no encontrado</p>;
+  }
+
+  return (
+    <div className="eventcard">
+      <div className="container marketing">
+        <div className="row">
+          {eventos.map(evento => (
+            <div className="col-lg-4 col-sm-6" key={evento.id}>
+              <div className="flip-card">
+  
+                <h3 className="fw-normal">{evento.nombre}</h3>
+                    <img
+                      className="bd-placeholder-img rounded"
+                      width="400"
+                      height="400"
+                      src={evento.imagen}
+                      alt={evento.nombre}
+                    />            
+                      <p>{evento.ubicacion}</p>
+                      <p>{evento.fecha_inicio + "~" + evento.fecha_fin}</p>
+                      
+                      <button className="button-64" role="button">
+                        <span className="text">
+                          <Link to={`/event/${evento.id}`}>+ info</Link>
+                        </span>
+                      </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
