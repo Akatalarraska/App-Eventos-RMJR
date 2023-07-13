@@ -29,6 +29,8 @@ def create_valoracion():
     return jsonify({"message": "Valoración guardada exitosamente"}), 201
 
 
+
+
 # RUTA PARA REGISTRAR UN USUARIO
 
 @api.route('/signup', methods=['POST'])

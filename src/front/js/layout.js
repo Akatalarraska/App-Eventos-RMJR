@@ -12,6 +12,7 @@ import {CompanySignup} from "./pages/companysignup"
 import { Event } from "./pages/event";
 import {Private} from "./pages/private"
 import {Login} from "./pages/login"
+import { AllEvents } from "./pages/allEvents";
 
 
 import { Navbar } from "./component/navbar";
@@ -38,6 +39,7 @@ const Layout = () => {
                             <Route element={<CompanySignup />} path="/companysignup" />
                             <Route element={<Private />} path="/private" />
                             <Route element={<Event />} path="/event/:eventId" />
+                            <Route element={<AllEvents />} path="/eventos" />
                             <Route element={<CreateEvent />} path="/crearevento" />
                             
 

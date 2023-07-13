@@ -1,0 +1,39 @@
+import React, { useState, useEffect } from "react";
+import { loadStripe } from "@stripe/stripe-js";
+
+const StripePayment = () => {
+  const [stripe, setStripe] = useState(null);
+
+  useEffect(() => {
+    const loadStripeClient = async () => {
+      const stripeClient = await loadStripe("YOUR_STRIPE_PUBLIC_KEY");
+      setStripe(stripeClient);
+    };
+
+    loadStripeClient();
+  }, []);
+
+  const handlePayment = async () => {
+    if (stripe) {
+      const { error } = await stripe.redirectToCheckout({
+        lineItems: [{ price: "YOUR_PRODUCT_PRICE_ID", quantity: 1 }],
+        mode: "payment",
+        successUrl: "YOUR_SUCCESS_URL",
+        cancelUrl: "YOUR_CANCEL_URL",
+      });
+
+      if (error) {
+        console.error("Error during payment:", error);
+      }
+    }
+  };
+
+  return (
+    <div>
+      <h1>Stripe Payment</h1>
+      <button onClick={handlePayment}>Pay with Stripe</button>
+    </div>
+  );
+};
+
+export default StripePayment;
