@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "../../styles/expandingCards.css";
+import { ExpandingCards } from "../component/expandingCards";
 
 export const AllEvents = () => {
   const [eventos, setEventos] = useState([]);
@@ -30,34 +31,9 @@ export const AllEvents = () => {
   }
 
   return (
-    <div className="eventcard">
-      <div className="container marketing">
-        <div className="row">
-          {eventos.map(evento => (
-            <div className="col-lg-4 col-sm-6" key={evento.id}>
-              <div className="flip-card">
-  
-                <h3 className="fw-normal">{evento.nombre}</h3>
-                    <img
-                      className="bd-placeholder-img rounded"
-                      width="400"
-                      height="400"
-                      src={evento.imagen}
-                      alt={evento.nombre}
-                    />            
-                      <p>{evento.ubicacion}</p>
-                      <p>{evento.fecha_inicio + "~" + evento.fecha_fin}</p>
-                      
-                      <button className="button-64" role="button">
-                        <span className="text">
-                          <Link to={`/event/${evento.id}`}>+ info</Link>
-                        </span>
-                      </button>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
+    <div >
+        <ExpandingCards/>
+
     </div>
   );
 };
