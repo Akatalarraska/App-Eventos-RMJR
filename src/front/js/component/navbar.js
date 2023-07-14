@@ -21,7 +21,7 @@ export const Navbar = () => {
       <nav>
         <Link to="/">Home</Link>
 
-        <Link to="/event">Eventos</Link>
+        <Link to="/eventos">Eventos</Link>
         {token && token != null && token != undefined ? (
 
           <>
