@@ -15,7 +15,7 @@ import invoiceImage from "../../img/factura.jpg";
 
 export const Private = () => {
 
-    const { store, actions } = useContext(Context);
+    const { store } = useContext(Context);
     const token = store.user.token;
 
     const navigate = useNavigate();
