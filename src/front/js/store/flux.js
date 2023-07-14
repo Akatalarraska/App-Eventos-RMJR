@@ -1,5 +1,3 @@
-import { data } from "jquery";
-
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
@@ -22,7 +20,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				fechaFin: "",
 				personas: "",
 				free: false,
-				importe: ""
+				importe: "",
 			},
 
 			cities: ["Albacete", "Alicante", "Almería", "Ávila", "Badajoz", "Barcelona", "Bilbao", "Burgos", "Castellón", "Ceuta", "Ciudad Real", "Cuenca", "Cáceres", "Cádiz", "Córdoba", "Gerona", "Granada", "Guadalajara", "Huelva", "Huesca", "Jaén", "La Coruña", "Las Palmas de Gran Canaria", "León", "Logroño", "Lugo", "Lérida", "Madrid", "Melilla", "Murcia", "Málaga", "Orense", "Oviedo", "Palencia", "Palma de Mallorca", "Pamplona", "Pontevedra", "Salamanca", "San Sebastián", "Santa Cruz de Tenerife", "Santander", "Segovia", "Sevilla", "Soria", "Tarragona", "Teruel", "Toledo", "Valencia", "Valladolid", "Vitoria", "Zamora", "Zaragoza"],
@@ -132,6 +130,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			createEvent: (nombre, descripcion, imagen, ubicacion, fechaInicio, fechaFin, personas, free, importe) => {
 
+
+				const store = getStore(); // Obtiene el estado del contexto
+				const userId = store.user.id; // Obtiene el ID del usuario
+
 				const newEvent = {
 					nombre: nombre,
 					descripcion: descripcion,
@@ -142,7 +144,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					personas: personas,
 					free: free,
 					importe: importe,
-
+					user_id: userId,
 				}
 
 				fetch(process.env.BACKEND_URL + "/api/crearevento", {
