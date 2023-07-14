@@ -29,11 +29,17 @@ export const ExpandingCards = () => {
     return <p>Evento no encontrado</p>;
   }
 
+  // Solo muestra los primeros 6 eventos
+  const primeros6Eventos = eventos.slice(0, 80);
+
+  // Mezcla los eventos
+  primeros6Eventos.sort(() => Math.random() - 0.5);
+
   return (
     <div className="eventcard">
       <div className="container marketing">
         <div className="row">
-          {eventos.map(evento => (
+          {primeros6Eventos.slice(0, 6).map(evento => (
             <div className="col-lg-4 col-sm-6" key={evento.id}>
               <div className="flip-card">
                 <div className="flip-card-inner">

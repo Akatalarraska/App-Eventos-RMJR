@@ -20,8 +20,10 @@ export const Navbar = () => {
     <div className="container navbar d-flex justify-content-center">
       <nav>
         <Link to="/">Home</Link>
+
         <Link to="/event">Eventos</Link>
         {token && token != null && token != undefined ? (
+
           <>
             <Link to="/private">Área privada</Link>
             <div className="mb-5 d-flex justify-content-end">
