@@ -1,3 +1,5 @@
+import { data } from "jquery";
+
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
@@ -70,7 +72,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 					const data = await response.json()
 					console.log("data", data)
+					sessionStorage.setItem("email", data.email);
 					sessionStorage.setItem("token", data.token);
+					sessionStorage.setItem("id", data.id);
 					setStore({
 						user: {
 							email: data.email,
@@ -84,6 +88,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 					throw error;
 				  }
 			},
+
+			userLogOut: () => {
+				sessionStorage.removeItem("token");
+				setStore({
+					user: {
+						email: "",
+						token: null,
+						id: ""
+					}
+				})
+			},
+
 
 
 
@@ -142,7 +158,24 @@ const getState = ({ getStore, getActions, setStore }) => {
 						console.log("data", data);
 					})
 					.catch(error => console.log("Error creating event", error));
-			},			  
+			},	
+			
+			keepStoredData: () => {
+				const storedToken = sessionStorage.getItem("token");
+				const storedEmail = sessionStorage.getItem("email");
+				const storedId = sessionStorage.getItem("id");
+				if (storedToken) {
+				  setStore({
+					user: {
+						id: storedId,
+					  	token: storedToken,
+					  	email: storedEmail,
+					}
+				  });
+				}
+			  },
+			  
+			  
 		}
 	};
 };
