@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "../../styles/expandingCards.css";
-import { ExpandingCards } from "../component/expandingCards";
 
 export const AllEvents = () => {
   const [eventos, setEventos] = useState([]);
@@ -31,9 +30,43 @@ export const AllEvents = () => {
   }
 
   return (
-    <div >
-        <ExpandingCards/>
-
+    <div className="eventcard">
+      <div className="container marketing">
+        <div className="row">
+          {eventos.map(evento => (
+            <div className="col-lg-4 col-sm-6" key={evento.id}>
+              <div className="flip-card">
+                <div className="flip-card-inner">
+                  <div className="flip-card-front">
+                    <img
+                      className="bd-placeholder-img rounded"
+                      width="400"
+                      height="400"
+                      src={evento.imagen}
+                      alt={evento.nombre}
+                    />
+                  </div>
+                  <div className="flip-card-back">
+                    <img src={evento.imagen} alt={evento.nombre} />
+                    <div className="flip-card-back-content">
+                      <h6 className="fw-normal pt-2">{evento.descripcion}</h6>
+                      <p>{evento.ubicacion}</p>
+                      <p>{evento.fecha_inicio + "~" + evento.fecha_fin}</p>
+                      <p>{evento.personas} personas</p>
+                      <button className="button-64" role="button">
+                        <span className="text">
+                          <Link to={`/event/${evento.id}`}>+ info</Link>
+                        </span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <h3 className="fw-normal">{evento.nombre}</h3>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 };

@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import { ExpandingCards } from "../component/expandingCards";
-import { Carousel } from "../component/carousel";
 import "../../styles/home.css";
 
 
@@ -9,13 +8,12 @@ import "../../styles/home.css";
 export const Home = () => {
 	const { store, actions } = useContext(Context);
 	const [eventos, setEventos] = useState([]);
-
-
+	
 
 	return (
 		<div className="text-center" id="principal">
 			<h1 className="mt-6">IBENTO</h1>
-			<p> Texto publicidad </p>
+			<p> "Bring Your Event Vision to Life: Unlock Endless Possibilities"</p>
 			<div id="carouselExampleIndicators" className="carousel slide">
 				<div className="carousel-indicators">
 					<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
@@ -55,8 +53,8 @@ export const Home = () => {
 							<title>Placeholder</title>
 							<rect width="100%" height="100%" fill="var(--bs-secondary-color)"/>
 						
-						<h2 className="fw-normal">Gestiona tus eventos de manera fácil y directa.</h2>
-						<p>Some representative placeholder content for the three columns of text below the carousel. This is the first column.</p>
+						<h2 className="fw-normal">Manage your events easily and directly.</h2>
+						<p>Streamline event management with our intuitive platform, making it easy and efficient to organize and coordinate all your events.</p>
 						
 					</div>
 					<div className="col-lg-4">
@@ -64,23 +62,24 @@ export const Home = () => {
 							<title>Placeholder</title>
 							<rect width="100%" height="100%" fill="var(--bs-secondary-color)"/>
 						
-						<h2 className="fw-normal">Transforma tus eventos empresariales en experiencias únicas</h2>
-						<p>Another exciting bit of representative placeholder content. This time, we've moved on to the second column.</p>
+						<h2 className="fw-normal">Transform your corporate events into unique experiences.</h2>
+						<p>Elevate your business events into unforgettable experiences, creating meaningful connections and leaving a lasting impact on attendees.</p>
 						
 					</div>
 					<div className="col-lg-4">
 					<img className="bd-placeholder-img rounded-circle" width="240" height="240" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false" src="https://media.discordapp.net/attachments/1098506224703635488/1120427093788991629/df7ff3fd-367e-48cb-9dc4-a8fffae8e75b.jpg?width=577&height=577"/>
 							<title>Placeholder</title>
 							<rect width="100%" height="100%" fill="var(--bs-secondary-color)"/>
-						<h2 className="fw-normal">Eleva tu marca con eventos de clase mundial diseñados exclusivamente para ti</h2>
-						<p>And lastly this, the third column of representative placeholder content.</p>
+						<h2 className="fw-normal">Elevate your brand with world-class events exclusively designed for you.</h2>
+						<p>Boost your brand's visibility and reputation with meticulously crafted events that showcase your unique identity and captivate your target audience.</p>
 						
 					</div>
 				</div>
+			</div>	
 
 				<hr className="featurette-divider mt-5 mb-5" />
 
-				<h1 className="mt-5">Tipos de eventos y servicios</h1>
+				<h1 className="mt-5">Types of Events and Services</h1>
 
 				<section className="mt-5 mb-5">
 					<img src="https://www.rwlasvegas.com/wp-content/uploads/2022/05/crockfords-las-vegas-standard-deluxe-bedroom_1000x880.jpg" alt="Hoteles"/>
@@ -88,37 +87,20 @@ export const Home = () => {
 					<img src="https://premiumcartransfers.com/wp-content/uploads/2016/05/transfers-eventos-chofer.jpg"data-text="Transfers"/>
 					<img src="https://i0.wp.com/sonria.com/wp-content/uploads/2020/10/11Curso1.jpg?fit=960%2C640&ssl=1" data-text="Salas"/>
 					<img src="https://us.123rf.com/450wm/sonjachnyj/sonjachnyj1705/sonjachnyj170500628/78906332-deliciosa-mesa-de-frutas-en-la-recepci%C3%B3n-de-la-boda-catering-de-lujo-en-el-restaurante.jpg" data-text="Caterings"/>
+					<img src="https://provinciadealicante.es/wp-content/uploads/2021/12/sala-conciertos-alicante.jpg" data-text="Concerts"/>
 					<img src="https://impulsapopular.com/wp-content/uploads/2020/01/4624-Lanzamiento-de-productos-qu%C3%A9-elementos-tener-en-cuenta.jpg" data-text="Lanzamientos de producto"/>
 				</section>
 
 				<hr className="featurette-divider mt-5 mb-5" />
 
+				<h1 id="event"> Events</h1>
+
+				<ExpandingCards eventos={eventos} />
 				
-				/* 
-				meter el map en un bucle for  
-				*/
-
-				<h2 id="event"> Eventos</h2>
-
-				<ExpandingCards />
-				
-				
-
-
 				<hr className="featurette-divider mt-5 mb-5" />
 
-				<hr className="featurette-divider mt-5 mb-5" />
-
-				<hr className="featurette-divider" />
-
 				
-			</div>	
-
-				<hr className="featurette-divider" />
-
 			
-		
-
 
 			<a href="#" className="back-to-top">
 				<i className="fa-solid fa-arrows-up-to-line"></i>

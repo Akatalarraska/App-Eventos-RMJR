@@ -21,7 +21,7 @@ export const Navbar = () => {
     <div className="container navbar d-flex justify-content-center">
       <nav>
         <Link to="/">Home</Link>
-        <Link to="/eventos">Eventos</Link>
+        <Link to="/eventos">Events</Link>
         {token ? (
           <>
             <Link to="/private">Área privada</Link>
