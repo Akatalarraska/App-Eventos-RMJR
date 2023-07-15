@@ -132,5 +132,10 @@ class Factura(db.Model):
     def serialize(self):
         return {
             "id": self.id,
+            "fecha": self.fecha,
+            "cantidad": self.cantidad,
+            "precio": self.precio,
+            "pasarela_id": self.pasarela_id,
+            "evento": self.evento
             # do not serialize the password, its a security breach
         }
