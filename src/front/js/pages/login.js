@@ -4,6 +4,8 @@ import { Context } from "../store/appContext";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+
 
 import signupImage1 from "../../img/signup-login1.jpg";
 
@@ -24,12 +26,24 @@ export const Login = () => {
       try {
         const response = await actions.userLogin(email, password);
         if (response && response.token) {
+            Swal.fire({
+                title: 'Sesión iniciada correctamente',
+                text: 'Bienvenido a su área privada',
+                icon: 'success',
+                confirmButtonText: 'Aceptar'
+              });
           navigate("/private");
-        } else {
+        } 
+        else {
           throw new Error("Error al iniciar sesión, inténtalo de nuevo");
         }
       } catch (error) {
-        alert(error.message);
+        Swal.fire({
+            title: 'Error',
+            text: 'Error al iniciar sesión, inténtelo de nuevo',
+            icon: 'error',
+            confirmButtonText: 'Aceptar'
+          });
       }
     };
     
@@ -41,14 +55,14 @@ export const Login = () => {
 
         <div className="container mt-5">
             <div className="row d-flex justify-content-center align-items-center">
-                <div className="col-xl-6 col-lg-6">
+                <div className="col-xl-8 col-lg-8">
                     <form className="login user-login-form m-5" onSubmit={handleLoginSubmit}>
                         <h3 className="fw-bold mt-5 mb-2 text-center text-black">
                             Inicio de sesión
                         </h3>
 
                         <div className="row m-3  d-flex justify-content-center" >
-                            <div className="col-xl-6 col-lg-6">
+                            <div className="col-xl-8 col-lg-8">
                                 <input
                                     type="text"
                                     id="email"
@@ -64,7 +78,7 @@ export const Login = () => {
                         </div>
 
                         <div className="row m-3  d-flex justify-content-center" >
-                            <div className="col-xl-6 col-lg-6">
+                            <div className="col-xl-8 col-lg-8">
                                 <input
                                     type="password"
                                     id="Password"
@@ -81,7 +95,7 @@ export const Login = () => {
                         </div>
                         
                         <div className="row m-3 d-flex justify-content-center" >
-                            <div className="col-xl-6 col-lg-6 d-flex justify-content-center">
+                            <div className="col-xl-8 col-lg-8 d-flex justify-content-center">
                                 <button type="submit" className="btn btn-lg btn-dark text-white btn-user-login">
                                     Iniciar sesión
                                 </button>
@@ -91,7 +105,7 @@ export const Login = () => {
 
                     </form>
                 </div>
-                <div className="col-xl-6 col-lg-6 text-align-center">
+                <div className="col-xl-4 col-lg-4 text-align-center">
                     <img src={signupImage1} alt="Imagen de registro de usuario" className="img-user-login" />
                 </div>
             </div>

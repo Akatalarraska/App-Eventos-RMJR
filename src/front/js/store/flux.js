@@ -28,29 +28,36 @@ const getState = ({ getStore, getActions, setStore }) => {
 		actions: {
 
 
-			userSignup: (name, dni, email, password) => {
 
-				const newUser = {
+			userSignup: async (name, dni, email, password) => {
+				try {
+				  const newUser = {
 					name: name,
 					dni: dni,
 					email: email,
 					password: password,
-				}
-
-				fetch(process.env.BACKEND_URL + "/api/signup", {
+				  };
+			  
+				  const response = await fetch(process.env.BACKEND_URL + "/api/signup", {
 					method: "POST",
 					headers: {
-						"Content-Type": "application/json"
+					  "Content-Type": "application/json",
 					},
-					body: JSON.stringify(newUser)
-				})
-					.then(resp => resp.json())
-					.then(data => {
-						setStore({ user: newUser });
-						console.log("data", data);
-					})
-					.catch(error => console.log("Error creating user", error));
-			},
+					body: JSON.stringify(newUser),
+				  });
+			  
+				  if (!response.ok) {
+					throw new Error("Error creating user");
+				  }
+			  
+				  const data = await response.json();
+				  return true; // El usuario se registró exitosamente
+				} catch (error) {
+				  console.log("Error creating user", error);
+				  return false; // Hubo un error al registrar al usuario
+				}
+			  },
+			  
 
 
 			userLogin: async (email, password) => {
