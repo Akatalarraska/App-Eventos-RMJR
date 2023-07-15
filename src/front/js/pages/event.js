@@ -161,16 +161,26 @@ export const Event = () => {
 
                         {showFacturaForm && (
                           <div className="comment-form-overlay">
-                            <form onSubmit={handleCommentSubmit}>
-                            <input type="hidden" name="eventId" value="7" />
-                            <input
-                              type="number"
-                              name="numberOfTickets"
-                              placeholder="Número de entradas"
-                            />
-                            <input type="submit" value="Comprar entradas" />
-                            </form>
-                          </div>
+                            <div className="comment-form-container">
+                              <form onSubmit={handleCommentSubmit}>
+                                <h2>Your ticket</h2>
+                              <input type="hidden" name="eventId" value="7" />
+                              <input
+                                type="number"
+                                name="numberOfTickets"
+                                placeholder="Número de entradas"
+                              />
+                              <input type="submit" value="Comprar entradas" />
+                              <div className="botones">
+                              
+                                <button className="buton" id="cancel" onClick={() => setShowFacturaForm(false)}>Cancel<span></span></button>
+                                <button className="buton" type="submit"> Buy
+                                    <span></span>
+                                </button>
+                              </div>
+                              </form>
+                            </div>
+                          </div>                                 
                         )}
 
                             {showCommentForm && (

@@ -39,6 +39,10 @@ def create_factura():
     return jsonify({"message": "Factura creada exitosamente"}), 201
 
 
+
+
+
+
 # RUTA PARA REGISTRAR UN USUARIO
 
 @api.route('/signup', methods=['POST'])
