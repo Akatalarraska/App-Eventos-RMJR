@@ -53,15 +53,18 @@ export const Event = () => {
   const handleFacturaClick = () => {
     setShowFacturaForm(true);
   };
+  // Obtener la fecha actual
+  const currentDate = new Date();
+  const formattedDate = currentDate.toLocaleDateString()
 
   const handleFacturaSubmit = (e) => {
     e.preventDefault()
     const facturaData = {
       user_id: store.user.id,
       evento_id: eventId,
-      fecha_inicio: "",
-      personas: "",
-      precio: "",
+      fecha: formattedDate,
+      personas: numberOfTickets,
+      precio: finalPrice,
     };
 
     fetch(process.env.BACKEND_URL + "/api/factura", {
@@ -161,7 +164,7 @@ export const Event = () => {
                         {showFacturaForm && (
                           <div className="comment-form-overlay">
                             <div className="comment-form-container">
-                              <form onSubmit={handleCommentSubmit}>
+                              <form onSubmit={handleFacturaSubmit}>
                                 <h2>Your ticket</h2>
                                 <h5 className="fw-normal text-body-emphasis mt-2">Event:{evento.nombre}</h5>
                                 <h6 className="fw-normal text-body-emphasis mt-2">Price: {evento.importe} €</h6>
