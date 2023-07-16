@@ -3,7 +3,7 @@ import "../../styles/footer.css";
 
 export const Footer = () => (
   <footer className="footer">
-    <div className="container">
+    <div className="containerf">
       <div className="row">
         <div className="footer-col col-6 col-md-3">
           <h4>Ibento</h4>

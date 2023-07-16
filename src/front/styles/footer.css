@@ -12,13 +12,15 @@ body {
 }
 
 .containerf {
-  max-width: 1170px;
+  max-width: 95%;
   margin: auto;
 }
 
 .row {
   display: flex;
   flex-wrap: wrap;
+  width: 100%;
+  justify-content: center;
 }
 
 ul {
@@ -28,7 +30,7 @@ ul {
 .footer {
   background-color: rgba(146, 146, 140, 0.568);
   padding: 70px 0;
-  padding: 3em;
+  padding: 0em;
   position: relative;
   bottom: 0;
   left: 0;
@@ -38,7 +40,7 @@ ul {
 
 .footer-col {
   width: 100%;
-  padding: 0 15px;
+  padding: 0 20px;
   margin-bottom: 30px;
 }
 
@@ -63,7 +65,7 @@ ul {
 }
 
 .footer-col ul li:not(:last-child) {
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
 .footer-col ul li a {
@@ -95,6 +97,14 @@ ul {
   transition: all 0.5 ease;
 }
 
+.footer-col .social-links a i {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  height: 100%;
+  width: 100%;
+}
 .footer-col .social-links a:hover {
   color: #24262b;
   background-color: #ffffff;

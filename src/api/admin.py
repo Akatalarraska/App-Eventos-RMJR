@@ -12,10 +12,15 @@ def setup_admin(app):
     class UserAdmin(ModelView):
         column_display_pk = True
         list_display = ('id', 'dni', 'email', 'passsword')
+    
+    class EventoAdmin(ModelView):
+        column_display_pk = True
+        list_display = ('id', 'nombre', 'descripcion', 'imagen', 'fecha_inicio', 'fecha_fin', 'personas', 'free','importe')
 
 
     # Add your models here, for example this is how we add a the User model to the admin
     admin.add_view(UserAdmin(User, db.session))
+    admin.add_view(EventoAdmin(Evento, db.session))
     admin.add_view(ModelView(Empresa, db.session))
     admin.add_view(ModelView(User_Empresa, db.session))
     admin.add_view(ModelView(Evento, db.session))

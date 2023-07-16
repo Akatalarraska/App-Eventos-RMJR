@@ -19,6 +19,11 @@ import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { CreateEvent } from "./pages/createevent";
 
+// payment card
+const stripePromise = loadStripe("pk_test_51NUUCxDYys0O0bf2heRF4qsmmDwrpGl2ZfUcbHKj9bDah4zOnvHjXoZd3IUBzJA4kKGJ34f6bBkapdHmLbBpNP0y00dE9L4l39");
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+
 //create your first component
 const Layout = () => {
     //the basename is used when your project is published in a subdirectory and not in the root of the domain
@@ -29,6 +34,7 @@ const Layout = () => {
 
     return (
         <div className="d-flex flex-column min-vh-100 min-vw-100">
+            <Elements stripe={stripePromise}>
             <BrowserRouter basename={basename}>
                 <ScrollToTop>
                     <Navbar />
@@ -48,6 +54,7 @@ const Layout = () => {
                     <Footer />
                 </ScrollToTop>
             </BrowserRouter>
+            </Elements>
          </div>
     );
 };
