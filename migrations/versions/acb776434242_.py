@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: eac4d7a75e63
+Revision ID: acb776434242
 Revises: 
-Create Date: 2023-06-28 19:12:12.649217
+Create Date: 2023-07-16 12:06:11.013518
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'eac4d7a75e63'
+revision = 'acb776434242'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -47,9 +47,9 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=True),
     sa.Column('empresa_id', sa.Integer(), nullable=True),
-    sa.Column('nombre', sa.String(length=40), nullable=False),
-    sa.Column('descripcion', sa.String(length=140), nullable=False),
-    sa.Column('imagen', sa.String(length=200), nullable=True),
+    sa.Column('nombre', sa.String(length=200), nullable=False),
+    sa.Column('descripcion', sa.String(length=1400), nullable=False),
+    sa.Column('imagen', sa.String(length=400), nullable=True),
     sa.Column('ubicacion', sa.String(length=40), nullable=False),
     sa.Column('fecha_inicio', sa.String(length=10), nullable=False),
     sa.Column('fecha_fin', sa.String(length=10), nullable=False),
@@ -73,7 +73,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('evento_id', sa.Integer(), nullable=True),
     sa.Column('user_id', sa.Integer(), nullable=True),
-    sa.Column('fecha', sa.String(length=10), nullable=False),
+    sa.Column('fecha', sa.Date(), nullable=False),
     sa.Column('cantidad', sa.Integer(), nullable=True),
     sa.Column('precio', sa.Integer(), nullable=True),
     sa.Column('pasarela_id', sa.String(length=120), nullable=False),
@@ -87,7 +87,7 @@ def upgrade():
     sa.Column('evento_id', sa.Integer(), nullable=True),
     sa.Column('user_id', sa.Integer(), nullable=True),
     sa.Column('estrellas', sa.Integer(), nullable=False),
-    sa.Column('comentario', sa.String(length=120), nullable=False),
+    sa.Column('comentario', sa.String(length=1500), nullable=False),
     sa.ForeignKeyConstraint(['evento_id'], ['evento.id'], ),
     sa.ForeignKeyConstraint(['user_id'], ['user.id'], ),
     sa.PrimaryKeyConstraint('id'),

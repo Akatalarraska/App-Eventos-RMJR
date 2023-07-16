@@ -1,4 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
+from datetime import date
 
 db = SQLAlchemy()
 
@@ -120,7 +121,7 @@ class Factura(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     evento_id = db.Column(db.Integer, db.ForeignKey('evento.id'))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    fecha = db.Column(db.String(10), unique=False, nullable=False)
+    fecha = db.Column(db.Date, nullable=False, default=date.today)
     cantidad = db.Column(db.Integer, nullable=True)
     precio = db.Column(db.Integer, nullable=True)
     pasarela_id = db.Column(db.String(120), unique=True, nullable=False)

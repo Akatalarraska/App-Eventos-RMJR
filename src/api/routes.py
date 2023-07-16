@@ -31,15 +31,14 @@ def create_valoracion():
 @api.route('/factura', methods=["POST"])
 def create_factura():
     factura_data = request.get_json()
+    factura_data['fecha'] = datetime.now().strftime('%Y-%m-%d')  # Agregar la fecha actual
+    factura_data['cantidad'] = factura_data.pop('cantidad', 1)  # Renombrar 'personas' a 'cantidad'
     factura = Factura(**factura_data)
 
     db.session.add(factura)
     db.session.commit()
 
     return jsonify({"message": "Factura creada exitosamente"}), 201
-
-
-
 
 
 

@@ -12,7 +12,7 @@ export const Event = () => {
   const [stars, setStars] = useState(0);
   const { eventId } = useParams();
   const [formSubmitted, setFormSubmitted] = useState(false);
-  const [numberOfTickets, setNumberOfTickets] = useState(1)
+  const [numberOfTickets, setNumberOfTickets] = useState(1) // pre definido en 1 unidad por defecto
 
   // Formulario de comentarios
   const handleCommentClick = () => {
