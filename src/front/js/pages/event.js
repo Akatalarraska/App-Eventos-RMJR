@@ -2,6 +2,10 @@ import React, { useEffect, useState,useContext } from "react";
 import { Context } from "../store/appContext";
 import { useParams } from "react-router-dom";
 import "../../styles/event.css";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+import {CardElement, useElements, useStripe} from "@stripe/react-stripe-js";
+
 
 export const Event = () => {
   const { store, actions } = useContext(Context);
@@ -13,6 +17,30 @@ export const Event = () => {
   const { eventId } = useParams();
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [numberOfTickets, setNumberOfTickets] = useState(1) // pre definido en 1 unidad por defecto
+
+//payment card
+  const [clientSecret, setClientSecret] = useState('sk_test_51NUUCxDYys0O0bf20QgF01UJOyd9IyHEHxX8KbSQbhnqcemTulyyKOLcQeF6HSuZKKWptFAj08S2GVJDmLt9fBwq009ew5Il1v');
+  const stripe = useStripe();
+  const elements = useElements();
+  const [processing, setProcessing] = useState('');
+
+  useEffect(() => {
+    // Create PaymentIntent as soon as the page loads
+    window
+      .fetch("/create-payment-intent", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({items: [{ id: "prod_OH3WLrGylbFGLO" }]})
+      })
+      .then(res => {
+        return res.json();
+      })
+      .then(data => {
+        setClientSecret(data.clientSecret);
+      });
+  }, []);
 
   // Formulario de comentarios
   const handleCommentClick = () => {
@@ -49,7 +77,7 @@ export const Event = () => {
       });
   };
 
-// Formulario de factura
+//        Formulario de factura
   const handleFacturaClick = () => {
     setShowFacturaForm(true);
   };
@@ -57,15 +85,43 @@ export const Event = () => {
   const currentDate = new Date();
   const formattedDate = currentDate.toLocaleDateString()
 
-  const handleFacturaSubmit = (e) => {
+  //const stripe = useStripe();
+  //const elements = useElements();
+  const [error, setError] = useState(null);
+  const handleChange = (event) => {
+    if (event.error) {
+      setError(event.error.message);
+    } else {
+      setError(null);
+    }
+  }
+  
+  const handleFacturaSubmit = async (e) => {
     e.preventDefault()
-    const facturaData = {
+    setProcessing(true);
+
+    const payload = await stripe.confirmCardPayment(clientSecret, {
+      payment_method: {
+        card: elements.getElement(CardElement)
+      }
+    });
+
+    if (payload.error) {
+      setError(`Payment failed ${payload.error.message}`);
+      setProcessing(false);
+    } else {
+      setError(null);
+      setProcessing(false);
+      setSucceeded(true);
+    }
+
+    /*const facturaData = {
       user_id: store.user.id,
       evento_id: eventId,
       fecha: formattedDate,
-      personas: numberOfTickets,
+      cantidad: numberOfTickets,
       precio: finalPrice,
-    };
+      
 
     fetch(process.env.BACKEND_URL + "/api/factura", {
       method: "POST",
@@ -85,7 +141,7 @@ export const Event = () => {
       .catch((error) => {
         console.error(error);
         console.log("No se ha generado tu factura")// Maneja el error 
-      });
+      }); */
   };
 
   useEffect(() => {
@@ -164,41 +220,42 @@ export const Event = () => {
                         {showFacturaForm && (
                           <div className="comment-form-overlay">
                             <div className="comment-form-container">
-                              <form onSubmit={handleFacturaSubmit}>
-                                <h2>Your ticket</h2>
-                                <h5 className="fw-normal text-body-emphasis mt-2">Event:{evento.nombre}</h5>
-                                <h6 className="fw-normal text-body-emphasis mt-2">Price: {evento.importe} €</h6>
-                              <input type="hidden" name="eventId" value="7" />
-                              <select
-                                name="numberOfTickets"
-                                value={numberOfTickets}
-                                onChange={(e) => setNumberOfTickets(parseInt(e.target.value))}
-                              >
-                                <option value="0">Seleccione el número de entradas</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                                <option value="9">9</option>
-                                <option value="10">10</option>
-                                {/* Agrega más opciones según tus necesidades */}
-                              </select>
-                                
-                                <h5 className="fw-normal text-body-emphasis mt-2">
-                                Final price = {finalPrice} €</h5>
-                             
-                              <div className="botones mt-2">
+                            
+                               
+                                <form onSubmit={handleFacturaSubmit}>
+                                  <h2>Your ticket</h2>
+                                  <h5 className="fw-normal text-body-emphasis mt-2">Event: {evento.nombre}</h5>
+                                  <h6 className="fw-normal text-body-emphasis mt-2">Price: {evento.importe} €</h6>
+                                <input type="hidden" name="eventId" value="7" />
+                                <select
+                                  name="numberOfTickets"
+                                  value={numberOfTickets}
+                                  onChange={(e) => setNumberOfTickets(parseInt(e.target.value))}>
+                                  <option value="0">Seleccione el número de entradas</option>
+                                  <option value="1">1</option>
+                                  <option value="2">2</option>
+                                  <option value="3">3</option>
+                                  <option value="4">4</option>
+                                  <option value="5">5</option>
+                                  <option value="6">6</option>
+                                  <option value="7">7</option>
+                                  <option value="8">8</option>
+                                  <option value="9">9</option>
+                                  <option value="10">10</option>
+                                  {/* Agrega más opciones según tus necesidades */}
+                                </select>
+                                  
+                                  <h5 className="fw-normal text-body-emphasis mt-2">
+                                  Final price = {finalPrice} €</h5>
+                                  <CardElement id="card-element" onChange={handleChange}/>
+                                <div className="botones mt-2">
+                                  <button className="buton" id="cancel" onClick={() => setShowFacturaForm(false)}>Cancel<span></span></button>
+                                  <button className="buton" type="submit"> Buy
+                                      <span></span>
+                                  </button>
+                                </div>
+                                </form>
                               
-                                <button className="buton" id="cancel" onClick={() => setShowFacturaForm(false)}>Cancel<span></span></button>
-                                <button className="buton" type="submit"> Buy
-                                    <span></span>
-                                </button>
-                              </div>
-                              </form>
                             </div>
                           </div>                                 
                         )}

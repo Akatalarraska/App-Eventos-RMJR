@@ -23,31 +23,7 @@ app.url_map.strict_slashes = False
 app.config["JWT_SECRET_KEY"] = "this-is-not-really-a-super-secret-key"
 jwt = JWTManager(app)
 
-# Stripe configuration
-stripe.api_key = "sk_test_CGGvfNiIPwLXiDwaOfZ3oX6Y"
 
-# Calculate order amount
-def calculate_order_amount(items):
-    # Replace this constant with a calculation of the order's amount
-    # Calculate the order total on the server to prevent
-    # people from directly manipulating the amount on the client
-    return 1400
-
-# Create payment intent
-@app.route('/create-payment-intent', methods=['POST'])
-def create_payment():
-    try:
-        data = json.loads(request.data)
-        intent = stripe.PaymentIntent.create(
-            amount=calculate_order_amount(data['items']),
-            currency='usd'
-        )
-
-        return jsonify({
-            'clientSecret': intent['client_secret']
-        })
-    except Exception as e:
-        return jsonify(error=str(e)), 403
 
 # Database configuration
 db_url = os.getenv("DATABASE_URL")

@@ -7,6 +7,13 @@ from api.models import db, User, Evento, Empresa, User_Empresa , Valoracion, Fac
 
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
+from datetime import date
+import datetime
+
+import json
+import stripe
+# This is your test secret API key.
+stripe.api_key = 'sk_test_51NUUCxDYys0O0bf20QgF01UJOyd9IyHEHxX8KbSQbhnqcemTulyyKOLcQeF6HSuZKKWptFAj08S2GVJDmLt9fBwq009ew5Il1v'
 
 
 api = Blueprint('api', __name__)
@@ -31,12 +38,12 @@ def create_valoracion():
 @api.route('/factura', methods=["POST"])
 def create_factura():
     factura_data = request.get_json()
-    factura_data['fecha'] = datetime.now().strftime('%Y-%m-%d')  # Agregar la fecha actual
+    factura_data['fecha'] = date.today() # Agregar la fecha actual
     factura_data['cantidad'] = factura_data.pop('cantidad', 1)  # Renombrar 'personas' a 'cantidad'
     factura = Factura(**factura_data)
 
     db.session.add(factura)
-    db.session.commit()
+    db.session.commit() #
 
     return jsonify({"message": "Factura creada exitosamente"}), 201
 
@@ -197,6 +204,33 @@ def handle_private():
                         "token": token,
                         }), 200
     
+
+# Stripe configuration
+stripe.api_key = "sk_test_CGGvfNiIPwLXiDwaOfZ3oX6Y"
+
+# Calculate order amount
+def calculate_order_amount(items):
+    # Replace this constant with a calculation of the order's amount
+    # Calculate the order total on the server to prevent
+    # people from directly manipulating the amount on the client
+    return 1400
+
+# Create payment intent
+@api.route('/create-payment-intent', methods=['POST'])
+def create_payment():
+    try:
+        data = json.loads(request.data)
+        intent = stripe.PaymentIntent.create(
+            amount=calculate_order_amount(data['items']),
+            currency='usd'
+        )
+
+        return jsonify({
+            'clientSecret': intent['client_secret']
+        })
+    except Exception as e:
+        return jsonify(error=str(e)), 403
+
 
 
 if __name__ == '__main__':
