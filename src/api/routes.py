@@ -16,6 +16,14 @@ import json
 
 api = Blueprint('api', __name__)
 
+@api.route('/users', methods=['GET'])
+@jwt_required()
+def get_usuarios():
+    users = User.query.all()
+    users_list = [user.serialize() for user in users]
+    return jsonify(users_list), 200
+
+
 @api.route('/eventos', methods=['GET'])
 def obtener_eventos():
     eventos = Evento.query.all()
