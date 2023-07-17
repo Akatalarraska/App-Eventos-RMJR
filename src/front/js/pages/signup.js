@@ -62,7 +62,7 @@ export const Signup = () => {
           <form className="signup user-signup-form m-5" onSubmit={handleSignupSubmit}>
             <h3 className="fw-bold mt-5 mb-2 text-center text-black">Registro de usuario</h3>
             <div className="row m-3 d-flex justify-content-center">
-              <div className="col-xl-8 col-lg-8">
+              <div className="col-8 col-xl-8 col-lg-8">
                 <input
                   type="text"
                   id="name"
@@ -77,7 +77,7 @@ export const Signup = () => {
               </div>
             </div>
             <div className="row m-3 d-flex justify-content-center">
-              <div className="col-xl-8 col-lg-8">
+              <div className="col-8 col-xl-8 col-lg-8">
                 <input
                   type="text"
                   id="dni"
@@ -92,7 +92,7 @@ export const Signup = () => {
             </div>
 
             <div className="row m-3  d-flex justify-content-center">
-              <div className="col-xl-8 col-lg-8">
+              <div className="col-8 col-xl-8 col-lg-8">
                 <input
                   type="text"
                   id="email"
@@ -108,7 +108,7 @@ export const Signup = () => {
             </div>
 
             <div className="row m-3  d-flex justify-content-center">
-              <div className="col-xl-8 col-lg-8">
+              <div className="col-8 col-xl-8 col-lg-8">
                 <input
                   type="password"
                   id="Password"
@@ -123,7 +123,7 @@ export const Signup = () => {
               </div>
             </div>
             <div className="row m-3 d-flex justify-content-center">
-              <div className="col-xl-8 col-lg-8 d-flex justify-content-center">
+              <div className="col-8 col-xl-8 col-lg-8 d-flex justify-content-center">
                 <div className="form-check">
                   <input className="form-check-input" type="checkbox" id="gridCheck" required />
                   <label className="form-check-label" htmlFor="gridCheck">
@@ -147,7 +147,7 @@ export const Signup = () => {
               </div>
             )}
             <div className="row m-3 d-flex justify-content-center">
-              <div className="col-xl-8 col-lg-8 d-flex justify-content-center">
+              <div className="col-8 col-xl-8 col-lg-8 d-flex justify-content-center">
                 <button type="submit" className="btn btn-lg btn-dark text-white btn-user-signup">
                   Registrar
                 </button>

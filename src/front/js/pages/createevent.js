@@ -90,7 +90,7 @@ export const CreateEvent = () => {
                             Crea tu evento
                         </h3>
                         <div className="row m-3 d-flex justify-content-center " >
-                            <div className="col-xl-10 col-lg-10">
+                            <div className="col-8 col-xl-10 col-lg-10">
                                 <label htmlFor="nombre" className='ms-1'>Nombre del evento</label>
                                 <input
                                     type="text"
@@ -106,7 +106,7 @@ export const CreateEvent = () => {
                             </div>
                         </div>
                         <div className="row m-3 d-flex justify-content-center ">
-                            <div className="col-xl-10 col-lg-10">
+                            <div className="col-8 col-xl-10 col-lg-10">
                                 <label htmlFor="descripcion" className='ms-1'>Describe tu evento</label>
                                 <textarea
                                     id="descripcion"
@@ -121,7 +121,7 @@ export const CreateEvent = () => {
                             </div>
                         </div>
                         <div className="row m-3 d-flex justify-content-center " >
-                            <div className="col-xl-10 col-lg-10">
+                            <div className="col-8 col-xl-10 col-lg-10">
                                 <input
                                     id="formFile"
                                     name="imagen"
@@ -135,7 +135,7 @@ export const CreateEvent = () => {
                             </div>
                         </div>
                         <div className="row m-3 d-flex justify-content-center " >
-                            <div className="dropdown col-xl-10 col-lg-10">
+                            <div className="dropdown col-8 col-xl-10 col-lg-10">
                                 <label htmlFor="ubicacion">Ubicación</label>
                                 <select
                                     id="ubicacion"
@@ -153,8 +153,8 @@ export const CreateEvent = () => {
                                 </select>
                             </div>
                         </div>
-                        <div className="row m-3 d-flex justify-content-center " >
-                            <div className="col-xl-3 col-lg-3">
+                        <div className="row m-3 d-flex justify-content-center align-items-end" >
+                            <div className="col-1 col-xl-3 col-lg-3">
                                 <label htmlFor="Fecha de inicio" className='ms-1'>Fecha de inicio</label>
                                 <input
                                     type="date"
@@ -168,7 +168,7 @@ export const CreateEvent = () => {
                                     }
                                 />
                             </div>
-                            <div className="col-xl-3 col-lg-3">
+                            <div className="col-1 col-xl-3 col-lg-3">
                                 <label htmlFor="Fecha de fin" className='ms-1'>Fecha de fin</label>
                                 <input
                                     type="date"
@@ -182,7 +182,7 @@ export const CreateEvent = () => {
                                     }
                                 />
                             </div>
-                            <div className="col-xl-4 col-lg-4">
+                            <div className="col-4">
                                 <label htmlFor="personas" className='ms-1'>Número de asistentes</label>
                                 <input
                                     type="number"
@@ -198,8 +198,8 @@ export const CreateEvent = () => {
                                 />
                             </div>
                         </div>
-                        <div className="row m-3 d-flex justify-content-center " >
-                            <div className="col-xl-5 col-lg-5">
+                        <div className="row m-3 d-flex justify-content-center align-items-end" >
+                            <div className="col-5">
                                 <label htmlFor="Importe" className='ms-1'>Importe por persona</label>
                                 <input
                                     type="number"
@@ -214,7 +214,7 @@ export const CreateEvent = () => {
                                     disabled={free}
                                 />
                             </div>
-                            <div className="col-xl-5 col-lg-5 d-flex align-items-end">
+                            <div className="col-5 d-flex align-items-end">
                                 <div className="form-check d-flex align-items-center">
                                     <input
                                         className="form-check-input"

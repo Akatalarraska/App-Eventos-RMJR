@@ -10,7 +10,7 @@ import { TermsAndConditions } from "../component/termsandconditions";
 
 export const CompanySignup = () => {
 
-    
+
     const [razonSocial, setRazonSocial] = useState("");
     const [cif, setCif] = useState("");
     const [direccion, setDireccion] = useState("");
@@ -21,7 +21,7 @@ export const CompanySignup = () => {
     const [registrationCompleted, setRegistrationCompleted] = useState(false);
 
     const navigate = useNavigate();
-    const { actions } = useContext(Context);
+    const { store, actions } = useContext(Context);
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -83,7 +83,7 @@ export const CompanySignup = () => {
                                 Registro de empresa
                             </h3>
                             <div className="row m-3 d-flex justify-content-center" >
-                                <div className="col-xl-6 col-lg-6">
+                                <div className="col-8 col-xl-6 col-lg-6">
                                     <input
                                         type="text"
                                         id="razonSocial"
@@ -99,7 +99,7 @@ export const CompanySignup = () => {
                             </div>
                             <div className="row m-3 d-flex justify-content-center" >
 
-                                <div className="col-xl-6 col-lg-6">
+                                <div className="col-8 col-xl-6 col-lg-6">
                                     <input
                                         type="text"
                                         id="cif"
@@ -114,7 +114,7 @@ export const CompanySignup = () => {
                             </div>
 
                             <div className="row m-3  d-flex justify-content-center" >
-                                <div className="col-xl-6 col-lg-6">
+                                <div className="col-8 col-xl-6 col-lg-6">
                                     <input
                                         type="text"
                                         id="direccion"
@@ -129,8 +129,8 @@ export const CompanySignup = () => {
                                 </div>
                             </div>
 
-                            <div className="row m-3  d-flex justify-content-center" >
-                                <div className="col-xl-6 col-lg-6">
+                            <div className="row m-3 d-flex justify-content-center" >
+                                <div className="col-8 col-xl-6 col-lg-6">
                                     <input
                                         type="text"
                                         id="codigoPostal"
@@ -145,23 +145,27 @@ export const CompanySignup = () => {
                                 </div>
                             </div>
 
-                            <div className="row m-3  d-flex justify-content-center" >
-                                <div className="col-xl-6 col-lg-6">
-                                    <input
-                                        type="text"
-                                        id="poblacion"
-                                        name="poblacion"
-                                        className="form-control form-control-company form-control-lg"
-                                        placeholder="Poblacion"
+                            <div className="row m-3 d-flex justify-content-center " >
+                                <div className="dropdown col-8 col-xl-6 col-lg-6">
+
+                                    <select
+                                        id="ubicacion"
+                                        name="ubicacion"
+                                        className="form-control form-control-event-create form-control-lg"
                                         required
                                         value={poblacion}
                                         onChange={(event) => setPoblacion(event.target.value)}
-                                    />
+                                    >
+                                        <option value="">Seleccione una ubicación</option>
+                                        {store.cities.map((city) => (
+                                            <option key={city}>{city}</option>
+                                        ))}
+                                    </select>
                                 </div>
                             </div>
 
                             <div className="row m-3  d-flex justify-content-center" >
-                                <div className="col-xl-6 col-lg-6">
+                                <div className="col-8 col-xl-6 col-lg-6">
                                     <input
                                         type="text"
                                         id="telefono"
@@ -176,7 +180,7 @@ export const CompanySignup = () => {
                             </div>
 
                             <div className="row m-3  d-flex justify-content-center" >
-                                <div className="col-xl-6 col-lg-6">
+                                <div className="col-8 col-xl-6 col-lg-6">
                                     <input
                                         type="text"
                                         id="email"
@@ -192,7 +196,7 @@ export const CompanySignup = () => {
                             </div>
 
                             <div className="row m-3 d-flex justify-content-center" >
-                                <div className="col-xl-6 col-lg-6 d-flex justify-content-center">
+                                <div className="col-8 col-xl-6 col-lg-6 d-flex justify-content-center">
                                     <div className="form-check">
                                         <input className="form-check-input" type="checkbox" id="gridCheck" required />
                                         <label className="form-check-label" htmlFor="gridCheck">
@@ -211,7 +215,7 @@ export const CompanySignup = () => {
                                 <div className="modal-overlay">
                                     <div className="modal-content">
                                         <h2>Terms and Conditions</h2>
-                                        {<TermsAndConditions/>}
+                                        {<TermsAndConditions />}
                                         <button className="close-button" onClick={closeModal}>
                                             Close
                                         </button>
