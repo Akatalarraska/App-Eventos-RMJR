@@ -48,34 +48,24 @@ export const Home = () => {
 
 			<div className="container marketing mb-5">
 				<div className="row">
-					<div className="col-lg-4">
+					<div className="col-lg-4" style={{ backgroundColor: 'var(--bs-secondary-color)' }}>
 						<img className="bd-placeholder-img rounded-circle" width="240" height="240" src="https://media.discordapp.net/attachments/1098506224703635488/1120423175319203950/a48010cd-daa7-4fce-8165-43bee2fd1192.jpg?width=577&height=577" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"/>
-							<title>Placeholder</title>
-							<rect width="100%" height="100%" fill="var(--bs-secondary-color)"/>
-						
 						<h2 className="fw-normal">Manage your events easily and directly.</h2>
-						<p>Streamline event management with our intuitive platform, making it easy and efficient to organize and coordinate all your events.</p>
-						
+						<p className="hidden-text">Streamline event management with our intuitive platform, making it easy and efficient to organize and coordinate all your events.</p>
 					</div>
-					<div className="col-lg-4">
+						<div className="col-lg-4" style={{ backgroundColor: 'var(--bs-secondary-color)' }}>
 						<img className="bd-placeholder-img rounded-circle" width="240" height="240" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false" src="https://media.discordapp.net/attachments/1098506224703635488/1120429161543118928/b0a0a45a-6629-4c22-a0f9-3e879b6111bd.jpg?width=577&height=577"/>
-							<title>Placeholder</title>
-							<rect width="100%" height="100%" fill="var(--bs-secondary-color)"/>
-						
 						<h2 className="fw-normal">Transform your corporate events into unique experiences.</h2>
-						<p>Elevate your business events into unforgettable experiences, creating meaningful connections and leaving a lasting impact on attendees.</p>
-						
+					<p className="hidden-text">Elevate your business events into unforgettable experiences, creating meaningful connections and leaving a lasting impact on attendees.</p>
 					</div>
-					<div className="col-lg-4">
-					<img className="bd-placeholder-img rounded-circle" width="240" height="240" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false" src="https://media.discordapp.net/attachments/1098506224703635488/1120427093788991629/df7ff3fd-367e-48cb-9dc4-a8fffae8e75b.jpg?width=577&height=577"/>
-							<title>Placeholder</title>
-							<rect width="100%" height="100%" fill="var(--bs-secondary-color)"/>
+					<div className="col-lg-4" style={{ backgroundColor: 'var(--bs-secondary-color)' }}>
+						<img className="bd-placeholder-img rounded-circle" width="240" height="240" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false" src="https://media.discordapp.net/attachments/1098506224703635488/1120427093788991629/df7ff3fd-367e-48cb-9dc4-a8fffae8e75b.jpg?width=577&height=577"/>
 						<h2 className="fw-normal">Elevate your brand with world-class events exclusively designed for you.</h2>
-						<p>Boost your brand's visibility and reputation with meticulously crafted events that showcase your unique identity and captivate your target audience.</p>
-						
+						<p className="hidden-text">Boost your brand's visibility and reputation with meticulously crafted events that showcase your unique identity and captivate your target audience.</p>
 					</div>
 				</div>
-			</div>	
+			</div>
+
 
 				<hr className="featurette-divider mt-5 mb-5" />
 
