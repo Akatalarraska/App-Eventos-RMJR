@@ -24,8 +24,8 @@ export const Signup = () => {
       const success = await actions.userSignup(name, dni, email, password);
       if (success) {
         Swal.fire({
-          title: 'Éxito',
-          text: 'Usuario registrado correctamente, ya puedes iniciar sesión',
+          title: 'Registro realizado con éxito',
+          text: 'Ya puede iniciar sesión',
           icon: 'success',
           confirmButtonText: 'Aceptar'
         });

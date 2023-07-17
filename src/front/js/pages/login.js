@@ -27,8 +27,8 @@ export const Login = () => {
         const response = await actions.userLogin(email, password);
         if (response && response.token) {
             Swal.fire({
-                title: 'Sesión iniciada correctamente',
-                text: 'Bienvenido a su área privada',
+                title: 'Bienvenido a su área privada',
+                text: 'Sesión iniciada correctamente',
                 icon: 'success',
                 confirmButtonText: 'Aceptar'
               });
