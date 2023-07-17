@@ -171,6 +171,7 @@ export const Event = () => {
   }
    
   const finalPrice = evento.importe * numberOfTickets;
+  const isFree = evento.free === true;
     return (
         <div>
                     <div className="container my-5" >
@@ -193,16 +194,18 @@ export const Event = () => {
                             </p>
                             <p>
                               <i className="fa-solid fa-people-group"></i>
-                              <span className="icon-text">{evento.personas} personas</span>
+                              <span className="icon-text">{evento.personas} people.</span>
                             </p>
                             <p>
                               <i className="fa-solid fa-coins"></i>
-                              <span className="icon-text">{evento.importe} €</span>
+                              {evento.free ? (
+                                <span className="icon-text">It's free</span>
+                              ) : (
+                                <span className="icon-text">{evento.importe} €</span>
+                              )}
+                              
                             </p>
-                            <p>
-                              <i className="fa-regular fa-money-check"></i>
-                              <span className="icon-text">It's free?</span>
-                            </p>
+                            
 
                             <div className="botones">
                               <button className="buttoncom" onClick={handleCommentClick}>
