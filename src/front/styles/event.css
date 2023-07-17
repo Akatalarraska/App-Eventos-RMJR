@@ -177,8 +177,8 @@ p, h4{
     align-items: center;
     padding: 6px 12px;
     gap: 8px;
-    height: 32px;
-    width: 124px;
+    height: 50px;
+    width: 175px;
     border: none;
     background: #056bfae0;
     border-radius: 20px;
@@ -254,7 +254,9 @@ p, h4{
   .comment-form-container {
     background-color: #fff;
     padding: 20px;
-    border-radius: 5px;
+    border: solid 2px silver;
+    
+    box-shadow: 5px 5px;
   }
   
   .comment-form-container h2 {

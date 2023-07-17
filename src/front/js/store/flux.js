@@ -122,7 +122,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				fetch(process.env.BACKEND_URL + "/api/companysignup", {
 					method: "POST",
 					headers: {
-						"Content-Type": "application/json"
+						"Content-Type": "application/json",
+						'Authorization': 'Bearer ' + sessionStorage.getItem('token')
 					},
 					body: JSON.stringify(newCompany)
 				})
@@ -157,7 +158,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				fetch(process.env.BACKEND_URL + "/api/crearevento", {
 					method: "POST",
 					headers: {
-						"Content-Type": "application/json"
+						"Content-Type": "application/json"						
 					},
 					body: JSON.stringify(newEvent)
 				})
