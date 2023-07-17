@@ -11,10 +11,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 			company: {
 			},
 			
-			event: {
+			evento: {
 				nombre: "",
 				descripcion: "",
-				imagen: "",
+				imagen: null,
 				ubicacion: "",
 				fechaInicio: "",
 				fechaFin: "",
@@ -135,12 +135,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 
-			createEvent: (nombre, descripcion, imagen, ubicacion, fechaInicio, fechaFin, personas, free, importe) => {
 
-
-				const store = getStore(); // Obtiene el estado del contexto
-				const userId = store.user.id; // Obtiene el ID del usuario
-
+			createEvent: async (nombre, descripcion, imagen, ubicacion, fechaInicio, fechaFin, personas, free, importe) => {
+				
+				try {
+				const store = getStore();
+				const userId = store.user.id;
+			
 				const newEvent = {
 					nombre: nombre,
 					descripcion: descripcion,
@@ -152,23 +153,35 @@ const getState = ({ getStore, getActions, setStore }) => {
 					free: free,
 					importe: importe,
 					user_id: userId,
-				}
-
-				fetch(process.env.BACKEND_URL + "/api/crearevento", {
+				};
+			
+				
+				const response = await fetch(process.env.BACKEND_URL + "/api/crearevento", {
 					method: "POST",
 					headers: {
-						"Content-Type": "application/json"
+					  "Content-Type": "application/json"
 					},
 					body: JSON.stringify(newEvent)
-				})
-					.then(resp => resp.json())
-					.then(data => {
-						setStore({ event: newEvent });
-						console.log("data", data);
-					})
-					.catch(error => console.log("Error creating event", error));
-			},	
+				  });
+			  
+				  if (response.ok) {
+					const data = await response.json();
+					setStore({ event: newEvent });
+					console.log("data", data);
+					return true; // Indicar que la creación del evento fue exitosa
+				  } else {
+					throw new Error("Error al crear el evento"); // Lanzar un error en caso de respuesta no exitosa
+				  }
+				} catch (error) {
+				  console.log("Error creating event", error);
+				  throw new Error("Error al crear el evento"); // Lanzar un error en caso de excepción
+				}
+			  },
 			
+
+
+			
+
 			keepStoredData: () => {
 				const storedToken = sessionStorage.getItem("token");
 				const storedEmail = sessionStorage.getItem("email");
@@ -193,3 +206,41 @@ export default getState;
 
 
 
+
+
+//// FUNCIÓN PARA CREAR EVENTO, SIN ASYNC-AWAIT, POR SI ACASO /////
+
+			// createEvent: (nombre, descripcion, imagen, ubicacion, fechaInicio, fechaFin, personas, free, importe) => {
+
+
+			// 	const store = getStore();
+			// 	const userId = store.user.id; 
+
+			// 	const newEvent = {
+			// 		nombre: nombre,
+			// 		descripcion: descripcion,
+			// 		imagen: imagen,
+			// 		ubicacion: ubicacion,
+			// 		fechaInicio: fechaInicio,
+			// 		fechaFin: fechaFin,
+			// 		personas: personas,
+			// 		free: free,
+			// 		importe: importe,
+			// 		user_id: userId,
+			// 	}
+
+			// 	fetch(process.env.BACKEND_URL + "/api/crearevento", {
+			// 		method: "POST",
+			// 		headers: {
+			// 			"Content-Type": "application/json"
+			// 		},
+			// 		body: JSON.stringify(newEvent)
+			// 	})
+			// 		.then(resp => resp.json())
+			// 		.then(data => {
+			// 			setStore({ event: newEvent });
+			// 			console.log("data", data);
+			// 		})
+			// 		.catch(error => console.log("Error creating event", error));
+			// },	
+			
