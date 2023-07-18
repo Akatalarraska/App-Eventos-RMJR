@@ -14,6 +14,7 @@ import {Private} from "./pages/private"
 import {Login} from "./pages/login"
 import { AllEvents } from "./pages/allEvents";
 import {Gestion_empleados} from "./pages/gestion_empleados"
+import { Factura } from "./pages/factura";
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
@@ -40,8 +41,9 @@ const Layout = () => {
                             <Route element={<Signup />} path="/signup" />
                             <Route element={<Login />} path="/login" />
                             <Route element={<CompanySignup />} path="/companysignup" />
-                            <Route element={<Gestion_empleados />} path="/gestion_empleados/:empresaId" />
                             <Route element={<Private />} path="/private" />
+                            <Route element={<Gestion_empleados />} path="/gestion_empleados/:empresaId" />
+                            <Route element={<Factura />} path="/factura" />
                             <Route element={<Event />} path="/event/:eventId" />
                             <Route element={<AllEvents />} path="/eventos" />
                             <Route element={<CreateEvent />} path="/crearevento" />

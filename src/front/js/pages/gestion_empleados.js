@@ -7,6 +7,7 @@ import { useParams } from "react-router-dom";
 export const Gestion_empleados = () => {
   const [empresas, setEmpresas] = useState([]);
   const [users, setUsers] = useState([]);
+  const [selectedUser, setSelectedUser] = useState(null);
   const { empresaId } = useParams();
   const { store } = useContext(Context);
 
@@ -28,9 +29,11 @@ export const Gestion_empleados = () => {
 
   useEffect(() => {
     fetch(process.env.BACKEND_URL + "/api/users", {
+      /*
       headers: {
         Authorization: `Bearer ${store.token}`
       }
+      */
     })
       .then(response => {
         if (response.ok) {
@@ -46,14 +49,13 @@ export const Gestion_empleados = () => {
       });
   }, []);
 
-  const empresa = empresas.find((empresa) => empresa.id === Number(empresaId));
+  const empresa = empresas.find(empresa => empresa.id === Number(empresaId));
   if (!empresa) {
     return <p>Empresa no encontrada</p>;
   }
 
   const handleAddEmpleado = () => {
-    const email = prompt("Ingresa el correo electrónico del empleado:");
-    if (email) {
+    if (selectedUser) {
       fetch(process.env.BACKEND_URL + "/api/adduser_empresa", {
         method: "POST",
         headers: {
@@ -61,7 +63,7 @@ export const Gestion_empleados = () => {
           Authorization: `Bearer ${store.token}`
         },
         body: JSON.stringify({
-          email: email
+          email: selectedUser.email
         })
       })
         .then(response => {
@@ -82,6 +84,10 @@ export const Gestion_empleados = () => {
     }
   };
 
+  const handleUserSelect = user => {
+    setSelectedUser(user);
+  };
+
   return (
     <div className="empresa">
       <br />
@@ -93,7 +99,7 @@ export const Gestion_empleados = () => {
         <p>{empresa.poblacion}</p>
         <p>{empresa.email}</p>
       </div>
-      
+
       <h1>Lista de usuarios:</h1>
       <table>
         <thead>
@@ -101,6 +107,7 @@ export const Gestion_empleados = () => {
             <th>ID</th>
             <th>Nombre</th>
             <th>Email</th>
+            <th>Acción</th>
           </tr>
         </thead>
         <tbody>
@@ -109,13 +116,20 @@ export const Gestion_empleados = () => {
               <td>{user.id}</td>
               <td>{user.name}</td>
               <td>{user.email}</td>
+              <td>
+                <button onClick={() => handleUserSelect(user)}>Seleccionar</button>
+              </td>
             </tr>
           ))}
         </tbody>
       </table>
-      <button onClick={handleAddEmpleado}>Agregar empleado</button>
+      {selectedUser && (
+        <div>
+          <p>Usuario seleccionado: {selectedUser.name}</p>
+          <button onClick={handleAddEmpleado}>Agregar empleado</button>
+        </div>
+      )}
       <h1>Tus empleados:</h1>
-      
     </div>
   );
 };
