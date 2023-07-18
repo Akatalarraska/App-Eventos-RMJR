@@ -9,7 +9,6 @@ from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
 from datetime import date
 import datetime
-
 import json
 
 

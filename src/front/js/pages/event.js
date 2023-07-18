@@ -2,7 +2,7 @@ import React, { useEffect, useState,useContext } from "react";
 import { Context } from "../store/appContext";
 import { useParams } from "react-router-dom";
 import "../../styles/event.css";
-
+import Swal from 'sweetalert2';
 
 
 export const Event = () => {
@@ -83,6 +83,11 @@ export const Event = () => {
         if (response.ok) {
           console.log("La factura se ha creado exitosamente");
           setFormSubmitted(true);
+          Swal.fire({
+            title: 'Factura creada correctamente',
+            icon: 'success',
+            confirmButtonText: 'Aceptar'
+        });
         } else {
           throw new Error("Error de respuesta: " + response.status);
         }

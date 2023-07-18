@@ -207,7 +207,7 @@ export const Private = () => {
                                             </p>
                                         </div>
                                         <div className="card__body-btn d-flex justify-content-center align-items-end mb-5">
-                                            <Link to="/facturas" className="link">
+                                            <Link to="/factura" className="link">
                                                 <button className="btn btn--body-custom">
                                                     Facturación
                                                 </button>
