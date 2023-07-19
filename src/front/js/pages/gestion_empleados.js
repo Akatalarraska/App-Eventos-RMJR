@@ -5,35 +5,16 @@ import { Context } from "../store/appContext";
 import { useParams } from "react-router-dom";
 
 export const Gestion_empleados = () => {
-  const [empresas, setEmpresas] = useState([]);
+  const [empresa, setEmpresa] = useState([]);
   const [users, setUsers] = useState([]);
   const [selectedUser, setSelectedUser] = useState(null);
-  const { empresaId } = useParams();
   const { store } = useContext(Context);
 
   useEffect(() => {
-    fetch(process.env.BACKEND_URL + "/api/empresa")
-      .then(response => {
-        if (response.ok) {
-          return response.json();
-        }
-        throw new Error("Error de respuesta: " + response.status);
-      })
-      .then(data => {
-        setEmpresas(data);
-      })
-      .catch(error => {
-        console.error(error);
-      });
-  }, []);
-
-  useEffect(() => {
-    fetch(process.env.BACKEND_URL + "/api/users", {
-      /*
+    fetch(process.env.BACKEND_URL + "/api/myempresa",{
       headers: {
-        Authorization: `Bearer ${store.token}`
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`
       }
-      */
     })
       .then(response => {
         if (response.ok) {
@@ -42,14 +23,13 @@ export const Gestion_empleados = () => {
         throw new Error("Error de respuesta: " + response.status);
       })
       .then(data => {
-        setUsers(data);
+        setEmpresa(data);
       })
       .catch(error => {
         console.error(error);
       });
   }, []);
 
-  const empresa = empresas.find(empresa => empresa.id === Number(empresaId));
   if (!empresa) {
     return <p>Empresa no encontrada</p>;
   }
@@ -110,8 +90,6 @@ export const Gestion_empleados = () => {
         </div>
       </div>
       
-      
-
       <h1>Lista de usuarios:</h1>
       <table>
         <thead>

@@ -35,6 +35,20 @@ def obtener_empresa():
     lista_empresas = [empresa.serialize() for empresa in empresas]
     return jsonify(lista_empresas), 200
 
+@api.route('/myempresa', methods=['GET'])
+@jwt_required()
+def obtener_myempresa():
+    user_id = get_jwt_identity()
+    user = User.query.filter_by(id=user_id).first()
+    if user.user_empresa and user.user_empresa[0].role == "Admin":
+        user_empresa = User_Empresa.query.filter_by(empresa_id=user.user_empresa[0].empresa_id)
+        users = [{"email": user_data.user.email,"role":user_data.role} for user_data in user_empresa]
+        data = user.user_empresa[0].empresa.serialize()
+        data["users"] = users
+        return jsonify(data)
+    return jsonify("El usuario no Admin de la empresa"), 400
+
+
 
 @api.route('/valoracion', methods=["POST"])
 def create_valoracion():
