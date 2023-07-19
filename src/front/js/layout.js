@@ -13,16 +13,14 @@ import { Event } from "./pages/event";
 import {Private} from "./pages/private"
 import {Login} from "./pages/login"
 import { AllEvents } from "./pages/allEvents";
-
+import {Gestion_empleados} from "./pages/gestion_empleados"
+import { Factura } from "./pages/factura";
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { CreateEvent } from "./pages/createevent";
 
-// payment card
-const stripePromise = loadStripe("pk_test_51NUUCxDYys0O0bf2heRF4qsmmDwrpGl2ZfUcbHKj9bDah4zOnvHjXoZd3IUBzJA4kKGJ34f6bBkapdHmLbBpNP0y00dE9L4l39");
-import { loadStripe } from "@stripe/stripe-js";
-import { Elements } from "@stripe/react-stripe-js";
+
 
 //create your first component
 const Layout = () => {
@@ -34,7 +32,7 @@ const Layout = () => {
 
     return (
         <div className="d-flex flex-column min-vh-100 min-vw-100">
-            <Elements stripe={stripePromise}>
+            
             <BrowserRouter basename={basename}>
                 <ScrollToTop>
                     <Navbar />
@@ -44,17 +42,18 @@ const Layout = () => {
                             <Route element={<Login />} path="/login" />
                             <Route element={<CompanySignup />} path="/companysignup" />
                             <Route element={<Private />} path="/private" />
+                            <Route element={<Gestion_empleados />} path="/gestion_empleados" />
+                            <Route element={<Factura />} path="/factura" />
                             <Route element={<Event />} path="/event/:eventId" />
                             <Route element={<AllEvents />} path="/eventos" />
                             <Route element={<CreateEvent />} path="/crearevento" />
                             
-
                             <Route element={<h1>Not found!</h1>} />
                         </Routes>
                     <Footer />
                 </ScrollToTop>
             </BrowserRouter>
-            </Elements>
+            
          </div>
     );
 };

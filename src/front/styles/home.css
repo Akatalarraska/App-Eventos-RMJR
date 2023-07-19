@@ -5,6 +5,10 @@
     one more css for each page that will contain the selected used 
     on that page only (the ones not reused in other pages).
 */
+#principal {
+    overflow-x: hidden;
+  }
+
 .slider-image {
     height: 400px; /* Ajusta la altura según tus necesidades */
     object-fit: cover;
@@ -46,4 +50,26 @@ section img:hover::before {
     padding: 10px;
     border-radius: 5px;
     z-index: 5;
+  }
+
+  .back-to-top {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 999;
+    bottom: 20px;
+    font-size: 24px; /* Ajusta el tamaño de fuente según tus preferencias */
+    width: 40px; /* Ajusta el ancho del botón según tus preferencias */
+    height: 40px; /* Ajusta la altura del botón según tus preferencias */
+  }
+
+  .hidden-text {
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  
+  .col-lg-4:hover .hidden-text {
+    opacity: 1;
+    transform: translateY(0);
   }

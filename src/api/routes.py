@@ -9,11 +9,8 @@ from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
 from datetime import date
 import datetime
-
 import json
-import stripe
-# This is your test secret API key.
-stripe.api_key = 'sk_test_51NUUCxDYys0O0bf20QgF01UJOyd9IyHEHxX8KbSQbhnqcemTulyyKOLcQeF6HSuZKKWptFAj08S2GVJDmLt9fBwq009ew5Il1v'
+
 
 
 import cloudinary
@@ -29,11 +26,39 @@ import cloudinary.api
 
 api = Blueprint('api', __name__)
 
+@api.route('/users', methods=['GET'])
+@jwt_required()
+def get_usuarios():
+    users = User.query.all()
+    users_list = [user.serialize() for user in users]
+    return jsonify(users_list), 200
+
+
 @api.route('/eventos', methods=['GET'])
 def obtener_eventos():
     eventos = Evento.query.all()
     lista_eventos = [evento.serialize() for evento in eventos]
     return jsonify(lista_eventos), 200
+
+@api.route('/empresa', methods=['GET'])
+def obtener_empresa():
+    empresas = Empresa.query.all()
+    lista_empresas = [empresa.serialize() for empresa in empresas]
+    return jsonify(lista_empresas), 200
+
+@api.route('/myempresa', methods=['GET'])
+@jwt_required()
+def obtener_myempresa():
+    user_id = get_jwt_identity()
+    user = User.query.filter_by(id=user_id).first()
+    if user.user_empresa and user.user_empresa[0].role == "Admin":
+        user_empresa = User_Empresa.query.filter_by(empresa_id=user.user_empresa[0].empresa_id)
+        users = [{"email": user_data.user.email,"role":user_data.role} for user_data in user_empresa]
+        data = user.user_empresa[0].empresa.serialize()
+        data["users"] = users
+        return jsonify(data)
+    return jsonify("El usuario no Admin de la empresa"), 400
+
 
 
 @api.route('/valoracion', methods=["POST"])
@@ -45,6 +70,15 @@ def create_valoracion():
     db.session.commit()
 
     return jsonify({"message": "Valoración guardada exitosamente"}), 201
+
+@api.route('/myinvoice', methods=["GET"])
+@jwt_required()
+def get_facturas():
+    user_id = get_jwt_identity()
+    facturas = Factura.query.filter_by(user_id=user_id)
+    facturas_list = [factura.serialize() for factura in facturas]
+    return jsonify(facturas_list), 200
+
 
 @api.route('/factura', methods=["POST"])
 def create_factura():
@@ -83,7 +117,6 @@ def handle_signup():
 
     return jsonify("user signup ok"), 200
 
-
 # RUTA PARA LOGEARSE
 
 @api.route('/login', methods=['POST'])
@@ -114,10 +147,12 @@ def handle_login():
                     })
 
 
+
 # RUTA PARA REGISTRAR UNA EMPRESA
 @api.route('/companysignup', methods=['POST'])
+@jwt_required()
 def handle_companysignup():
-        
+        user_id = get_jwt_identity()
         body = request.get_json()
     
         if body is None:
@@ -130,7 +165,15 @@ def handle_companysignup():
         empresa = Empresa(email=body["email"], cif=body["cif"], razon_social=body["razonSocial"], direccion=body["direccion"], poblacion=body["poblacion"], telefono=body["telefono"], codigo_postal=body["codigoPostal"])
         db.session.add(empresa)
         db.session.commit()
-    
+
+        user_empresa = User_Empresa(
+            user_id = user_id,
+            empresa_id = empresa.id,
+            role = "Admin"
+        )
+        db.session.add(user_empresa)
+        db.session.commit()
+
         response = {
         "message": "Company signup successful",
         "email": empresa.email,
@@ -144,6 +187,48 @@ def handle_companysignup():
 
         print(response)
         return jsonify(response), 200
+
+
+# añadir empleado a empresa
+@api.route('/adduser_empresa', methods=['POST'])
+@jwt_required()
+def handle_user_empresa():
+        user_id = get_jwt_identity()
+        body = request.get_json()
+    
+        if body is None:
+            raise APIException(
+                "You need to specify the request body as a json object", status_code=400)
+    
+        if "email" not in body:
+            raise APIException('You need to specify the email', status_code=400)
+        
+        user = User.query.filter_by(email=body.get("email")).first()
+        if not user:
+            raise APIException('Usuario no existe', status_code=400)
+        
+        empresa = User_Empresa.query.filter_by(user_id=user_id, role="Admin").first()
+        if not empresa:
+            raise APIException('Empresa no existe', status_code=400)
+        
+        user_empresa = User_Empresa(
+            user_id = user.id,
+            empresa_id = empresa.id,
+            role = "Empleado"
+        )
+
+
+        db.session.add(user_empresa)
+        db.session.commit()
+
+        response = {
+        "message": "Company signup successful",
+        "email": user.email
+        }
+
+        print(response)
+        return jsonify(response), 200
+
 
 
 
@@ -232,33 +317,6 @@ def handle_private():
                         "token": token,
                         }), 200
     
-
-# Stripe configuration
-stripe.api_key = "sk_test_CGGvfNiIPwLXiDwaOfZ3oX6Y"
-
-# Calculate order amount
-def calculate_order_amount(items):
-    # Replace this constant with a calculation of the order's amount
-    # Calculate the order total on the server to prevent
-    # people from directly manipulating the amount on the client
-    return 1400
-
-# Create payment intent
-@api.route('/create-payment-intent', methods=['POST'])
-def create_payment():
-    try:
-        data = json.loads(request.data)
-        intent = stripe.PaymentIntent.create(
-            amount=calculate_order_amount(data['items']),
-            currency='usd'
-        )
-
-        return jsonify({
-            'clientSecret': intent['client_secret']
-        })
-    except Exception as e:
-        return jsonify(error=str(e)), 403
-
 
 
 if __name__ == '__main__':

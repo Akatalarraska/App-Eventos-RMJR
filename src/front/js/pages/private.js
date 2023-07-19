@@ -143,6 +143,8 @@ export const Private = () => {
                                 </div>
                             </div>
                         </div>
+
+
                         <div className="col-sm-12 col-md-6 col-lg-3 card-container my-1">
                             <div className="card">
                                 <div className="card__inner">
@@ -150,27 +152,26 @@ export const Private = () => {
                                         <div className="card__image-wrapper">
                                             <img
                                                 src={pastEventsImage}
-                                                alt="Eventos realizados"
+                                                alt="Gestión de empleados"
                                                 className="card__image"
                                             />
                                         </div>
                                         <div className="card__body card__body--flex">
-                                            <h3 className="card__title">Eventos realizados</h3>
+                                            <h3 className="card__title">Gestión de empleados</h3>
                                             <i className="fa-solid fa-circle-arrow-right fa-2xl" />
                                         </div>
                                     </div>
                                     <div className="card__side card__side--back">
                                         <div className="card__body">
                                             <p>
-                                                Revive los momentos destacados de los eventos realizados en nuestra plataforma.
-                                                Explora los logros, las conexiones y las oportunidades generadas en eventos anteriores.
-                                                A través de testimonios, imágenes y estadísticas, te mostraremos el impacto que nuestros eventos han tenido en la comunidad empresarial.
+                                            Nuestra app te ayuda a gestionar el personal de tu empresa de forma eficiente y eficaz. 
+                                            Habilita a tus empleados dentro de tu empresa para que puedan gestionar los eventos en curso y ver el historial de los mismos.
                                             </p>
                                         </div>
                                         <div className="card__body-btn d-flex justify-content-center align-items-end mb-5">
-                                            <Link to="/eventospasados" className="link">
+                                            <Link to="/gestion_empleados" className="link">
                                                 <button className="btn btn--body-custom">
-                                                    Eventos realizados
+                                                    Gestión de empleados
                                                 </button>
                                             </Link>
                                         </div>
@@ -178,6 +179,8 @@ export const Private = () => {
                                 </div>
                             </div>
                         </div>
+
+
                     </div>
                     <div className="row d-flex justify-content-center ms-4 my-5">
                         <div className="col-sm-12 col-md-6 col-lg-3 card-container my-1">
@@ -204,7 +207,7 @@ export const Private = () => {
                                             </p>
                                         </div>
                                         <div className="card__body-btn d-flex justify-content-center align-items-end mb-5">
-                                            <Link to="/facturas" className="link">
+                                            <Link to="/factura" className="link">
                                                 <button className="btn btn--body-custom">
                                                     Facturación
                                                 </button>

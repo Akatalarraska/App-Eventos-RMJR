@@ -43,7 +43,11 @@ class Empresa(db.Model):
     def serialize(self):
         return {
             "id": self.id,
+            "cif": self.cif,
+            "razon_social": self.razon_social,
             "email": self.email,
+            "poblacion": self.poblacion
+
             # do not serialize the password, its a security breach
         }
 
@@ -61,6 +65,7 @@ class User_Empresa(db.Model):
     def serialize(self):
         return {
             "id": self.id,
+            "role": self.role
             
             # do not serialize the password, its a security breach
         }
@@ -124,7 +129,7 @@ class Factura(db.Model):
     fecha = db.Column(db.Date, nullable=False, default=date.today)
     cantidad = db.Column(db.Integer, nullable=True)
     precio = db.Column(db.Integer, nullable=True)
-    pasarela_id = db.Column(db.String(120), unique=True, nullable=False)
+    pasarela_id = db.Column(db.String(120), unique=True, nullable=True)
     evento = db.relationship('Evento', backref= 'factura', lazy=True)
 
     def __repr__(self):
@@ -137,6 +142,6 @@ class Factura(db.Model):
             "cantidad": self.cantidad,
             "precio": self.precio,
             "pasarela_id": self.pasarela_id,
-            "evento": self.evento
+            "evento": self.evento.serialize()
             # do not serialize the password, its a security breach
         }

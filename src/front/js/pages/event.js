@@ -2,9 +2,7 @@ import React, { useEffect, useState,useContext } from "react";
 import { Context } from "../store/appContext";
 import { useParams } from "react-router-dom";
 import "../../styles/event.css";
-import { loadStripe } from "@stripe/stripe-js";
-import { Elements } from "@stripe/react-stripe-js";
-import {CardElement, useElements, useStripe} from "@stripe/react-stripe-js";
+import Swal from 'sweetalert2';
 
 
 export const Event = () => {
@@ -17,30 +15,7 @@ export const Event = () => {
   const { eventId } = useParams();
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [numberOfTickets, setNumberOfTickets] = useState(1) // pre definido en 1 unidad por defecto
-
-//payment card
-  const [clientSecret, setClientSecret] = useState('sk_test_51NUUCxDYys0O0bf20QgF01UJOyd9IyHEHxX8KbSQbhnqcemTulyyKOLcQeF6HSuZKKWptFAj08S2GVJDmLt9fBwq009ew5Il1v');
-  const stripe = useStripe();
-  const elements = useElements();
-  const [processing, setProcessing] = useState('');
-
-  useEffect(() => {
-    // Create PaymentIntent as soon as the page loads
-    window
-      .fetch("/create-payment-intent", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({items: [{ id: "prod_OH3WLrGylbFGLO" }]})
-      })
-      .then(res => {
-        return res.json();
-      })
-      .then(data => {
-        setClientSecret(data.clientSecret);
-      });
-  }, []);
+  const [processing, setProcessing] = useState(false);
 
   // Formulario de comentarios
   const handleCommentClick = () => {
@@ -85,44 +60,18 @@ export const Event = () => {
   const currentDate = new Date();
   const formattedDate = currentDate.toLocaleDateString()
 
-  //const stripe = useStripe();
-  //const elements = useElements();
-  const [error, setError] = useState(null);
-  const handleChange = (event) => {
-    if (event.error) {
-      setError(event.error.message);
-    } else {
-      setError(null);
-    }
-  }
   
   const handleFacturaSubmit = async (e) => {
     e.preventDefault()
     setProcessing(true);
 
-    const payload = await stripe.confirmCardPayment(clientSecret, {
-      payment_method: {
-        card: elements.getElement(CardElement)
-      }
-    });
-
-    if (payload.error) {
-      setError(`Payment failed ${payload.error.message}`);
-      setProcessing(false);
-    } else {
-      setError(null);
-      setProcessing(false);
-      setSucceeded(true);
-    }
-
-    /*const facturaData = {
+    const facturaData = {
       user_id: store.user.id,
       evento_id: eventId,
       fecha: formattedDate,
       cantidad: numberOfTickets,
-      precio: finalPrice,
+      precio: finalPrice}
       
-
     fetch(process.env.BACKEND_URL + "/api/factura", {
       method: "POST",
       headers: {
@@ -134,6 +83,11 @@ export const Event = () => {
         if (response.ok) {
           console.log("La factura se ha creado exitosamente");
           setFormSubmitted(true);
+          Swal.fire({
+            title: 'Factura creada correctamente',
+            icon: 'success',
+            confirmButtonText: 'Aceptar'
+        });
         } else {
           throw new Error("Error de respuesta: " + response.status);
         }
@@ -141,7 +95,7 @@ export const Event = () => {
       .catch((error) => {
         console.error(error);
         console.log("No se ha generado tu factura")// Maneja el error 
-      }); */
+      }); 
   };
 
   useEffect(() => {
@@ -171,6 +125,7 @@ export const Event = () => {
   }
    
   const finalPrice = evento.importe * numberOfTickets;
+  const isFree = evento.free === true;
     return (
         <div>
                     <div className="container my-5" >
@@ -193,16 +148,18 @@ export const Event = () => {
                             </p>
                             <p>
                               <i className="fa-solid fa-people-group"></i>
-                              <span className="icon-text">{evento.personas} personas</span>
+                              <span className="icon-text">{evento.personas} people.</span>
                             </p>
                             <p>
                               <i className="fa-solid fa-coins"></i>
-                              <span className="icon-text">{evento.importe} €</span>
+                              {evento.free ? (
+                                <span className="icon-text">It's free</span>
+                              ) : (
+                                <span className="icon-text">{evento.importe} €</span>
+                              )}
+                              
                             </p>
-                            <p>
-                              <i className="fa-regular fa-money-check"></i>
-                              <span className="icon-text">It's free?</span>
-                            </p>
+                            
 
                             <div className="botones">
                               <button className="buttoncom" onClick={handleCommentClick}>
@@ -247,7 +204,7 @@ export const Event = () => {
                                   
                                   <h5 className="fw-normal text-body-emphasis mt-2">
                                   Final price = {finalPrice} €</h5>
-                                  <CardElement id="card-element" onChange={handleChange}/>
+                                  
                                 <div className="botones mt-2">
                                   <button className="buton" id="cancel" onClick={() => setShowFacturaForm(false)}>Cancel<span></span></button>
                                   <button className="buton" type="submit"> Buy

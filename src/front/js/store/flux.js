@@ -23,6 +23,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 				importe: "",
 			},
 
+			empresa: {
+				cif: "",
+				razon_social: "",
+				email: "",
+				telefono: "",
+				poblacion: "",
+				direccion: "",
+				codigo_postal: "",
+				
+
+			},
+
 			cities: ["Albacete", "Alicante", "Almería", "Ávila", "Badajoz", "Barcelona", "Bilbao", "Burgos", "Castellón", "Ceuta", "Ciudad Real", "Cuenca", "Cáceres", "Cádiz", "Córdoba", "Gerona", "Granada", "Guadalajara", "Huelva", "Huesca", "Jaén", "La Coruña", "Las Palmas de Gran Canaria", "León", "Logroño", "Lugo", "Lérida", "Madrid", "Melilla", "Murcia", "Málaga", "Orense", "Oviedo", "Palencia", "Palma de Mallorca", "Pamplona", "Pontevedra", "Salamanca", "San Sebastián", "Santa Cruz de Tenerife", "Santander", "Segovia", "Sevilla", "Soria", "Tarragona", "Teruel", "Toledo", "Valencia", "Valladolid", "Vitoria", "Zamora", "Zaragoza"],
 		},
 		actions: {
@@ -123,7 +135,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				fetch(process.env.BACKEND_URL + "/api/companysignup", {
 					method: "POST",
 					headers: {
-						"Content-Type": "application/json"
+						"Content-Type": "application/json",
+						'Authorization': 'Bearer ' + sessionStorage.getItem('token')
 					},
 					body: JSON.stringify(newCompany)
 				})
@@ -215,9 +228,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					throw new Error("Error al crear el evento"); 
 				}
 			},
-			
-
-			
 
 			keepStoredData: () => {
 				const storedToken = sessionStorage.getItem("token");
