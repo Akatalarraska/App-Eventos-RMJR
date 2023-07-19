@@ -27,8 +27,8 @@ export const Login = () => {
         const response = await actions.userLogin(email, password);
         if (response && response.token) {
             Swal.fire({
-                title: 'Sesión iniciada correctamente',
-                text: 'Bienvenido a su área privada',
+                title: 'Bienvenido a su área privada',
+                text: 'Sesión iniciada correctamente',
                 icon: 'success',
                 confirmButtonText: 'Aceptar'
               });
@@ -62,7 +62,7 @@ export const Login = () => {
                         </h3>
 
                         <div className="row m-3  d-flex justify-content-center" >
-                            <div className="col-xl-8 col-lg-8">
+                            <div className="col-8 col-xl-8 col-lg-8">
                                 <input
                                     type="text"
                                     id="email"
@@ -77,8 +77,8 @@ export const Login = () => {
                             </div>
                         </div>
 
-                        <div className="row m-3  d-flex justify-content-center" >
-                            <div className="col-xl-8 col-lg-8">
+                        <div className="row m-3 d-flex justify-content-center" >
+                            <div className="col-8 col-xl-8 col-lg-8">
                                 <input
                                     type="password"
                                     id="Password"
@@ -95,7 +95,7 @@ export const Login = () => {
                         </div>
                         
                         <div className="row m-3 d-flex justify-content-center" >
-                            <div className="col-xl-8 col-lg-8 d-flex justify-content-center">
+                            <div className="col-8 col-xl-8 col-lg-8 d-flex justify-content-center">
                                 <button type="submit" className="btn btn-lg btn-dark text-white btn-user-login">
                                     Iniciar sesión
                                 </button>
