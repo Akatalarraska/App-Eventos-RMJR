@@ -16,6 +16,17 @@ import stripe
 stripe.api_key = 'sk_test_51NUUCxDYys0O0bf20QgF01UJOyd9IyHEHxX8KbSQbhnqcemTulyyKOLcQeF6HSuZKKWptFAj08S2GVJDmLt9fBwq009ew5Il1v'
 
 
+import cloudinary
+
+cloudinary.config( 
+  cloud_name = "dqhqjjhsd", 
+  api_key = "183366914713799", 
+  api_secret = "HqukMekNra-wxSR4B4wDIsqEKKo" 
+)
+import cloudinary.uploader
+import cloudinary.api
+
+
 api = Blueprint('api', __name__)
 
 @api.route('/eventos', methods=['GET'])
@@ -140,33 +151,42 @@ def handle_companysignup():
 @api.route('/crearevento', methods=['POST'])
 def handle_crearevento():
             
-            body = request.get_json()
-        
+            body = request.form
+            print(body)
+
             if body is None:
                 raise APIException(
                     "You need to specify the request body as a json object", status_code=400)
         
-            if "nombre" not in body:
+            if not request.form.get("nombre"):
                 raise APIException('You need to specify the name', status_code=400)
         
-            if "fechaInicio" not in body:
+            if not request.form.get("fechaInicio"):
                 raise APIException('You need to specify the date of start', status_code=400)
             
-            if "fechaFin" not in body:
+            if not request.form.get("fechaFin"):
                 raise APIException('You need to specify the end date', status_code=400)
             
-            if "ubicacion" not in body:
+            if not request.form.get("ubicacion"):
                 raise APIException('You need to specify the location', status_code=400)
     
-            if "descripcion" not in body:
+            if not request.form.get("descripcion"):
                 raise APIException('You need to specify the description', status_code=400)
     
-            if "personas" not in body:
+            if not request.form.get("personas"):
                 raise APIException('You need to specify the participants', status_code=400)
 
     
-    
-            evento = Evento(nombre=body["nombre"], fecha_inicio=body["fechaInicio"], fecha_fin=body["fechaFin"], descripcion=body["descripcion"], imagen=body["imagen"], ubicacion=body["ubicacion"], personas=body["personas"], free=body["free"], importe=body["importe"])
+            imagen_file = request.files.get('imagen')
+            imagen_url = ""
+
+            if imagen_file:
+                imagen_upload = cloudinary.uploader.upload(imagen_file)
+                imagen_url = imagen_upload["secure_url"]
+                print(imagen_url)
+
+            evento = Evento(nombre=body["nombre"], fecha_inicio=body["fechaInicio"], fecha_fin=body["fechaFin"], descripcion=body["descripcion"], imagen=imagen_url, ubicacion=body["ubicacion"], personas=body["personas"], free=bool(body["free"]), importe=int(body["importe"]))
+
             db.session.add(evento)
             db.session.commit()
         
@@ -174,8 +194,9 @@ def handle_crearevento():
             "message": "Evento creado correctamente",
             "nombre": evento.nombre,
             "fechaInicio": evento.fecha_inicio,
-            "fechFin": evento.fecha_fin,
+            "fechaFin": evento.fecha_fin,
             "descripcion": evento.descripcion,
+            "imagen": evento.imagen,
             "ubicacion": evento.ubicacion,
             "personas": evento.personas,
             "free": evento.free,
@@ -186,6 +207,13 @@ def handle_crearevento():
 
             print(response)
             return jsonify(response), 200
+
+
+
+
+
+
+
 
 
 

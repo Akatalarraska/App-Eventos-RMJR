@@ -8,6 +8,7 @@ import Swal from "sweetalert2";
 
 
 
+
 export const CreateEvent = () => {
 
     const [nombre, setNombre] = useState("");
@@ -23,6 +24,7 @@ export const CreateEvent = () => {
     const { store, actions } = useContext(Context);
 
     const navigate = useNavigate();
+
 
     const handleCreateEventSubmit = async (e) => {
         e.preventDefault();
@@ -61,8 +63,6 @@ export const CreateEvent = () => {
         }
     };
 
-   
-
 
 
     const handleCheckboxChange = (event) => {
@@ -74,10 +74,9 @@ export const CreateEvent = () => {
         }
     };
 
-    const handleFileChange = (event) => {
-        const file = event.target.files[0];
-        setImagen(file);
-    };
+
+
+
 
 
     return (
@@ -130,7 +129,7 @@ export const CreateEvent = () => {
                                     type="file"
                                     accept='image/*'
                                     defaultValue={imagen ? imagen.name : ""}
-                                    onChange={handleFileChange}
+                                    onChange={(event) => setImagen(event.target.files)}
                                 />
                             </div>
                         </div>
@@ -154,7 +153,7 @@ export const CreateEvent = () => {
                             </div>
                         </div>
                         <div className="row m-3 d-flex justify-content-center align-items-end" >
-                            <div className="col-1 col-xl-3 col-lg-3">
+                            <div className="col-4 col-xl-5 col-lg-5">
                                 <label htmlFor="Fecha de inicio" className='ms-1'>Fecha de inicio</label>
                                 <input
                                     type="date"
@@ -168,7 +167,7 @@ export const CreateEvent = () => {
                                     }
                                 />
                             </div>
-                            <div className="col-1 col-xl-3 col-lg-3">
+                            <div className="col-4 col-xl-5 col-lg-5">
                                 <label htmlFor="Fecha de fin" className='ms-1'>Fecha de fin</label>
                                 <input
                                     type="date"
@@ -182,7 +181,9 @@ export const CreateEvent = () => {
                                     }
                                 />
                             </div>
-                            <div className="col-4">
+                        </div>
+                        <div className="row m-3 d-flex justify-content-center align-items-end" >
+                            <div className="col-4 col-xl-5 col-lg-5">
                                 <label htmlFor="personas" className='ms-1'>Número de asistentes</label>
                                 <input
                                     type="number"
@@ -197,9 +198,7 @@ export const CreateEvent = () => {
                                     }
                                 />
                             </div>
-                        </div>
-                        <div className="row m-3 d-flex justify-content-center align-items-end" >
-                            <div className="col-5">
+                            <div className="col-4 col-xl-5 col-lg-5">
                                 <label htmlFor="Importe" className='ms-1'>Importe por persona</label>
                                 <input
                                     type="number"
@@ -214,7 +213,9 @@ export const CreateEvent = () => {
                                     disabled={free}
                                 />
                             </div>
-                            <div className="col-5 d-flex align-items-end">
+                        </div>
+                        <div className="row m-3 align-items-end" >
+                            <div className="col-8 col-xl-10 col-lg-10">
                                 <div className="form-check d-flex align-items-center">
                                     <input
                                         className="form-check-input"
@@ -244,6 +245,118 @@ export const CreateEvent = () => {
     )
 }
 
+
+
+// const handleFileChange = async (event) => {
+//     event.preventDefault();
+//     const file = event.target.files[0];
+//     setImagen(file);
+//     console.log("These are the files", file);
+//     let body = new FormData();
+//     body.append("imagen", file);
+//     const options = {
+//       method: "POST",
+//       body
+//     };
+
+//     try {
+//       const response = await fetch(process.env.BACKEND_URL + "/api/crearevento", options);
+//       if (response.ok) {
+//         const data = await response.json();
+//         console.log("Success!!!!", data);
+//       } else {
+//         throw new Error("Error uploading image");
+//       }
+//     } catch (error) {
+//       console.error("ERRORRRRRR!!!", error);
+//     }
+//   };
+
+
+
+// const handleFileChange = async (event) => {
+//     event.preventDefault();
+//     const file = event.target.files[0];
+//     setImagen(file);
+//     console.log("These are the files", file);
+
+//     const formData = new FormData();
+//     formData.append("imagen", file);
+//     formData.append("nombre", nombre);
+//     formData.append("descripcion", descripcion);
+//     formData.append("ubicacion", ubicacion);
+//     formData.append("fechaInicio", fechaInicio);
+//     formData.append("fechaFin", fechaFin);
+//     formData.append("personas", personas);
+//     formData.append("free", free);
+//     formData.append("importe", importe);
+
+//     const options = {
+//         method: "POST",
+//         body: formData
+//     };
+
+//     try {
+//         const response = await fetch(process.env.BACKEND_URL + "/api/crearevento", options);
+//         if (response.ok) {
+//             const data = await response.json();
+//             console.log("Success!!!!", data);
+//         } else {
+//             throw new Error("Error uploading image");
+//         }
+//     } catch (error) {
+//         console.error("ERRORRRRRR!!!", error);
+//     }
+// };
+
+
+
+// const handleCreateEventSubmit = async (e) => {
+//     e.preventDefault();
+
+//     try {
+//         const success = await actions.createEvent(
+//             nombre,
+//             descripcion,
+//             imagen,
+//             ubicacion,
+//             fechaInicio,
+//             fechaFin,
+//             personas,
+//             free,
+//             importe
+//         );
+
+//         if (success) {
+//             await Swal.fire({
+//                 title: 'Éxito',
+//                 text: 'Evento creado correctamente',
+//                 icon: 'success',
+//                 confirmButtonText: 'Aceptar'
+//             });
+//             navigate('/private');
+//         } else {
+//             throw new Error("Error al crear el evento");
+//         }
+//     } catch (error) {
+//         await Swal.fire({
+//             title: 'Error',
+//             text: error.message,
+//             icon: 'error',
+//             confirmButtonText: 'Aceptar'
+//         });
+//     }
+// };
+
+
+
+
+// const handleFileChange = (event) => {
+//     event.preventDefault()
+//     const file = event.target.files[0];
+//     setImagen(file);
+// };
+
 /////////////////// IMAGEN DEL FORMULARIO CREAR EVENTO //////////////////////
 
 {/* <div className="col-xl-8 col-lg-8 text-align-center">
@@ -253,33 +366,33 @@ export const CreateEvent = () => {
 
 /////////////////// INPUT PARA SUBIR ARCHIVO (REVISAR, NO FUNCIONA) //////////////////////
 
-            //     <div className="row m-3 d-flex justify-content-center " >
-            //     <div className="col-xl-8 col-lg-8">
-            //         <input
-            //             id="formFile"
-            //             name="imagen"
-            //             className="form-control form-control-event-create form-control-lg"
-            //             placeholder="Imagen del evento"
-            //             type="file"
-            //             accept='image/*'
-            //             defaultValue={imagen ? imagen.name : ""}
-            //             onChange={handleFileChange}
-            //         />
-            //     </div>
-            // </div>
+//     <div className="row m-3 d-flex justify-content-center " >
+//     <div className="col-xl-8 col-lg-8">
+//         <input
+//             id="formFile"
+//             name="imagen"
+//             className="form-control form-control-event-create form-control-lg"
+//             placeholder="Imagen del evento"
+//             type="file"
+//             accept='image/*'
+//             defaultValue={imagen ? imagen.name : ""}
+//             onChange={handleFileChange}
+//         />
+//     </div>
+// </div>
 
 
 ////////////////  FUNCION PARA GESTIONAR EL ARCHIVO IMAGEN /////////////////
 
-            // const handleFileChange = (event) => {
-            //     const file = event.target.files[0];
-            //     setImagen(file);
-            // };
+// const handleFileChange = (event) => {
+//     const file = event.target.files[0];
+//     setImagen(file);
+// };
 
 
 /////////////////// INPUT PARA SUBIR IMAGEN EN URL (OK FUNCIONANDO) //////////////////////
 
-                        {/* <div className="row m-3 d-flex justify-content-center " >
+{/* <div className="row m-3 d-flex justify-content-center " >
                             <div className="col-xl-10 col-lg-10">
                                 <label htmlFor="imagen" className='ms-1'>Imagen del evento</label>
                                 <input

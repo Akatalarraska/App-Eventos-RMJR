@@ -65,7 +65,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const response = await fetch(process.env.BACKEND_URL + "/api/login", {
 						method: "POST",
 						headers: {
-							"Content-Type": "application/json"
+							"Content-Type": "application/json",
+							"Authorization": "Bearer" + sessionStorage.getItem("token")
 						},
 						body: JSON.stringify({
 							email: email,
@@ -136,49 +137,85 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 
 
-			createEvent: async (nombre, descripcion, imagen, ubicacion, fechaInicio, fechaFin, personas, free, importe) => {
+			// createEvent: async (nombre, descripcion, imagen, ubicacion, fechaInicio, fechaFin, personas, free, importe) => {
 				
-				try {
-				const store = getStore();
-				const userId = store.user.id;
+			// 	try {
+			// 	const store = getStore();
+			// 	const userId = store.user.id;
 			
-				const newEvent = {
-					nombre: nombre,
-					descripcion: descripcion,
-					imagen: imagen,
-					ubicacion: ubicacion,
-					fechaInicio: fechaInicio,
-					fechaFin: fechaFin,
-					personas: personas,
-					free: free,
-					importe: importe,
-					user_id: userId,
-				};
+			// 	const newEvent = {
+			// 		nombre: nombre,
+			// 		descripcion: descripcion,
+			// 		imagen: imagen,
+			// 		ubicacion: ubicacion,
+			// 		fechaInicio: fechaInicio,
+			// 		fechaFin: fechaFin,
+			// 		personas: personas,
+			// 		free: free,
+			// 		importe: importe,
+			// 		user_id: userId,
+			// 	};
 			
 				
-				const response = await fetch(process.env.BACKEND_URL + "/api/crearevento", {
-					method: "POST",
-					headers: {
-					  "Content-Type": "application/json"
-					},
-					body: JSON.stringify(newEvent)
-				  });
+			// 	const response = await fetch(process.env.BACKEND_URL + "/api/crearevento", {
+			// 		method: "POST",
+			// 		headers: {
+			// 		  "Content-Type": "application/json"
+			// 		},
+			// 		body: JSON.stringify(newEvent)
+			// 	  });
 			  
-				  if (response.ok) {
-					const data = await response.json();
-					setStore({ event: newEvent });
-					console.log("data", data);
-					return true; // Indicar que la creación del evento fue exitosa
-				  } else {
-					throw new Error("Error al crear el evento"); // Lanzar un error en caso de respuesta no exitosa
-				  }
-				} catch (error) {
-				  console.log("Error creating event", error);
-				  throw new Error("Error al crear el evento"); // Lanzar un error en caso de excepción
-				}
-			  },
+			// 	  if (response.ok) {
+			// 		const data = await response.json();
+			// 		setStore({ event: newEvent });
+			// 		console.log("data", data);
+			// 		return true; // Indicar que la creación del evento fue exitosa
+			// 	  } else {
+			// 		throw new Error("Error al crear el evento"); // Lanzar un error en caso de respuesta no exitosa
+			// 	  }
+			// 	} catch (error) {
+			// 	  console.log("Error creating event", error);
+			// 	  throw new Error("Error al crear el evento"); // Lanzar un error en caso de excepción
+			// 	}
+			//   },
 			
 
+
+			createEvent: async (nombre, descripcion, imagen, ubicacion, fechaInicio, fechaFin, personas, free, importe) => {
+				try {
+					const store = getStore();
+					const userId = store.user.id;
+			
+					const newEvent = new FormData();
+					newEvent.append("nombre", nombre);
+					newEvent.append("descripcion", descripcion);
+					newEvent.append("imagen", imagen[0]);
+					newEvent.append("ubicacion", ubicacion);
+					newEvent.append("fechaInicio", fechaInicio);
+					newEvent.append("fechaFin", fechaFin);
+					newEvent.append("personas", personas);
+					newEvent.append("free", free);
+					newEvent.append("importe", importe);
+					newEvent.append("user_id", userId);
+			
+					const response = await fetch(process.env.BACKEND_URL + "/api/crearevento", {
+						method: "POST",
+						body: newEvent,
+					});
+			
+					if (response.ok) {
+						setStore({ event: newEvent });
+						console.log(store.event);
+						return true; 
+					} else {
+						throw new Error("Error al crear el evento"); 
+					}
+				} catch (error) {
+					console.log("Error creating event", error);
+					throw new Error("Error al crear el evento"); 
+				}
+			},
+			
 
 			
 
