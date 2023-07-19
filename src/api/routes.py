@@ -212,13 +212,7 @@ def handle_user_empresa():
 
         response = {
         "message": "Company signup successful",
-        "email": empresa.email,
-        "cif": empresa.cif,
-        "razon_social": empresa.razon_social,
-        "direccion": empresa.direccion,
-        "poblacion": empresa.poblacion,
-        "telefono": empresa.telefono,
-        "codigo_postal": empresa.codigo_postal
+        "email": user.email
         }
 
         print(response)

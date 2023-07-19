@@ -40,7 +40,7 @@ export const Gestion_empleados = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${store.token}`
+          Authorization: `Bearer ${sessionStorage.getItem("token")}`
         },
         body: JSON.stringify({
           email: newEmployeeEmail // Utiliza el email ingresado en el formulario
@@ -53,9 +53,7 @@ export const Gestion_empleados = () => {
           throw new Error("Error de respuesta: " + response.status);
         })
         .then(data => {
-          // Actualizar la lista de empresas después de agregar un empleado
-          setEmpresas(prevEmpresas => [...prevEmpresas, data]);
-
+        
           console.log("Empleado agregado:", data);
         })
         .catch(error => {
@@ -63,7 +61,6 @@ export const Gestion_empleados = () => {
         });
     }
   };
-
 
   return (
     <div className="empresa">
