@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useContext } from "react";
-import { Link } from "react-router-dom";
 import "../../styles/gestion_empleados.css";
 import { Context } from "../store/appContext";
 import { useParams } from "react-router-dom";
@@ -53,7 +52,7 @@ export const Gestion_empleados = () => {
           throw new Error("Error de respuesta: " + response.status);
         })
         .then(data => {
-        
+        setUsers([...users, data]); // Agrega el nuevo empleado a la lista de usuarios
           console.log("Empleado agregado:", data);
         })
         .catch(error => {
@@ -62,6 +61,7 @@ export const Gestion_empleados = () => {
     }
   };
 
+  
   return (
     <div className="empresa">
       <br />
@@ -84,7 +84,7 @@ export const Gestion_empleados = () => {
         </div>
       </div>
 
-      <div>
+      <div className="add_user">
         <h2>Agregar nuevo empleado:</h2>
         <input
           type="text"
@@ -95,17 +95,18 @@ export const Gestion_empleados = () => {
         <button onClick={handleAddEmpleado}>Agregar empleado</button>
       </div>
 
-      <h1>Tus empleados:</h1>
-      {/* Aquí puedes mostrar la información de los empleados de la empresa */}
+      <h1>Tus empleados:</h1>      
       
+       
       <ul>
         {users.map(user => (
           <li key={user.email}>
-            <strong>Nombre:</strong> {user.email}, <strong>Rol:</strong> {user.role}
+            <strong>Nombre:</strong> {user.user}, <strong>Rol:</strong> {user.role}
           </li>
+          
         ))}
-      </ul>
-      
+        <p>Hola</p>
+      </ul> 
     </div>
   );
 };

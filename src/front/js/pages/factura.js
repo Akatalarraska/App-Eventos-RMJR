@@ -28,7 +28,7 @@ export const Factura = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ eventoIds })
+          /* body: JSON.stringify({ eventoIds })*/
         })
           .then(response => {
             if (response.ok) {
@@ -63,10 +63,14 @@ export const Factura = () => {
                 <p>{factura.precio}</p>
                 <p>{factura.fecha}</p>
                 <p>{factura.cantidad}</p>
-                <p>{factura.evento.nombre}</p> {/* Corregido: Acceder al campo "nombre" de "evento" */}
+                {factura.evento ? (
+                <p>{factura.evento.nombre}</p>
+                  ) : (
+                <p>Evento no encontrado</p>
+                )}
                 <button className="button-64" role="button">
                   <span className="text">
-                    <Link to={`/event/${factura.evento.id}`}>+ info</Link> {/* Corregido: Acceder al campo "id" de "evento" */}
+                    <Link to={`/event/${factura.evento?.id}`}>+ info</Link> {/* Use ?. to access "id" */}
                   </span>
                 </button>
               </div>
