@@ -6,7 +6,13 @@ export const Factura = () => {
   const [facturas, setFacturas] = useState([]);
 
   useEffect(() => {
-    fetch(process.env.BACKEND_URL + "/api/factura")
+    fetch(process.env.BACKEND_URL + "/api/myinvoice", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`
+      },
+    }) 
       .then(response => {
         if (response.ok) {
           return response.json();
@@ -18,9 +24,9 @@ export const Factura = () => {
         const eventoIds = data.map(factura => factura.evento_id);
         // Obtener los detalles de los eventos usando los IDs obtenidos
         fetch(process.env.BACKEND_URL + "/api/eventos", {
-          method: "POST",
+          method: "GET",
           headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
           },
           body: JSON.stringify({ eventoIds })
         })

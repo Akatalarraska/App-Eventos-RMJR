@@ -142,6 +142,6 @@ class Factura(db.Model):
             "cantidad": self.cantidad,
             "precio": self.precio,
             "pasarela_id": self.pasarela_id,
-            "evento": self.evento
+            "evento": self.evento.serialize()
             # do not serialize the password, its a security breach
         }

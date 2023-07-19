@@ -60,9 +60,11 @@ def create_valoracion():
 
     return jsonify({"message": "Valoración guardada exitosamente"}), 201
 
-@api.route('/factura', methods=["GET"])
+@api.route('/myinvoice', methods=["GET"])
+@jwt_required()
 def get_facturas():
-    facturas = Factura.query.all()
+    user_id = get_jwt_identity()
+    facturas = Factura.query.filter_by(user_id=user_id)
     facturas_list = [factura.serialize() for factura in facturas]
     return jsonify(facturas_list), 200
 

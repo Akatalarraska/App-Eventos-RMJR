@@ -35,7 +35,7 @@ export const Gestion_empleados = () => {
   }
 
   const handleAddEmpleado = () => {
-    if (selectedUser) {
+    if (newEmployeeEmail) {
       fetch(process.env.BACKEND_URL + "/api/adduser_empresa", {
         method: "POST",
         headers: {
@@ -43,7 +43,7 @@ export const Gestion_empleados = () => {
           Authorization: `Bearer ${store.token}`
         },
         body: JSON.stringify({
-          email: selectedUser.email
+          email: newEmployeeEmail // Utiliza el email ingresado en el formulario
         })
       })
         .then(response => {
@@ -91,35 +91,12 @@ export const Gestion_empleados = () => {
       </div>
       
       <h1>Lista de usuarios:</h1>
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Nombre</th>
-            <th>Email</th>
-            <th>Acción</th>
-          </tr>
-        </thead>
-        <tbody>
-          {users.map(user => (
-            <tr key={user.id}>
-              <td>{user.id}</td>
-              <td>{user.name}</td>
-              <td>{user.email}</td>
-              <td>
-                <button onClick={() => handleUserSelect(user)}>Seleccionar</button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      {selectedUser && (
-        <div>
-          <p>Usuario seleccionado: {selectedUser.name}</p>
-          <button onClick={handleAddEmpleado}>Agregar empleado</button>
-        </div>
-      )}
+          
+      
+      
       <h1>Tus empleados:</h1>
+
+      
     </div>
   );
 };
