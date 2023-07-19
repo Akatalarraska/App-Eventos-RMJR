@@ -7,7 +7,7 @@ import { useParams } from "react-router-dom";
 export const Gestion_empleados = () => {
   const [empresa, setEmpresa] = useState([]);
   const [users, setUsers] = useState([]);
-  const [selectedUser, setSelectedUser] = useState(null);
+  const [newEmployeeEmail, setNewEmployeeEmail] = useState(""); // Estado para almacenar el email ingresado
   const { store } = useContext(Context);
 
   useEffect(() => {
@@ -36,7 +36,7 @@ export const Gestion_empleados = () => {
 
   const handleAddEmpleado = () => {
     if (newEmployeeEmail) {
-      fetch(process.env.BACKEND_URL + "/api/adduser_empresa", {
+      fetch(process.env.BACKEND_URL + '/api/adduser_empresa', {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -64,9 +64,6 @@ export const Gestion_empleados = () => {
     }
   };
 
-  const handleUserSelect = user => {
-    setSelectedUser(user);
-  };
 
   return (
     <div className="empresa">
@@ -89,13 +86,28 @@ export const Gestion_empleados = () => {
           </div>
         </div>
       </div>
-      
-      <h1>Lista de usuarios:</h1>
-          
-      
-      
-      <h1>Tus empleados:</h1>
 
+      <div>
+        <h2>Agregar nuevo empleado:</h2>
+        <input
+          type="text"
+          value={newEmployeeEmail}
+          onChange={e => setNewEmployeeEmail(e.target.value)}
+          placeholder="Email del nuevo empleado"
+        />
+        <button onClick={handleAddEmpleado}>Agregar empleado</button>
+      </div>
+
+      <h1>Tus empleados:</h1>
+      {/* Aquí puedes mostrar la información de los empleados de la empresa */}
+      
+      <ul>
+        {users.map(user => (
+          <li key={user.email}>
+            <strong>Nombre:</strong> {user.email}, <strong>Rol:</strong> {user.role}
+          </li>
+        ))}
+      </ul>
       
     </div>
   );
