@@ -23,7 +23,6 @@ def setup_admin(app):
     admin.add_view(EventoAdmin(Evento, db.session))
     admin.add_view(ModelView(Empresa, db.session))
     admin.add_view(ModelView(User_Empresa, db.session))
-    admin.add_view(ModelView(Evento, db.session))
     admin.add_view(ModelView(Valoracion, db.session))
     admin.add_view(ModelView(Factura, db.session))
 
