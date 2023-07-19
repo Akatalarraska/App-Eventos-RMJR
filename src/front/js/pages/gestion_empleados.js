@@ -92,13 +92,25 @@ export const Gestion_empleados = () => {
     <div className="empresa">
       <br />
       <br />
-      <h1 className="mt-5">Tu empresa:</h1>
-      <div>
-        <h2 className="fw-normal text-body-emphasis mt-2">{empresa.razon_social}</h2>
-        <h2 className="cif fw-normal text-body-emphasis mt-2">{empresa.cif}</h2>
-        <p>{empresa.poblacion}</p>
-        <p>{empresa.email}</p>
+      <br />
+      <div className="p-5 mb-2 infoe bg-body-tertiary rounded-3">
+        <div className="container-fluid py-2">
+          <h1 className="display-5 fw-bold">{empresa.razon_social}</h1>
+          <div className="row infoempresa cl-4">
+            <div className="col-md-4">
+              <p>CIF: {empresa.cif}</p>
+            </div>
+            <div className="col-md-4">
+              <p>Población: {empresa.poblacion}</p>
+            </div>
+            <div className="col-md-4">
+              <p>Email: {empresa.email}</p>
+            </div>
+          </div>
+        </div>
       </div>
+      
+      
 
       <h1>Lista de usuarios:</h1>
       <table>

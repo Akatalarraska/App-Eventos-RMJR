@@ -46,6 +46,13 @@ def create_valoracion():
 
     return jsonify({"message": "Valoración guardada exitosamente"}), 201
 
+@api.route('/factura', methods=["GET"])
+def get_facturas():
+    facturas = Factura.query.all()
+    facturas_list = [factura.serialize() for factura in facturas]
+    return jsonify(facturas_list), 200
+
+
 @api.route('/factura', methods=["POST"])
 def create_factura():
     factura_data = request.get_json()
@@ -58,11 +65,6 @@ def create_factura():
 
     return jsonify({"message": "Factura creada exitosamente"}), 201
 
-@api.route('/factura', methods=["GET"])
-def get_facturas():
-    facturas = Factura.query.all()
-    facturas_list = [factura.serialize() for factura in facturas]
-    return jsonify(facturas_list), 200
 
 
 # RUTA PARA REGISTRAR UN USUARIO
