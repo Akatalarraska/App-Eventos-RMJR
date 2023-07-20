@@ -8,3 +8,72 @@
     text-align: center;
     font-size: 22px;
 }
+
+/* ... */
+.inviteh4{
+    text-align: center;
+    margin: auto;
+}
+.inputuser {
+    display: flex;
+    align-items: center;
+  }
+  
+  .inputer {
+    display: flex;
+    align-items: center;
+    height: 4em;
+    width: 100%;
+    min-width: 20%;
+    max-width: 45%;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 20px 20px 30px rgba(0, 0, 0, .05);
+  }
+  
+  .inputer input {
+    flex: 1;
+    height: 100%;
+    border-radius: 8px;
+    border: 1px solid rgb(176, 190, 197);
+    background-color: transparent;
+    padding: 0.625rem 2rem 0.625rem 0.75rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 400;
+    color: rgb(69, 90, 100);
+    outline: none;
+    transition: all .15s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .inputer input:focus {
+    border: 1px solid rgb(109, 86, 211);
+  }
+  
+  .invite-btn {
+    width: 65px;
+    height: 2.5rem;
+    margin-left: -40px;
+    border-radius: 4px;
+    background-color: rgb(109, 86, 211);
+    color: #fff;
+    padding: .25rem;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    border: none;
+    transition: .6s ease;
+  }
+  
+  .invite-btn:hover {
+    margin-left: -38px;
+    border-radius: 8px;
+  }
+  
+  .inputer input:placeholder-shown + .invite-btn {
+    pointer-events: none;
+    background-color: gray;
+    opacity: 0.5;
+  }
+  

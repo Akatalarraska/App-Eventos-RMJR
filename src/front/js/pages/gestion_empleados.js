@@ -83,20 +83,22 @@ export const Gestion_empleados = () => {
           </div>
         </div>
       </div>
-
+      
       <div className="add_user">
-        <h2>Agregar nuevo empleado:</h2>
-        <input
-          type="text"
-          value={newEmployeeEmail}
-          onChange={e => setNewEmployeeEmail(e.target.value)}
-          placeholder="Email del nuevo empleado"
-        />
-        <button onClick={handleAddEmpleado}>Agregar empleado</button>
+      <h4 className="inviteh4 mt-3 mb-3">Agregar nuevo empleado:</h4>
+        <div className="row inputuser">
+          <div className="inputer">
+            <input 
+            type="text"
+            value={newEmployeeEmail}
+            onChange={e => setNewEmployeeEmail(e.target.value)}
+            placeholder="Email del nuevo empleado"/>
+            <button className="invite-btn"  onClick={handleAddEmpleado}> Añadir </button>
+          </div>
+        </div>
       </div>
 
       <h1>Tus empleados:</h1>      
-      
        
       <ul>
         {users.map(user => (
@@ -107,6 +109,7 @@ export const Gestion_empleados = () => {
         ))}
         <p>Hola</p>
       </ul> 
+      
     </div>
   );
 };
