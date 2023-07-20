@@ -8,6 +8,7 @@ export const Gestion_empleados = () => {
   const [users, setUsers] = useState([]);
   const [newEmployeeEmail, setNewEmployeeEmail] = useState(""); // Estado para almacenar el email ingresado
   const { store } = useContext(Context);
+  const user_empresa = users.find(user => user.email === newEmployeeEmail);
 
   useEffect(() => {
     fetch(process.env.BACKEND_URL + "/api/myempresa",{
@@ -43,6 +44,7 @@ export const Gestion_empleados = () => {
         },
         body: JSON.stringify({
           email: newEmployeeEmail // Utiliza el email ingresado en el formulario
+          
         })
       })
         .then(response => {
@@ -60,7 +62,7 @@ export const Gestion_empleados = () => {
         });
     }
   };
-
+  
   
   return (
     <div className="empresa">
@@ -100,14 +102,15 @@ export const Gestion_empleados = () => {
 
       <h1>Tus empleados:</h1>      
        
-      <ul>
+      <ul className="employers">
         {users.map(user => (
-          <li key={user.email}>
-            <strong>Nombre:</strong> {user.user}, <strong>Rol:</strong> {user.role}
+          <li  key={user.email}>
+            <p className="worker"><strong>Email:</strong> {user.email}</p>
+            {user === user_empresa && (<span></span>)}
           </li>
           
         ))}
-        <p>Hola</p>
+      
       </ul> 
       
     </div>
