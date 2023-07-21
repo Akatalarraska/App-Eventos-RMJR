@@ -55,25 +55,36 @@ export const Factura = () => {
 
   return (
     <div className="invoicecard">
-      <div className="row">
+      <br className="mt-3"/>
+      <h1>Tus facturas</h1>
+      <div className="l-col-right ticket-wrap">
         {facturas.map(factura => (
-          <div className="col-lg-4 col-sm-6" key={factura.id}>
-            <div className="flip-card">
-              <div className="flip-card-back-content">
-                <p>{factura.precio}</p>
-                <p>{factura.fecha}</p>
-                <p>{factura.cantidad}</p>
-                {factura.evento ? (
-                <p>{evento.id.nombre}</p>
-                  ) : (
-                <p>Evento no encontrado</p>
-                )}
-                <button className="button-64" role="button">
+          <div className="ticket" key={factura.id} aria-hidden="true">
+            <div className="ticket__header">
+              <div className="ticket__co">
+                <span className="ticket__co-name">{factura.evento ? factura.evento.nombre : "Nombre del evento"}</span>
+              </div>
+            </div>
+            <div className="ticket__body">
+              <p className="ticket__description">Descripción evento</p>
+              <div className="ticket__timing">
+                <p>
+                  <span className="u-upper ticket__small-label">Date</span>
+                  <span className="ticket__detail">{factura.fecha}</span>
+                </p>
+                <p>
+                  <span className="u-upper ticket__small-label">Where</span>
+                  <span className="ticket__detail">Ubicación</span>
+                </p>
+              </div>
+              <p className="ticket__fine-print">Units: {factura.cantidad} PAX</p>
+              <p className="u-upper ticket__admit">Precio {factura.precio} €</p>
+              <img className="ticket__barcode" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/515428/barcode.png" alt="Fake barcode" />
+              <button className="button-64" role="button">
                   <span className="text">
                     <Link to={`/event/${factura.evento?.id}`}>+ info</Link> {/* Use ?. to access "id" */}
                   </span>
                 </button>
-              </div>
             </div>
           </div>
         ))}
