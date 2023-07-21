@@ -53,7 +53,7 @@ def obtener_myempresa():
     user = User.query.filter_by(id=user_id).first()
     if user.user_empresa and user.user_empresa[0].role == "Admin":
         user_empresa = User_Empresa.query.filter_by(empresa_id=user.user_empresa[0].empresa_id)
-        users = [{"email": user_data.user.email,"role":user_data.role} for user_data in user_empresa]
+        users = [{"email": user_data.user.email,"role":user_data.role, "name": user_data.user.name} for user_data in user_empresa]
         data = user.user_empresa[0].empresa.serialize()
         data["users"] = users
         return jsonify(data)
@@ -218,6 +218,10 @@ def handle_user_empresa():
         empresa = User_Empresa.query.filter_by(user_id=user_id, role="Admin").first()
         if not empresa:
             raise APIException('Empresa no existe', status_code=400)
+        
+        current_company = User_Empresa.query.filter_by(user_id=user.id, empresa_id=empresa.id).first()
+        if current_company:
+            raise APIException('Empleado ya registrado', status_code=400)
         
         user_empresa = User_Empresa(
             user_id = user.id,

@@ -14,6 +14,7 @@
 	font-family: "Variable Bahnschrift", "FF DIN", "Franklin Gothic", "Helvetica Neue", sans-serif;
 	font-feature-settings: "kern" 1;
 	background: #fff;
+    margin: 1rem;
 }
 
 .ticket__header {
@@ -126,7 +127,7 @@
 
 	.ticket {
 		margin: 0 auto;
-		transform: rotate(6deg);
+	
 	}
 
 	.ticket__header {

@@ -4,13 +4,13 @@ import { Context } from "../store/appContext";
 import { useParams } from "react-router-dom";
 
 export const Gestion_empleados = () => {
-  const [empresa, setEmpresa] = useState([]);
+  const [empresa, setEmpresa] = useState();
   const [users, setUsers] = useState([]);
   const [newEmployeeEmail, setNewEmployeeEmail] = useState(""); // Estado para almacenar el email ingresado
   const { store } = useContext(Context);
   const user_empresa = users.find(user => user.email === newEmployeeEmail);
-
-  useEffect(() => {
+  
+  const get_empresas = () => {
     fetch(process.env.BACKEND_URL + "/api/myempresa",{
       headers: {
         Authorization: `Bearer ${sessionStorage.getItem("token")}`
@@ -28,6 +28,9 @@ export const Gestion_empleados = () => {
       .catch(error => {
         console.error(error);
       });
+  }
+  useEffect(() => {
+    get_empresas()
   }, []);
 
   if (!empresa) {
@@ -54,8 +57,7 @@ export const Gestion_empleados = () => {
           throw new Error("Error de respuesta: " + response.status);
         })
         .then(data => {
-        setUsers([...users, data]); // Agrega el nuevo empleado a la lista de usuarios
-          console.log("Empleado agregado:", data);
+          get_empresas()
         })
         .catch(error => {
           console.error("Error al agregar el empleado:", error);
@@ -64,7 +66,8 @@ export const Gestion_empleados = () => {
   };
   
   
-  return (
+  return empresa ? (
+
     <div className="empresa">
       <br />
       <br />
@@ -103,16 +106,16 @@ export const Gestion_empleados = () => {
       <h1>Tus empleados:</h1>      
        
       <ul className="employers">
-        {users.map(user => (
-          <li  key={user.email}>
-            <p className="worker"><strong>Email:</strong> {user.email}</p>
+        {empresa ? empresa.users.map((user,index) => (
+          <li  key={index}>
+            <p className="worker"><strong>Email:</strong> {user.email} // <strong>Nombre:</strong> {user.name}</p>
             {user === user_empresa && (<span></span>)}
           </li>
           
-        ))}
+        )): ""}
       
       </ul> 
       
     </div>
-  );
+  ) : "";
 };

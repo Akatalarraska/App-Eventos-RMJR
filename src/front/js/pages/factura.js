@@ -20,33 +20,7 @@ export const Factura = () => {
         throw new Error("Error de respuesta: " + response.status);
       })
       .then(data => {
-        // Obtener los IDs de los eventos asociados a las facturas
-        const eventoIds = data.map(factura => factura.evento_id);
-        // Obtener los detalles de los eventos usando los IDs obtenidos
-        fetch(process.env.BACKEND_URL + "/api/eventos", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          /* body: JSON.stringify({ eventoIds })*/
-        })
-          .then(response => {
-            if (response.ok) {
-              return response.json();
-            }
-            throw new Error("Error de respuesta: " + response.status);
-          })
-          .then(eventosData => {
-            // Combinar los detalles de los eventos con las facturas
-            const facturasConEventos = data.map(factura => {
-              const evento = eventosData.find(evento => evento.id === factura.evento_id);
-              return { ...factura, evento };
-            });
-            setFacturas(facturasConEventos);
-          })
-          .catch(error => {
-            console.error(error);
-          });
+       setFacturas(data)
       })
       .catch(error => {
         console.error(error);
