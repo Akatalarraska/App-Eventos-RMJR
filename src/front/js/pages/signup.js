@@ -44,7 +44,14 @@ export const Signup = () => {
   };
 
 
+  const validDniPattern = /^\d{0,8}[A-Za-z]{0,1}$/;
 
+  const handleDniChange = (event) => {
+    const value = event.target.value.toUpperCase();
+    if (validDniPattern.test(value)) {
+      setDni(value);
+    }
+  };
 
 
   const openModal = () => {
@@ -85,8 +92,9 @@ export const Signup = () => {
                   className="form-control form-control-user-signup form-control-lg"
                   placeholder="DNI"
                   required
+                  autoComplete="dni"
                   value={dni}
-                  onChange={(event) => setDni(event.target.value)}
+                  onChange={handleDniChange}
                 />
               </div>
             </div>
