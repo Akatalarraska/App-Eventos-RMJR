@@ -52,11 +52,11 @@ def obtener_myempresa():
     user = User.query.filter_by(id=user_id).first()
     if user.user_empresa and user.user_empresa[0].role == "Admin":
         user_empresa = User_Empresa.query.filter_by(empresa_id=user.user_empresa[0].empresa_id)
-        users = [{"email": user_data.user.email,"role":user_data.role} for user_data in user_empresa]
+        users = [{"email": user_data.user.email,"role":user_data.role, "name": user_data.user.name} for user_data in user_empresa]
         data = user.user_empresa[0].empresa.serialize()
         data["users"] = users
         return jsonify(data)
-    return jsonify("El usuario no Admin de la empresa"), 400
+    return jsonify("El usuario no es Admin de la empresa"), 400
 
 
 
@@ -69,6 +69,14 @@ def create_valoracion():
     db.session.commit()
 
     return jsonify({"message": "Valoración guardada exitosamente"}), 201
+
+@api.route('/my_opinion', methods=["GET"])
+@jwt_required()
+def get_opinions():
+    user_id = get_jwt_identity()
+    opinions = Valoracion.query.filter_by(user_id=user_id)
+    opinions_list = [opinion.serialize() for opinion in opinions]
+    return jsonify(opinions_list), 200
 
 @api.route('/myinvoice', methods=["GET"])
 @jwt_required()
@@ -209,6 +217,10 @@ def handle_user_empresa():
         empresa = User_Empresa.query.filter_by(user_id=user_id, role="Admin").first()
         if not empresa:
             raise APIException('Empresa no existe', status_code=400)
+        
+        current_company = User_Empresa.query.filter_by(user_id=user.id, empresa_id=empresa.id).first()
+        if current_company:
+            raise APIException('Empleado ya registrado', status_code=400)
         
         user_empresa = User_Empresa(
             user_id = user.id,

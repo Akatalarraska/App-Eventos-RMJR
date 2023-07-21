@@ -1,16 +1,16 @@
 import React, { useEffect, useState, useContext } from "react";
-import { Link } from "react-router-dom";
 import "../../styles/gestion_empleados.css";
 import { Context } from "../store/appContext";
 import { useParams } from "react-router-dom";
 
 export const Gestion_empleados = () => {
-  const [empresa, setEmpresa] = useState([]);
+  const [empresa, setEmpresa] = useState();
   const [users, setUsers] = useState([]);
   const [newEmployeeEmail, setNewEmployeeEmail] = useState(""); // Estado para almacenar el email ingresado
   const { store } = useContext(Context);
-
-  useEffect(() => {
+  const user_empresa = users.find(user => user.email === newEmployeeEmail);
+  
+  const get_empresas = () => {
     fetch(process.env.BACKEND_URL + "/api/myempresa",{
       headers: {
         Authorization: `Bearer ${sessionStorage.getItem("token")}`
@@ -28,6 +28,9 @@ export const Gestion_empleados = () => {
       .catch(error => {
         console.error(error);
       });
+  }
+  useEffect(() => {
+    get_empresas()
   }, []);
 
   if (!empresa) {
@@ -44,6 +47,7 @@ export const Gestion_empleados = () => {
         },
         body: JSON.stringify({
           email: newEmployeeEmail // Utiliza el email ingresado en el formulario
+          
         })
       })
         .then(response => {
@@ -53,16 +57,17 @@ export const Gestion_empleados = () => {
           throw new Error("Error de respuesta: " + response.status);
         })
         .then(data => {
-        
-          console.log("Empleado agregado:", data);
+          get_empresas()
         })
         .catch(error => {
           console.error("Error al agregar el empleado:", error);
         });
     }
   };
+  
+  
+  return empresa ? (
 
-  return (
     <div className="empresa">
       <br />
       <br />
@@ -83,29 +88,34 @@ export const Gestion_empleados = () => {
           </div>
         </div>
       </div>
-
-      <div>
-        <h2>Agregar nuevo empleado:</h2>
-        <input
-          type="text"
-          value={newEmployeeEmail}
-          onChange={e => setNewEmployeeEmail(e.target.value)}
-          placeholder="Email del nuevo empleado"
-        />
-        <button onClick={handleAddEmpleado}>Agregar empleado</button>
+      
+      <div className="add_user">
+      <h4 className="inviteh4 mt-3 mb-3">Agregar nuevo empleado:</h4>
+        <div className="row inputuser">
+          <div className="inputer">
+            <input 
+            type="text"
+            value={newEmployeeEmail}
+            onChange={e => setNewEmployeeEmail(e.target.value)}
+            placeholder="Email del nuevo empleado"/>
+            <button className="invite-btn"  onClick={handleAddEmpleado}> Añadir </button>
+          </div>
+        </div>
       </div>
 
-      <h1>Tus empleados:</h1>
-      {/* Aquí puedes mostrar la información de los empleados de la empresa */}
-      
-      <ul>
-        {users.map(user => (
-          <li key={user.email}>
-            <strong>Nombre:</strong> {user.email}, <strong>Rol:</strong> {user.role}
+      <h1>Tus empleados:</h1>      
+       
+      <ul className="employers">
+        {empresa ? empresa.users.map((user,index) => (
+          <li  key={index}>
+            <p className="worker"><strong>Email:</strong> {user.email} // <strong>Nombre:</strong> {user.name}</p>
+            {user === user_empresa && (<span></span>)}
           </li>
-        ))}
-      </ul>
+          
+        )): ""}
+      
+      </ul> 
       
     </div>
-  );
+  ) : "";
 };
