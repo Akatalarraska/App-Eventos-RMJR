@@ -19,7 +19,7 @@ import { Factura } from "./pages/factura";
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { CreateEvent } from "./pages/createevent";
-
+import { ModifyUserData } from "./pages/modyfyUserData";
 
 
 //create your first component
@@ -47,7 +47,8 @@ const Layout = () => {
                             <Route element={<Event />} path="/event/:eventId" />
                             <Route element={<AllEvents />} path="/eventos" />
                             <Route element={<CreateEvent />} path="/crearevento" />
-                            
+                            <Route element={<ModifyUserData />} path="/modify_user_data/:userId" />
+
                             <Route element={<h1>Not found!</h1>} />
                         </Routes>
                     <Footer />
