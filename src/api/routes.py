@@ -12,7 +12,6 @@ import datetime
 import json
 
 
-
 import cloudinary
 
 cloudinary.config( 
@@ -295,6 +294,40 @@ def handle_crearevento():
 
 
 
+# RUTA PARA MODIFICAR DATOS DE UN USUARIO
+
+@api.route('/modify_user_data/<int:user_id>', methods=['PATCH'])
+@jwt_required()
+def handle_modify_user(user_id):
+
+    user_id = get_jwt_identity()
+    user = User.query.get(user_id)
+
+    if user is None:
+        raise APIException('User not found', status_code=404)
+
+    body = request.get_json()
+
+    if body is None:
+        raise APIException(
+            "You need to specify the request body as a json object", status_code=400)
+
+    # Actualizar los campos del usuario con los valores proporcionados en el cuerpo de la solicitud
+    if "email" in body:
+        user.email = body["email"]
+    if "dni" in body:
+        user.dni = body["dni"]
+    if "name" in body:
+        user.name = body["name"]
+    if "password" in body:
+        user.password = body["password"]
+
+    print(body)
+  
+    db.session.add(user)
+    db.session.commit()
+
+    return jsonify("User data updated successfully"), 200
 
 
 

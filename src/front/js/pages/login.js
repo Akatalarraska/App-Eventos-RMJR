@@ -27,7 +27,7 @@ export const Login = () => {
         const response = await actions.userLogin(email, password);
         if (response && response.token) {
             Swal.fire({
-                title: 'Bienvenido a su área privada',
+                title: 'Bienvenido a tu área privada',
                 text: 'Sesión iniciada correctamente',
                 icon: 'success',
                 confirmButtonText: 'Aceptar'
@@ -40,7 +40,7 @@ export const Login = () => {
       } catch (error) {
         Swal.fire({
             title: 'Error',
-            text: 'Error al iniciar sesión, inténtelo de nuevo',
+            text: 'Error al iniciar sesión, inténtalo de nuevo',
             icon: 'error',
             confirmButtonText: 'Aceptar'
           });

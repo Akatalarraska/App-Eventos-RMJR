@@ -5,7 +5,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			user: {
 				email: "",
 				token: null,
-				id: ""
+				id: "",
+				password: "",
 			},
 
 			company: {
@@ -150,47 +151,38 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 
 
-			// createEvent: async (nombre, descripcion, imagen, ubicacion, fechaInicio, fechaFin, personas, free, importe) => {
-				
-			// 	try {
-			// 	const store = getStore();
-			// 	const userId = store.user.id;
-			
-			// 	const newEvent = {
-			// 		nombre: nombre,
-			// 		descripcion: descripcion,
-			// 		imagen: imagen,
-			// 		ubicacion: ubicacion,
-			// 		fechaInicio: fechaInicio,
-			// 		fechaFin: fechaFin,
-			// 		personas: personas,
-			// 		free: free,
-			// 		importe: importe,
-			// 		user_id: userId,
-			// 	};
-			
-				
-			// 	const response = await fetch(process.env.BACKEND_URL + "/api/crearevento", {
-			// 		method: "POST",
-			// 		headers: {
-			// 		  "Content-Type": "application/json"
-			// 		},
-			// 		body: JSON.stringify(newEvent)
-			// 	  });
-			  
-			// 	  if (response.ok) {
-			// 		const data = await response.json();
-			// 		setStore({ event: newEvent });
-			// 		console.log("data", data);
-			// 		return true; // Indicar que la creación del evento fue exitosa
-			// 	  } else {
-			// 		throw new Error("Error al crear el evento"); // Lanzar un error en caso de respuesta no exitosa
-			// 	  }
-			// 	} catch (error) {
-			// 	  console.log("Error creating event", error);
-			// 	  throw new Error("Error al crear el evento"); // Lanzar un error en caso de excepción
-			// 	}
-			//   },
+			updateUserData: async (userId, name, dni, email, password) => {
+				try {
+				  const modifiedUser = {
+					id: userId,
+					name: name,
+					dni: dni,
+					email: email,
+					password: password,
+				  };
+		
+				  const response = await fetch(process.env.BACKEND_URL + `/api/modify_user_data/${userId}`, {
+					method: "PATCH", 
+					headers: {
+					  "Content-Type": "application/json",
+					  Authorization: "Bearer " + sessionStorage.getItem("token"),
+					},
+					body: JSON.stringify(modifiedUser),
+				  });
+				  console.log("response", response);
+				  if (!response.ok) {
+					throw new Error("Error updating user data");
+				  }
+				  const data = await response.json();
+				  setStore({
+					user: data,
+				})
+				  return true; 
+				} catch (error) {
+				  console.log("Error updating user data", error);
+				  throw error;
+				}
+			  },
 			
 
 

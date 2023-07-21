@@ -279,7 +279,7 @@ export const Private = () => {
                                             </p>
                                         </div>
                                         <div className="card__body-btn d-flex justify-content-center align-items-end mb-5">
-                                            <Link to="/personal" className="link">
+                                        <Link to={`/modify_user_data/:${store.user.id}`} className="link">
                                                 <button className="btn btn--body-custom">
                                                     Modificar datos
                                                 </button>
