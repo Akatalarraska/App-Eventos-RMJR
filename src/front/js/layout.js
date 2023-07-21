@@ -19,7 +19,7 @@ import { Factura } from "./pages/factura";
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { CreateEvent } from "./pages/createevent";
-import { ModifyUserData } from "./pages/modyfyUserData";
+import { ModifyUserData } from "./pages/modifyUserData";
 
 
 //create your first component
