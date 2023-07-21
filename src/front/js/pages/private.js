@@ -72,41 +72,7 @@ export const Private = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-sm-12 col-md-6 col-lg-3 card-container my-1">
-                            <div className="card">
-                                <div className="card__inner">
-                                    <div className="card__side card__side--front">
-                                        <div className="card__image-wrapper">
-                                            <img
-                                                src={calendarImage}
-                                                alt="Calendario de eventos"
-                                                className="card__image"
-                                            />
-                                        </div>
-                                        <div className="card__body card__body--flex">
-                                            <h3 className="card__title">Calendario de eventos</h3>
-                                            <i className="fa-solid fa-circle-arrow-right fa-2xl" />
-                                        </div>
-                                    </div>
-                                    <div className="card__side card__side--back">
-                                        <div className="card__body">
-                                            <p>
-                                                Descubre un mundo lleno de oportunidades en nuestro calendario de eventos.
-                                                Explora una amplia variedad de actividades, conferencias y encuentros profesionales en tu industria.
-                                                Mantente al tanto de las fechas importantes y no te pierdas ninguna oportunidad de networking, aprendizaje y crecimiento.
-                                            </p>
-                                        </div>
-                                        <div className="card__body-btn d-flex justify-content-center align-items-end mb-5">
-                                            <Link to="/calendario" className="link">
-                                                <button className="btn btn--body-custom">
-                                                    Calendario de eventos
-                                                </button>
-                                            </Link>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
 
                         <div className="col-sm-12 col-md-6 col-lg-3 card-container my-1">
                             <div className="card">
@@ -120,22 +86,24 @@ export const Private = () => {
                                             />
                                         </div>
                                         <div className="card__body card__body--flex">
-                                            <h3 className="card__title">Próximos eventos</h3>
+                                            <h3 className="card__title">Tus eventos</h3>
                                             <i className="fa-solid fa-circle-arrow-right fa-2xl" />
                                         </div>
                                     </div>
                                     <div className="card__side card__side--back">
                                         <div className="card__body">
                                             <p>
-                                                Mantén tus ojos en el futuro y prepárate para los próximos eventos más emocionantes.
-                                                Nuestro catálogo incluye una selección de eventos próximos en diferentes industrias.
-                                                Descubre nuevas tendencias, conecta con expertos y amplía tu red de contactos mientras te sumerges en experiencias enriquecedoras.
+                                            Revive tus experiencias pasadas y mantén un registro de los eventos a los que has asistido. 
+                                            Explora la lista de eventos anteriores en los que has participado y revive esos momentos especiales. 
+                                            Conecta con otros asistentes, descubre fotos y comentarios compartidos por otros usuarios 
+                                            y recuerda lo increíbles que fueron esos eventos.
                                             </p>
+
                                         </div>
                                         <div className="card__body-btn d-flex justify-content-center align-items-end mb-5">
-                                            <Link to="/futuroseventos" className="link">
+                                            <Link to={`/tuseventos/:${store.user.id}`} className="link">
                                                 <button className="btn btn--body-custom">
-                                                    Próximos eventos
+                                                    Consulta tus eventos
                                                 </button>
                                             </Link>
                                         </div>
@@ -143,46 +111,6 @@ export const Private = () => {
                                 </div>
                             </div>
                         </div>
-
-
-                        <div className="col-sm-12 col-md-6 col-lg-3 card-container my-1">
-                            <div className="card">
-                                <div className="card__inner">
-                                    <div className="card__side card__side--front">
-                                        <div className="card__image-wrapper">
-                                            <img
-                                                src={pastEventsImage}
-                                                alt="Gestión de empleados"
-                                                className="card__image"
-                                            />
-                                        </div>
-                                        <div className="card__body card__body--flex">
-                                            <h3 className="card__title">Gestión de empleados</h3>
-                                            <i className="fa-solid fa-circle-arrow-right fa-2xl" />
-                                        </div>
-                                    </div>
-                                    <div className="card__side card__side--back">
-                                        <div className="card__body">
-                                            <p>
-                                            Nuestra app te ayuda a gestionar el personal de tu empresa de forma eficiente y eficaz. 
-                                            Habilita a tus empleados dentro de tu empresa para que puedan gestionar los eventos en curso y ver el historial de los mismos.
-                                            </p>
-                                        </div>
-                                        <div className="card__body-btn d-flex justify-content-center align-items-end mb-5">
-                                            <Link to="/gestion_empleados" className="link">
-                                                <button className="btn btn--body-custom">
-                                                    Gestión de empleados
-                                                </button>
-                                            </Link>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                    </div>
-                    <div className="row d-flex justify-content-center ms-4 my-5">
                         <div className="col-sm-12 col-md-6 col-lg-3 card-container my-1">
                             <div className="card">
                                 <div className="card__inner">
@@ -217,7 +145,6 @@ export const Private = () => {
                                 </div>
                             </div>
                         </div>
-
                         <div className="col-sm-12 col-md-6 col-lg-3 card-container my-1">
                             <div className="card">
                                 <div className="card__inner">
@@ -254,6 +181,45 @@ export const Private = () => {
                             </div>
                         </div>
 
+
+
+
+                    </div>
+                    <div className="row d-flex justify-content-center ms-4 my-5">
+                        <div className="col-sm-12 col-md-6 col-lg-3 card-container my-1">
+                            <div className="card">
+                                <div className="card__inner">
+                                    <div className="card__side card__side--front">
+                                        <div className="card__image-wrapper">
+                                            <img
+                                                src={pastEventsImage}
+                                                alt="Gestión de empleados"
+                                                className="card__image"
+                                            />
+                                        </div>
+                                        <div className="card__body card__body--flex">
+                                            <h3 className="card__title">Gestión de empleados</h3>
+                                            <i className="fa-solid fa-circle-arrow-right fa-2xl" />
+                                        </div>
+                                    </div>
+                                    <div className="card__side card__side--back">
+                                        <div className="card__body">
+                                            <p>
+                                                Nuestra app te ayuda a gestionar el personal de tu empresa de forma eficiente y eficaz.
+                                                Habilita a tus empleados dentro de tu empresa para que puedan gestionar los eventos en curso y ver el historial de los mismos.
+                                            </p>
+                                        </div>
+                                        <div className="card__body-btn d-flex justify-content-center align-items-end mb-5">
+                                            <Link to="/gestion_empleados" className="link">
+                                                <button className="btn btn--body-custom">
+                                                    Gestión de empleados
+                                                </button>
+                                            </Link>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div className="col-sm-12 col-md-6 col-lg-3 card-container my-1">
                             <div className="card">
                                 <div className="card__inner">
@@ -279,7 +245,7 @@ export const Private = () => {
                                             </p>
                                         </div>
                                         <div className="card__body-btn d-flex justify-content-center align-items-end mb-5">
-                                        <Link to={`/modify_user_data/:${store.user.id}`} className="link">
+                                            <Link to={`/modify_user_data/:${store.user.id}`} className="link">
                                                 <button className="btn btn--body-custom">
                                                     Modificar datos
                                                 </button>
@@ -328,19 +294,58 @@ export const Private = () => {
                 </div>
             ) : (
                 <div className="container my-5">
-                    <row className="row d-flex justify-content-center my-5">
-                        <h2>Ups!! Para acceder a su área privada debe estar registrado y haber iniciado sesión</h2>
-                    </row>
-                    <row className="row d-flex justify-content-center my-5">
+                    <div className="row d-flex justify-content-center my-5">
+                        <h3>Ups!! Para acceder a su área privada debe estar registrado y haber iniciado sesión</h3>
+                    </div>
+                    <div className="row d-flex justify-content-center my-5">
                         <div className="col-sm-12 col-md-6 col-lg-3 my-5">
                             <button type="button" className="btn btn-lg btn-warning" onClick={handleOnClickToSignup}>Registrarse</button>
                         </div>
                         <div className="col-sm-12 col-md-6 col-lg-3 my-5">
-                            <button type="button" className="btn btn-lg btn-warning" onClick={handleOnClickToLogin}>Iniciar sesión</button>
+                            <button type="button" className="btn btn-lg btn-info" onClick={handleOnClickToLogin}>Iniciar sesión</button>
                         </div>
-                    </row>
+                    </div>
                 </div>
             )}
         </>
     )
 }
+
+
+// CALENDARIO DE EVENTOS//
+
+// <div className="col-sm-12 col-md-6 col-lg-3 card-container my-1">
+//                             <div className="card">
+//                                 <div className="card__inner">
+//                                     <div className="card__side card__side--front">
+//                                         <div className="card__image-wrapper">
+//                                             <img
+//                                                 src={calendarImage}
+//                                                 alt="Calendario de eventos"
+//                                                 className="card__image"
+//                                             />
+//                                         </div>
+//                                         <div className="card__body card__body--flex">
+//                                             <h3 className="card__title">Calendario de eventos</h3>
+//                                             <i className="fa-solid fa-circle-arrow-right fa-2xl" />
+//                                         </div>
+//                                     </div>
+//                                     <div className="card__side card__side--back">
+//                                         <div className="card__body">
+//                                             <p>
+//                                                 Descubre un mundo lleno de oportunidades en nuestro calendario de eventos.
+//                                                 Explora una amplia variedad de actividades, conferencias y encuentros profesionales en tu industria.
+//                                                 Mantente al tanto de las fechas importantes y no te pierdas ninguna oportunidad de networking, aprendizaje y crecimiento.
+//                                             </p>
+//                                         </div>
+//                                         <div className="card__body-btn d-flex justify-content-center align-items-end mb-5">
+//                                             <Link to="/calendario" className="link">
+//                                                 <button className="btn btn--body-custom">
+//                                                     Calendario de eventos
+//                                                 </button>
+//                                             </Link>
+//                                         </div>
+//                                     </div>
+//                                 </div>
+//                             </div>
+//                         </div>

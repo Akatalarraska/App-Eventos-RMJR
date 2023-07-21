@@ -5,8 +5,8 @@ import { Context } from "../store/appContext";
 import { useNavigate } from "react-router-dom";
 import "../../styles/createevent.css";
 import Swal from "sweetalert2";
-import DatePicker from 'react-datepicker';
-import "react-datepicker/dist/react-datepicker.css";
+// import DatePicker from 'react-datepicker';
+// import "react-datepicker/dist/react-datepicker.css";
 
 
 export const CreateEvent = () => {
@@ -27,14 +27,14 @@ export const CreateEvent = () => {
 
 
 
-    const handleFechaInicioChange = (date) => {
-        setFechaInicio(date);
-    };
+    // const handleFechaInicioChange = (date) => {
+    //     setFechaInicio(date);
+    // };
 
 
-    const handleFechaFinChange = (date) => {
-        setFechaFin(date);
-    };
+    // const handleFechaFinChange = (date) => {
+    //     setFechaFin(date);
+    // };
 
 
     const handleCreateEventSubmit = async (e) => {
@@ -84,10 +84,6 @@ export const CreateEvent = () => {
             setImporte(0);
         }
     };
-
-
-
-
 
 
     return (
@@ -166,26 +162,26 @@ export const CreateEvent = () => {
                         <div className="row m-3 d-flex justify-content-center" >
                             <div className="col-4 col-xl-5 col-lg-5 form-group">
                                 <label htmlFor="Fecha de inicio" className='m-1'>Fecha de inicio</label>
-                                <DatePicker
-                                    showIcon
-                                    selected={fechaInicio}
-                                    dateFormat={"dd/MM/yyyy"}
-                                    placeholderText='dd/mm/aaaa'
-                                    onChange={handleFechaInicioChange}
-                                    minDate={new Date()}
+                                <input
+                                    type="date"
+                                    id="Fecha de inicio"
+                                    name="Fecha de inicio"
+                                    value={fechaInicio}
+                                    onChange={(event) => setFechaInicio(event.target.value)}
+                                    min={new Date().toISOString().split("T")[0]} 
                                     className="form-control form-control-event-create form-control-lg"
                                 />
 
                             </div>
                             <div className="col-4 col-xl-5 col-lg-5 form-group">
                                 <label htmlFor="Fecha de fin" className='m-1'>Fecha de fin</label>
-                                <DatePicker
-                                    showIcon
-                                    selected={fechaFin}
-                                    dateFormat={"dd/MM/yyyy"}
-                                    placeholderText='dd/mm/aaaa'
-                                    onChange={handleFechaFinChange}
-                                    minDate={fechaInicio} 
+                                <input
+                                    type="date"
+                                    value={fechaFin}
+                                    id="Fecha de fin"
+                                    name="Fecha de fin"
+                                    onChange={(event) => setFechaFin(event.target.value)}
+                                    min={fechaInicio} 
                                     className="form-control form-control-event-create form-control-lg"
                                 />
                             </div>
