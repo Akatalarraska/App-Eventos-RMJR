@@ -57,7 +57,7 @@ def obtener_myempresa():
         data = user.user_empresa[0].empresa.serialize()
         data["users"] = users
         return jsonify(data)
-    return jsonify("El usuario no Admin de la empresa"), 400
+    return jsonify("El usuario no es Admin de la empresa"), 400
 
 
 
@@ -70,6 +70,14 @@ def create_valoracion():
     db.session.commit()
 
     return jsonify({"message": "Valoración guardada exitosamente"}), 201
+
+@api.route('/my_opinion', methods=["GET"])
+@jwt_required()
+def get_opinions():
+    user_id = get_jwt_identity()
+    opinions = Valoracion.query.filter_by(user_id=user_id)
+    opinions_list = [opinion.serialize() for opinion in opinions]
+    return jsonify(opinions_list), 200
 
 @api.route('/myinvoice', methods=["GET"])
 @jwt_required()

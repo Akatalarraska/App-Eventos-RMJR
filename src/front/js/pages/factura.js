@@ -64,7 +64,7 @@ export const Factura = () => {
                 <p>{factura.fecha}</p>
                 <p>{factura.cantidad}</p>
                 {factura.evento ? (
-                <p>{factura.evento.nombre}</p>
+                <p>{evento.id.nombre}</p>
                   ) : (
                 <p>Evento no encontrado</p>
                 )}
