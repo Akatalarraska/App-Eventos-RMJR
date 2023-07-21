@@ -181,9 +181,6 @@ export const Private = () => {
                             </div>
                         </div>
 
-
-
-
                     </div>
                     <div className="row d-flex justify-content-center ms-4 my-5">
                         <div className="col-sm-12 col-md-6 col-lg-3 card-container my-1">
