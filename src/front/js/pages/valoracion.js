@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { StarRating } from "../component/starRating";
 import "../../styles/valoracion.css";
 
 export const Valoracion = () => {
@@ -30,32 +31,26 @@ export const Valoracion = () => {
   return (
     <div>
       <br className="mt-3" />
-      <h1>Tus Valoraciones</h1>
-      {opinions.map((valoracion) => (
-        <ul>
-          <div id="opicontainer">	
-          <div className="product-details">
-            <img src={valoracion.evento.imagen}/>
-            <div className="product-details-info">
-              <h3 className="hint new">{valoracion.evento.nombre}</h3> 
-              <span className="hint-star star">
-                <i className="fa fa-star" aria-hidden="true"></i>
-                <i className="fa fa-star" aria-hidden="true"></i>
-                <i className="fa fa-star" aria-hidden="true"></i>
-                <i className="fa fa-star-half-o" aria-hidden="true"></i>
-                <i className="fa fa-star-o" aria-hidden="true"></i>
-              </span>
-              <p className="information"> {valoracion.comentario} </p>
-            </div>
-            <button className="button-64" role="button" id="opino">
+      <h1 className="mb-3">Tus Valoraciones</h1>
+      <div className="opiniones">
+        {opinions.map((valoracion) => (
+          <div className="opinion-card" key={valoracion.id}>
+            <div className="image-container">
+              <img src={valoracion.evento.imagen} alt="Evento" />
+              <button className="button-64" role="button" id="opino">
                 <span className="text">
                   <Link to={`/event/${valoracion.evento?.id}`}>+ info</Link>{" "}
                 </span>
-            </button>
+              </button>
+            </div>
+            <div className="details-container">
+              <h2 className="opinion-title">{valoracion.evento.nombre}</h2>
+              <StarRating rating={valoracion.estrellas} />
+              <p className="information">{valoracion.comentario}</p>
+            </div>
           </div>
-          </div>
-        </ul>
-      ))}
+        ))}
+      </div>
     </div>
   );
 };
