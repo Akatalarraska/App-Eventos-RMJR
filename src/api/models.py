@@ -119,6 +119,9 @@ class Valoracion(db.Model):
     def serialize(self):
         return {
             "id": self.id,
+            "estrellas": self.estrellas,
+            "comentario": self.comentario,
+            "evento": self.evento.serialize()
             # do not serialize the password, its a security breach
         }
 

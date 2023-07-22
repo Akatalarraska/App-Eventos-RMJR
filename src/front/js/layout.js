@@ -15,6 +15,7 @@ import {Login} from "./pages/login"
 import { AllEvents } from "./pages/allEvents";
 import {Gestion_empleados} from "./pages/gestion_empleados"
 import { Factura } from "./pages/factura";
+import { Valoracion } from "./pages/valoracion";
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
@@ -44,6 +45,7 @@ const Layout = () => {
                             <Route element={<Private />} path="/private" />
                             <Route element={<Gestion_empleados />} path="/gestion_empleados" />
                             <Route element={<Factura />} path="/factura" />
+                            <Route element={<Valoracion />} path="/valoracion" />
                             <Route element={<Event />} path="/event/:eventId" />
                             <Route element={<AllEvents />} path="/eventos" />
                             <Route element={<CreateEvent />} path="/crearevento" />
