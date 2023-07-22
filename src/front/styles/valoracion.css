@@ -1,0 +1,37 @@
+/* fonts  */
+/* ... (rest of your CSS code) ... */
+
+.opicontainer {
+    background: #DFC2F2;
+    height: 20%;
+  }
+  
+ul  
+  /* Product details  */
+  .product-details {
+    position: relative;
+    text-align: left;
+    overflow: hidden;
+    padding: 30px;
+    height: 20%; /* Set the height to control the size of the product details */
+  }
+  
+  .product-details img {
+    width: 20%; /* Set the width to control the size of the product image */
+    height: 20%; /* Set the height to control the size of the product image */
+    float: left; /* Align the image to the left */
+    margin-right: 20px; /* Add some spacing between the image and the details */
+    margin-left: 20px;
+    border-radius: 50%;
+}
+    
+  
+  .product-details-info {
+    float: left; /* Align the details to the right of the image */
+  }
+  
+  
+  #opino{
+    width: 15%;
+  }
+

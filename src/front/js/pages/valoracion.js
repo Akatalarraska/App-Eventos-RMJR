@@ -20,7 +20,7 @@ export const Valoracion = () => {
         throw new Error("Error de respuesta: " + response.status);
       })
       .then(data => {
-       setOpinions(data)
+        setOpinions(data);
       })
       .catch(error => {
         console.error(error);
@@ -28,38 +28,34 @@ export const Valoracion = () => {
   }, []);
 
   return (
-    <div className="invoicecard">
+    <div>
       <br className="mt-3" />
       <h1>Tus Valoraciones</h1>
-      <div className="l-col-right ticket-wrap">
-        {opinions.map((valoracion) => (
-          <div className="ticket" key={valoracion.id} aria-hidden="true">
-            <div className="ticket__header">
-              <div className="ticket__co">
-                <span className="ticket__co-name">
-                  {valoracion.evento ? valoracion.evento.nombre : "Nombre del evento"}
-                </span>
-              </div>
+      {opinions.map((valoracion) => (
+        <ul>
+          <div id="opicontainer">	
+          <div className="product-details">
+            <img src={valoracion.evento.imagen}/>
+            <div className="product-details-info">
+              <h3 className="hint new">{valoracion.evento.nombre}</h3> 
+              <span className="hint-star star">
+                <i className="fa fa-star" aria-hidden="true"></i>
+                <i className="fa fa-star" aria-hidden="true"></i>
+                <i className="fa fa-star" aria-hidden="true"></i>
+                <i className="fa fa-star-half-o" aria-hidden="true"></i>
+                <i className="fa fa-star-o" aria-hidden="true"></i>
+              </span>
+              <p className="information"> {valoracion.comentario} </p>
             </div>
-            <div className="ticket__body">
-              <button className="button-64" role="button">
+            <button className="button-64" role="button" id="opino">
                 <span className="text">
                   <Link to={`/event/${valoracion.evento?.id}`}>+ info</Link>{" "}
                 </span>
-              </button>
-              <div className="ticket__timing">
-                <p>
-                  <span className="u-upper ticket__small-label">Stars</span>
-                  <span className="ticket__detail">
-                    {valoracion.estrellas}
-                  </span>
-                </p>
-              </div>
-              <p className="u-upper ticket__admit">Precio {valoracion.comentario} €</p>
-            </div>
+            </button>
           </div>
-        ))}
-      </div>
+          </div>
+        </ul>
+      ))}
     </div>
   );
 };
