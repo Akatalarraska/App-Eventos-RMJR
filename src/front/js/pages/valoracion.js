@@ -37,16 +37,17 @@ export const Valoracion = () => {
           <div className="opinion-card" key={valoracion.id}>
             <div className="image-container">
               <img src={valoracion.evento.imagen} alt="Evento" />
+            </div>
+            <div className="details-container">
+              <h2 className="opinion-title">{valoracion.evento.nombre}</h2>
+              <p className="information"><strong>Comentario: </strong>{valoracion.comentario}</p>
+              <StarRating rating={valoracion.estrellas} />
+              
               <button className="button-64" role="button" id="opino">
                 <span className="text">
                   <Link to={`/event/${valoracion.evento?.id}`}>+ info</Link>{" "}
                 </span>
               </button>
-            </div>
-            <div className="details-container">
-              <h2 className="opinion-title">{valoracion.evento.nombre}</h2>
-              <StarRating rating={valoracion.estrellas} />
-              <p className="information">{valoracion.comentario}</p>
             </div>
           </div>
         ))}
