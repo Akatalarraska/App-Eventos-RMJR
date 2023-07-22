@@ -6,39 +6,38 @@
   max-width: 90%;
 }
 
-.opinion-card {
-  background-color: #fff;
-  border-radius: 5px;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-  width: 30%; /* Por defecto, 3 opiniones por fila */
-  margin-bottom: 20px;
-  display: flex;
-  flex-direction: column; /* Asegura que los elementos dentro de la tarjeta estén en una columna */
-  align-items: flex-start; /* Alinea los elementos en la parte superior de la tarjeta */
-  max-height: 350px; /* Establece una altura máxima para evitar que las tarjetas se hagan excesivamente altas */
-}
-
 @media screen and (max-width: 768px) {
   .opiniones {
     justify-content: center;
   }
 
   .opinion-card {
-    width: 80%; /* Cambia a una columna cuando el ancho del navegador es menor a 768px */
+    width: 100%;
   }
+}
+
+.opinion-card {
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-height: 350px;
 }
 
 .image-container {
   width: 100%;
-  height: 150px; /* Establece una altura fija para todas las imágenes */
-  margin-bottom: 10px; /* Añade un espacio en la parte inferior de la imagen */
+  height: 150px;
+  margin-bottom: 10px;
 }
 
 .image-container img {
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .details-container {
@@ -46,7 +45,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 10px; /* Agrega un poco de espaciado dentro del contenedor */
+  padding: 10px;
 }
 
 .opinion-title {
@@ -57,15 +56,21 @@
 
 .information {
   font-size: 14px;
+  padding: 10px;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
 .star-row {
   display: flex;
   align-items: center;
+  width: 200px;
+  height: 200px;
+  margin-right: 4px;
 }
 
-.star-row .star-small {
-  width: 15px;
-  height: 15px;
-  margin-right: 3px;
+
+
+.button-64 {
+  margin-top: 10px;
 }
