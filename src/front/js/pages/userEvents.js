@@ -38,8 +38,10 @@ export const UserEvents = () => {
         <div className="row">
           {userEvents.map(event => (
             <div className="col-sm-12 col-md-6 col-lg-4" key={event.id}>
-              <div className="card m-5 p-5">
-                <img src={event.imagen} className="card-img-top" alt="Evento" />
+              <div className="card-event">
+                <img src={event.imagen}                       className="bd-placeholder-img rounded"
+                      width="400"
+                      height="400"alt="Evento" />
                 <div className="card-body">
                   <h5 className="card-title">{event.nombre}</h5>
                   <p className="card-text">{event.descripcion}</p>
