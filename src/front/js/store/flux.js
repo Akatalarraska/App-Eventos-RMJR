@@ -6,7 +6,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				email: "",
 				token: null,
 				id: "",
-				password: "",
+			
 			},
 
 			company: {
@@ -64,10 +64,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 				  }
 			  
 				  const data = await response.json();
-				  return true; // El usuario se registró exitosamente
+				  return true; 
 				} catch (error) {
 				  console.log("Error creating user", error);
-				  return false; // Hubo un error al registrar al usuario
+				  return false; 
 				}
 			  },
 			  
@@ -98,7 +98,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						user: {
 							email: data.email,
 							token: data.token,
-							id: data.id
+							id: data.id,
 						}
 					})
 					return data;

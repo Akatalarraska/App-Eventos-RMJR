@@ -59,7 +59,7 @@ export const ModifyUserData = () => {
       <div className="row d-flex justify-content-center align-items-center">
         <div className="col-xl-6 col-lg-6">
           <form className="modify-user-data-form m-5" onSubmit={handleModifySubmit}>
-            <h3 className="fw-bold mt-5 mb-2 text-center text-black">Modificar datos de usuario</h3>
+            <h3 className="fw-bold mt-5 mb-2 text-center text-black">Introduce tus nuevos datos</h3>
             <div className="row m-3 d-flex justify-content-center">
               <div className="col-6 col-xl-6 col-lg-6">
                 <input
