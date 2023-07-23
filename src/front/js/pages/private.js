@@ -81,7 +81,7 @@ export const Private = () => {
                                         <div className="card__image-wrapper">
                                             <img
                                                 src={nextEventsImage}
-                                                alt="Próximos eventos"
+                                                alt="Tus eventos"
                                                 className="card__image"
                                             />
                                         </div>
@@ -101,7 +101,8 @@ export const Private = () => {
 
                                         </div>
                                         <div className="card__body-btn d-flex justify-content-center align-items-end mb-5">
-                                            <Link to={`/tuseventos/:${store.user.id}`} className="link">
+                                            {/* <Link to={`/miseventos/:${store.user.id}`} className="link"> */}
+                                            <Link to="/miseventos" className="link">
                                                 <button className="btn btn--body-custom">
                                                     Consulta tus eventos
                                                 </button>
