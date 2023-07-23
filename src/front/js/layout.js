@@ -21,6 +21,7 @@ import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { CreateEvent } from "./pages/createevent";
 import { ModifyUserData } from "./pages/modifyUserData";
+import { UserEvents } from "./pages/userEvents";
 
 
 //create your first component
@@ -50,13 +51,12 @@ const Layout = () => {
                             <Route element={<AllEvents />} path="/eventos" />
                             <Route element={<CreateEvent />} path="/crearevento" />
                             <Route element={<ModifyUserData />} path="/modify_user_data/:userId" />
-
+                            <Route element={<UserEvents />} path="/miseventos" />
                             <Route element={<h1>Not found!</h1>} />
                         </Routes>
                     <Footer />
                 </ScrollToTop>
-            </BrowserRouter>
-            
+            </BrowserRouter> 
          </div>
     );
 };
