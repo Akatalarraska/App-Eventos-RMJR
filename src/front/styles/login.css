@@ -1,0 +1,49 @@
+/* //////////////////   CSS para UserLoginForm ///////////////////// */
+.form-group label {
+    font-weight: bold;
+  }
+  
+  .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+  
+  .btn-primary:hover {
+    background-color: #0069d9;
+    border-color: #0062cc;
+  }
+  
+  .img-user-login {
+    object-fit: cover;
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 50px;
+  }
+  
+  .form-control-user-login {
+    font-size: 18px;
+    border: 1px solid #000000;
+  }
+  
+  .form-check-input {
+    border: 1px solid #000000;
+  }
+  
+  
+  .user-login-form {
+    border: 1px solid #000000;
+    background-color: #9DA5C9;
+    border-radius: 10px;
+    max-width: 100vw;
+  
+  }
+  
+  .btn-user-login:hover {
+    background-color: #000000;
+    color: #FFFFFF;
+  }
+
+ 

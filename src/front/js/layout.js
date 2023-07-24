@@ -7,9 +7,22 @@ import { Home } from "./pages/home";
 import { Demo } from "./pages/demo";
 import { Single } from "./pages/single";
 import injectContext from "./store/appContext";
+import {Signup} from "./pages/signup"
+import {CompanySignup} from "./pages/companysignup"
+import { Event } from "./pages/event";
+import {Private} from "./pages/private"
+import {Login} from "./pages/login"
+import { AllEvents } from "./pages/allEvents";
+import {Gestion_empleados} from "./pages/gestion_empleados"
+import { Factura } from "./pages/factura";
+import { Valoracion } from "./pages/valoracion";
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
+import { CreateEvent } from "./pages/createevent";
+import { ModifyUserData } from "./pages/modifyUserData";
+import { UserEvents } from "./pages/userEvents";
+
 
 //create your first component
 const Layout = () => {
@@ -20,20 +33,31 @@ const Layout = () => {
     if(!process.env.BACKEND_URL || process.env.BACKEND_URL == "") return <BackendURL/ >;
 
     return (
-        <div>
+        <div className="d-flex flex-column min-vh-100 max-vw-100">
+            
             <BrowserRouter basename={basename}>
                 <ScrollToTop>
                     <Navbar />
-                    <Routes>
-                        <Route element={<Home />} path="/" />
-                        <Route element={<Demo />} path="/demo" />
-                        <Route element={<Single />} path="/single/:theid" />
-                        <Route element={<h1>Not found!</h1>} />
-                    </Routes>
+                        <Routes>
+                            <Route element={<Home />} path="/" />
+                            <Route element={<Signup />} path="/signup" />
+                            <Route element={<Login />} path="/login" />
+                            <Route element={<CompanySignup />} path="/companysignup" />
+                            <Route element={<Private />} path="/private" />
+                            <Route element={<Gestion_empleados />} path="/gestion_empleados" />
+                            <Route element={<Factura />} path="/factura" />
+                            <Route element={<Valoracion />} path="/valoracion" />
+                            <Route element={<Event />} path="/event/:eventId" />
+                            <Route element={<AllEvents />} path="/eventos" />
+                            <Route element={<CreateEvent />} path="/crearevento" />
+                            <Route element={<ModifyUserData />} path="/modify_user_data/:userId" />
+                            <Route element={<UserEvents />} path="/miseventos" />
+                            <Route element={<h1>Not found!</h1>} />
+                        </Routes>
                     <Footer />
                 </ScrollToTop>
-            </BrowserRouter>
-        </div>
+            </BrowserRouter> 
+         </div>
     );
 };
 

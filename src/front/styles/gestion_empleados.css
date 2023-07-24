@@ -1,0 +1,133 @@
+.infoe{
+    border: solid 1px silver;
+    width: 95%;
+    margin: auto;
+    margin-top: 10px;
+}
+.infoempresa{
+    text-align: center;
+    font-size: 22px;
+}
+
+/* ... */
+.inviteh4{
+    text-align: center;
+    margin: auto;
+}
+.inputuser {
+    display: flex;
+    align-items: center;
+  }
+  
+  .inputer {
+    display: flex;
+    align-items: center;
+    height: 4em;
+    width: 100%;
+    min-width: 20%;
+    max-width: 45%;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 20px 20px 30px rgba(0, 0, 0, .05);
+  }
+  
+  .inputer input {
+    flex: 1;
+    height: 100%;
+    border-radius: 8px;
+    border: 1px solid rgb(176, 190, 197);
+    background-color: transparent;
+    padding: 0.625rem 2rem 0.625rem 0.75rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 400;
+    color: rgb(69, 90, 100);
+    outline: none;
+    transition: all .15s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .inputer input:focus {
+    border: 1px solid rgb(109, 86, 211);
+  }
+  
+  .invite-btn {
+    width: 65px;
+    height: 2.5rem;
+    margin-left: -40px;
+    border-radius: 4px;
+    background-color: rgb(109, 86, 211);
+    color: #fff;
+    padding: .25rem;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    border: none;
+    transition: .6s ease;
+  }
+  
+  .invite-btn:hover {
+    margin-left: -38px;
+    border-radius: 8px;
+  }
+  
+  .inputer input:placeholder-shown + .invite-btn {
+    pointer-events: none;
+    background-color: gray;
+    opacity: 0.5;
+  }
+  
+
+              
+.employers {
+    margin: auto;
+    counter-reset: li; 
+    list-style: none; 
+    padding: 0;
+    text-shadow: 0 1px 0 rgba(255,255,255,.5);
+    max-width: 35%;
+    text-align: center;
+  }
+  
+.employers .worker {
+    position: relative;
+    display: block;
+    padding: .4em .4em .4em .8em;
+    margin: .5em 0 .5em 2.5em;
+    background: #D3D4DA;
+    color: #444;
+    text-decoration: none;
+    transition: all .3s ease-out;
+  }
+  
+.employers .worker:hover {background: #DCDDE1;}       
+.employers .worker:before {
+    content: counter(li);
+    counter-increment: li;
+    position: absolute;
+    left: -2.5em;
+    top: 50%;
+    margin-top: -1em;
+    background: #f9dd94;
+    height: 2em;
+    width: 2em;
+    line-height: 2em;
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  .employers .worker:after {
+    position: absolute;
+    content: "";
+    border: .5em solid transparent;
+    left: -1em;
+    top: 50%;
+    margin-top: -.5em;
+    transition: all .3s ease-out;
+  }
+  
+  .employers .worker:hover:after {
+    left: -.5em;
+    border-left-color: #f9dd94;
+  }
+    
