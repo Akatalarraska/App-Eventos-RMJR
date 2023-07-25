@@ -44,7 +44,7 @@ export const Home = () => {
 			<hr className="featurette-divider mt-2 mb-5" />
 
 		
-			<h1 className="mt-5 mb-5">Plan, create, promote and execute events</h1>
+			<h2 className="mt-5 mb-5" id="slogan">Plan, create, promote and execute events</h2>
 
 			<div className="container marketing mb-5">
 				<div className="row">

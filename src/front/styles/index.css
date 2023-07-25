@@ -4,9 +4,10 @@
 #principal {
   margin-top: 110px;
 }
-h1{
+h1, #slogan{
 color: rgb(111, 103, 228)
 }
+
 
 @import url('https://fonts.googleapis.com/css?family=Oswald:500');
 
@@ -51,7 +52,7 @@ text-transform:uppercase;
 text-decoration:none;
 color:#16151b;
 margin:0 10px;
-font-size:14px;
+font-size:20px;
 letter-spacing:1px;
 position:relative;
 display:inline-block;
