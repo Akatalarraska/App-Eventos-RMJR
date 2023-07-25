@@ -28,15 +28,13 @@ ul {
 }
 
 .footer {
-  position: fixed;
   background-color: rgba(146, 146, 140, 0.568);
   padding: 20px 0;
   padding: 0em;
-  position: relative;
   bottom: 0;
-  left: 0;
   width: 100%;
-  z-index: 1;
+  z-index: 0;
+
 }
 
 .footer-col {

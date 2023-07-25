@@ -12,9 +12,9 @@ export const Home = () => {
 
 	return (
 		<div className="text-center" id="principal">
-			<h1 className="mt-6">IBENTO</h1>
-			<p> "Bring Your Event Vision to Life: Unlock Endless Possibilities"</p>
-			<div id="carouselExampleIndicators" className="carousel slide">
+			<h1 className="mt-2">IBENTO</h1>
+			<p className="mt-3"> "Bring Your Event Vision to Life: Unlock Endless Possibilities"</p>
+			<div id="carouselExampleIndicators" className="carousel slide mt-5">
 				<div className="carousel-indicators">
 					<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
 					<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -41,10 +41,10 @@ export const Home = () => {
 				</button>
 			</div>
 
-			<hr className="featurette-divider mt-5 mb-5" />
+			<hr className="featurette-divider mt-2 mb-5" />
 
 		
-			<h1 className="mt-5 mb-5">PLAN, CREATE, PROMOTE AND EXECUTE EVENTS</h1>
+			<h1 className="mt-5 mb-5">Plan, create, promote and execute events</h1>
 
 			<div className="container marketing mb-5">
 				<div className="row">
