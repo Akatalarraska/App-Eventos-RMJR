@@ -83,6 +83,7 @@ export const Event = () => {
         if (response.ok) {
           console.log("La factura se ha creado exitosamente");
           setFormSubmitted(true);
+          setShowFacturaForm(false);
           Swal.fire({
             title: 'Factura creada correctamente',
             icon: 'success',
