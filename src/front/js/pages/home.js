@@ -41,7 +41,7 @@ export const Home = () => {
 				</button>
 			</div>
 
-			<hr className="featurette-divider mt-2 mb-5" />
+			<hr className="featurette-divider mt-5 mb-5" />
 
 		
 			<h2 className="mt-5 mb-5" id="slogan">Plan, create, promote and execute events</h2>
