@@ -147,7 +147,7 @@ export const Signup = () => {
                   <label className="form-check-label" htmlFor="gridCheck">
                     Acepto los{" "}
                     <span className="conditions-link" onClick={openModal}>
-                      términos y condiciones
+                      <u>términos y condiciones</u>
                     </span>
                   </label>
                 </div>
@@ -171,7 +171,7 @@ export const Signup = () => {
                 </button>
               </div>
             </div>
-            <p className="text-center mt-3">
+            <p className="text-center mt-3 text-black">
               Ya tienes una cuenta? <Link to="/login">Inicia sesión</Link>
             </p>
           </form>
