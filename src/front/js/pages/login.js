@@ -58,7 +58,7 @@ export const Login = () => {
     return (
 
 
-        <div className="container mt-5">
+        <div className="container container-user-login my-5">
             <div className="row d-flex justify-content-center align-items-center">
                 <div className="col-xl-8 col-lg-8">
                     <form className="login user-login-form m-5" onSubmit={handleLoginSubmit}>
@@ -111,7 +111,8 @@ export const Login = () => {
                                     </button>
                                 </div>
                             </div>
-                            <p className="text-center mt-3">Aún no tienes cuenta? <Link to="/signup">Regístrate</Link></p>
+                            <p className="text-center mt-3 text-black">Olvidaste tu contraseña? <Link to="/forgotpassword">Pulsa aquí</Link></p>
+                            <p className="text-center mt-3 text-black">Aún no tienes cuenta? <Link to="/signup">Regístrate</Link></p>
 
                     </form>
                 </div>
