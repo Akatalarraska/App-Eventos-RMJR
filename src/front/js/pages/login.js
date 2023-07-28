@@ -16,37 +16,42 @@ export const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
+    const [showPassword, setShowPassword] = useState(false);
+
     const { actions } = useContext(Context);
 
     const navigate = useNavigate();
 
 
     const handleLoginSubmit = async (e) => {
-      e.preventDefault();
-      try {
-        const response = await actions.userLogin(email, password);
-        if (response && response.token) {
+        e.preventDefault();
+        try {
+            const response = await actions.userLogin(email, password);
+            if (response && response.token) {
+                Swal.fire({
+                    title: 'Bienvenido a tu área privada',
+                    text: 'Sesión iniciada correctamente',
+                    icon: 'success',
+                    confirmButtonText: 'Aceptar'
+                });
+                navigate("/private");
+            }
+            else {
+                throw new Error("Error al iniciar sesión, inténtalo de nuevo");
+            }
+        } catch (error) {
             Swal.fire({
-                title: 'Bienvenido a tu área privada',
-                text: 'Sesión iniciada correctamente',
-                icon: 'success',
+                title: 'Error',
+                text: 'Error al iniciar sesión, inténtalo de nuevo',
+                icon: 'error',
                 confirmButtonText: 'Aceptar'
-              });
-          navigate("/private");
-        } 
-        else {
-          throw new Error("Error al iniciar sesión, inténtalo de nuevo");
+            });
         }
-      } catch (error) {
-        Swal.fire({
-            title: 'Error',
-            text: 'Error al iniciar sesión, inténtalo de nuevo',
-            icon: 'error',
-            confirmButtonText: 'Aceptar'
-          });
-      }
     };
-    
+
+    const togglePasswordVisibility = () => {
+        setShowPassword((prevState) => !prevState);
+    }
 
 
 
@@ -78,9 +83,9 @@ export const Login = () => {
                         </div>
 
                         <div className="row m-3 d-flex justify-content-center" >
-                            <div className="col-8 col-xl-8 col-lg-8">
+                            <div className="col-8 col-xl-8 col-lg-8 input-wrapper">
                                 <input
-                                    type="password"
+                                    type={showPassword ? "text" : "password"}
                                     id="Password"
                                     name="Password"
                                     className="form-control form-control-user-login form-control-lg"
@@ -91,17 +96,22 @@ export const Login = () => {
                                     onChange={(event) => setPassword(event.target.value)
                                     }
                                 />
+                                <i
+                                    className={`fa-solid ${showPassword ? "input-icon fa-eye-slash" : "input-icon fa-eye"}`}                                       
+                                    onClick ={togglePasswordVisibility}
+                                    
+                                ></i>                        
                             </div>
                         </div>
-                        
-                        <div className="row m-3 d-flex justify-content-center" >
-                            <div className="col-8 col-xl-8 col-lg-8 d-flex justify-content-center">
-                                <button type="submit" className="btn btn-lg btn-dark text-white btn-user-login">
-                                    Iniciar sesión
-                                </button>
+
+                            <div className="row m-3 d-flex justify-content-center" >
+                                <div className="col-8 col-xl-8 col-lg-8 d-flex justify-content-center">
+                                    <button type="submit" className="btn btn-lg btn-dark text-white btn-user-login">
+                                        Iniciar sesión
+                                    </button>
+                                </div>
                             </div>
-                        </div>
-                        <p className="text-center mt-3">Aún no tienes cuenta? <Link to="/signup">Regístrate</Link></p>
+                            <p className="text-center mt-3">Aún no tienes cuenta? <Link to="/signup">Regístrate</Link></p>
 
                     </form>
                 </div>

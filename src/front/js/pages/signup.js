@@ -18,6 +18,8 @@ export const Signup = () => {
   const { store, actions } = useContext(Context);
   const navigate = useNavigate();
 
+  const [showPassword, setShowPassword] = useState(false);
+
   const handleSignupSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -51,6 +53,10 @@ export const Signup = () => {
     if (validDniPattern.test(value)) {
       setDni(value);
     }
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword((prevState) => !prevState);
   };
 
 
@@ -116,9 +122,9 @@ export const Signup = () => {
             </div>
 
             <div className="row m-3  d-flex justify-content-center">
-              <div className="col-8 col-xl-8 col-lg-8">
+              <div className="col-8 col-xl-8 col-lg-8 input-wrapper">
                 <input
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   id="Password"
                   name="Password"
                   className="form-control form-control-user-signup form-control-lg"
@@ -128,6 +134,10 @@ export const Signup = () => {
                   value={password}
                   onChange={(event) => setPassword(event.target.value)}
                 />
+                <i
+                  className={`fa-solid ${showPassword ? "input-icon fa-eye-slash" : "input-icon fa-eye"}`}
+                  onClick={togglePasswordVisibility}
+                ></i>
               </div>
             </div>
             <div className="row m-3 d-flex justify-content-center">
