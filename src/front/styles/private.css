@@ -1,5 +1,9 @@
 .private-container {
-	width: 90%;
+	overflow: hidden;
+}
+
+.private-row {
+	margin-left: 6em;
 }
 .card {
 	width: 250px;
