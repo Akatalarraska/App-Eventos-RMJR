@@ -35,8 +35,8 @@ export const Private = () => {
         <>
 
             {token && token != null && token != undefined ? (
-                <div className="container-fluid mt-5 justify-content-center">
-                    <div className="row d-flex justify-content-center ms-4 my-5">
+                <div className="container-fluid private-container mt-5 ms-5">
+                    <div className="row d-flex justify-content-center ms-5 my-5">
                         <div className="col-sm-12 col-md-6 col-lg-3 card-container my-1">
                             <div className="card">
                                 <div className="card__inner">
@@ -183,7 +183,7 @@ export const Private = () => {
                         </div>
 
                     </div>
-                    <div className="row d-flex justify-content-center ms-4 my-5">
+                    <div className="row d-flex justify-content-center ms-5 my-5">
                         <div className="col-sm-12 col-md-6 col-lg-3 card-container my-1">
                             <div className="card">
                                 <div className="card__inner">

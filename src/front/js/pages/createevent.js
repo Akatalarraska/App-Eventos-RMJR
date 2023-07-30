@@ -5,8 +5,7 @@ import { Context } from "../store/appContext";
 import { useNavigate } from "react-router-dom";
 import "../../styles/createevent.css";
 import Swal from "sweetalert2";
-// import DatePicker from 'react-datepicker';
-// import "react-datepicker/dist/react-datepicker.css";
+
 
 
 export const CreateEvent = () => {
@@ -24,17 +23,6 @@ export const CreateEvent = () => {
     const { store, actions } = useContext(Context);
 
     const navigate = useNavigate();
-
-
-
-    // const handleFechaInicioChange = (date) => {
-    //     setFechaInicio(date);
-    // };
-
-
-    // const handleFechaFinChange = (date) => {
-    //     setFechaFin(date);
-    // };
 
 
     const handleCreateEventSubmit = async (e) => {

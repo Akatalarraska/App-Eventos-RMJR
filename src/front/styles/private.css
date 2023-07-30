@@ -1,3 +1,6 @@
+.private-container {
+	width: 90%;
+}
 .card {
 	width: 250px;
 	height: 350px;
@@ -25,7 +28,6 @@
 	grid-template-rows: 180px 1fr;
 	backface-visibility: hidden;
 	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
-	
 	
 }
 .card__side--back {
