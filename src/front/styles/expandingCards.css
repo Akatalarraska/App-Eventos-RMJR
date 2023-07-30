@@ -14,12 +14,12 @@
     margin-left: -15px;
   }
   
-  .col-lg-3 {
+  /* .col-lg-3 {
     flex: 0 0 25%;
     max-width: 25%;
     padding-right: 15px;
     padding-left: 15px;
-  }
+  } */
   
   .flip-card {
     background-color: transparent;
@@ -104,7 +104,7 @@
     margin-right: auto;
   }
   
-  @media (max-width: 991px) {
+  /* @media (max-width: 991px) {
     .col-lg-3 {
       flex: 0 0 33.33%;
       max-width: 33.33%;
@@ -123,7 +123,7 @@
       flex: 0 0 100%;
       max-width: 100%;
     }
-  }
+  } */
   
 
 /* CSS */

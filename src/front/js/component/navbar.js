@@ -28,7 +28,7 @@ export const Navbar = () => {
              
                 <button
                   type="button"
-                  className="btn btn-primary me-5 align-item-end"
+                  className="btn close-session-button me-5 align-item-end"
                   onClick={handleLogout}
                 >
                   Cerrar sesión

@@ -237,9 +237,6 @@ export const CompanySignup = () => {
                     </div>
                 </div>
             )}
-
         </div>
-
     );
-
 }
