@@ -129,7 +129,7 @@ export const Event = () => {
   const isFree = evento.free === true;
     return (
         <div>
-          <h1 className="mt-3 mb-3">EVENTS</h1>
+          
                     <div className="container my-5" >
                         <img className="eventimg" src={evento.imagen} />
                         <h1 className="fw-normal text-body-emphasis mt-2">{evento.nombre}</h1>
