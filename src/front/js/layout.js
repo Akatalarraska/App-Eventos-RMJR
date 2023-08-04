@@ -22,6 +22,9 @@ import { Footer } from "./component/footer";
 import { CreateEvent } from "./pages/createevent";
 import { ModifyUserData } from "./pages/modifyUserData";
 import { UserEvents } from "./pages/userEvents";
+import { ForgotPassword } from "./pages/forgotPassword";
+import { PasswordResetConfirmation } from "./pages/passwordResetConfirmation";
+import { PasswordReset } from "./pages/passwordReset";
 
 
 //create your first component
@@ -52,6 +55,9 @@ const Layout = () => {
                             <Route element={<CreateEvent />} path="/crearevento" />
                             <Route element={<ModifyUserData />} path="/modify_user_data/:userId" />
                             <Route element={<UserEvents />} path="/miseventos" />
+                            <Route element={<ForgotPassword />} path="/forgotpassword" />
+                            <Route element={<PasswordResetConfirmation />} path="/password-reset-confirmation" />
+                            <Route element={<PasswordReset />} path="/password-reset" />
                             <Route element={<h1>Not found!</h1>} />
                         </Routes>
                     <Footer />
