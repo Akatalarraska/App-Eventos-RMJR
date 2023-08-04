@@ -1,16 +1,14 @@
-"""
-This module takes care of starting the API Server, Loading the DB and Adding the endpoints
-"""
 from flask import Flask, request, jsonify, url_for, Blueprint
-
 from api.models import db, User, Evento, Empresa, User_Empresa , Valoracion, Factura
-
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
+import yagmail
+import os
+
 from datetime import date
 import datetime
 import json
-
+import secrets
 
 import cloudinary
 
@@ -19,8 +17,19 @@ cloudinary.config(
   api_key = "183366914713799", 
   api_secret = "HqukMekNra-wxSR4B4wDIsqEKKo" 
 )
+
 import cloudinary.uploader
 import cloudinary.api
+
+
+
+
+
+password_reset_tokens = {}
+
+# Función para generar un token seguro para el restablecimiento de contraseña
+def generate_reset_token():
+    return secrets.token_urlsafe(32)
 
 
 api = Blueprint('api', __name__)
@@ -333,9 +342,7 @@ def handle_modify_user(user_id):
         user.name = body["name"]
     if "password" in body:
         user.password = body["password"]
-
-    print(body)
-  
+ 
     db.session.add(user)
     db.session.commit()
 
@@ -362,6 +369,72 @@ def handle_private():
                         "token": token,
                         }), 200
     
+
+#RUTA PARA ACCEDER A OLVIDO DE CONTRASEÑA Y ENVIAR MAIL PARA RESTABLECERLA
+@api.route('/forgotpassword', methods=['POST'])
+def handle_forgot_password():
+    body = request.get_json()
+
+    if body is None:
+        raise APIException("You need to specify the request body as a json object", status_code=400)
+
+    if "email" not in body:
+        raise APIException('You need to specify the email', status_code=400)
+
+    # Check if the user with the specified email exists
+    user = User.query.filter_by(email=body["email"]).first()
+    if user is None:
+        raise APIException('User not found', status_code=404)
+
+    email = "events.ibento@gmail.com"
+    contraseña = "ctvzxlgrdoofhuud"
+
+    reset_link = f"{os.getenv('FRONTEND_URL')}/password-reset"
+
+    yag = yagmail.SMTP(email, contraseña)
+    destinatario = [user.email]
+    asunto = "Recuperación de contraseña"
+    contenido = f"""\
+    <html>
+    <head></head>
+    <body>
+        <p>Hola,</p>
+        <p>Has solicitado restablecer tu contraseña. Por favor, sigue este enlace para cambiar tu contraseña:</p>
+        <p><a href="{reset_link}">{reset_link}</a></p>
+        <p>Si no solicitaste este cambio, puedes ignorar este correo.</p>
+        <p>Saludos,<br>Tu Equipo de Ibento</p>
+    </body>
+    </html>"""
+
+    yag.send(to=destinatario, subject=asunto, contents=contenido)
+
+    yagmail.SMTP.close(yag)   
+
+    return jsonify({"message": "Email sent with password reset instructions"}), 200
+
+
+# RUTA PARA RESETEAR LA CONTRASEÑA
+@api.route('/password-reset', methods=['POST'])
+def handle_password_reset():
+    body = request.get_json()
+
+    if body is None:
+        raise APIException("You need to specify the request body as a json object", status_code=400)
+
+    if "email" not in body or "password" not in body:
+        raise APIException('You need to specify both email and password', status_code=400)
+
+    user = User.query.filter_by(email=body["email"]).first()
+    if user is None:
+        raise APIException('User not found', status_code=404)
+
+    user.password = body["password"]  # Use hash function here if possible
+
+    db.session.add(user)
+    db.session.commit()
+
+    return jsonify({"message": "Password reset successful"}), 200
+
 
 
 if __name__ == '__main__':

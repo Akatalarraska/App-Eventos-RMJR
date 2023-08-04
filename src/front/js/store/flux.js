@@ -6,12 +6,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 				email: "",
 				token: null,
 				id: "",
-			
+
 			},
 
 			company: {
 			},
-			
+
 			evento: {
 				nombre: "",
 				descripcion: "",
@@ -32,7 +32,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				poblacion: "",
 				direccion: "",
 				codigo_postal: "",
-				
+
 
 			},
 
@@ -44,38 +44,38 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			userSignup: async (name, dni, email, password) => {
 				try {
-				  const newUser = {
-					name: name,
-					dni: dni,
-					email: email,
-					password: password,
-				  };
-			  
-				  const response = await fetch(process.env.BACKEND_URL + "/api/signup", {
-					method: "POST",
-					headers: {
-					  "Content-Type": "application/json",
-					},
-					body: JSON.stringify(newUser),
-				  });
-			  
-				  if (!response.ok) {
-					throw new Error("Error creating user");
-				  }
-			  
-				  const data = await response.json();
-				  return true; 
+					const newUser = {
+						name: name,
+						dni: dni,
+						email: email,
+						password: password,
+					};
+
+					const response = await fetch(process.env.BACKEND_URL + "/api/signup", {
+						method: "POST",
+						headers: {
+							"Content-Type": "application/json",
+						},
+						body: JSON.stringify(newUser),
+					});
+
+					if (!response.ok) {
+						throw new Error("Error creating user");
+					}
+
+					const data = await response.json();
+					return true;
 				} catch (error) {
-				  console.log("Error creating user", error);
-				  return false; 
+					console.log("Error creating user", error);
+					return false;
 				}
-			  },
-			  
+			},
+
 
 
 			userLogin: async (email, password) => {
 				try {
-					const response = await fetch(process.env.BACKEND_URL + "/api/login", {
+					const response = await fetch(process.env.BACKEND_URL + "/api/login/", {
 						method: "POST",
 						headers: {
 							"Content-Type": "application/json",
@@ -105,7 +105,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				} catch (error) {
 					console.log("Error logging in user", error);
 					throw error;
-				  }
+				}
 			},
 
 			userLogOut: () => {
@@ -153,44 +153,44 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			updateUserData: async (userId, name, dni, email, password) => {
 				try {
-				  const modifiedUser = {
-					id: userId,
-					name: name,
-					dni: dni,
-					email: email,
-					password: password,
-				  };
-		
-				  const response = await fetch(process.env.BACKEND_URL + `/api/modify_user_data/${userId}`, {
-					method: "PATCH", 
-					headers: {
-					  "Content-Type": "application/json",
-					  Authorization: "Bearer " + sessionStorage.getItem("token"),
-					},
-					body: JSON.stringify(modifiedUser),
-				  });
-				  console.log("response", response);
-				  if (!response.ok) {
-					throw new Error("Error updating user data");
-				  }
-				  const data = await response.json();
-				  setStore({
-					user: data,
-				})
-				  return true; 
+					const modifiedUser = {
+						id: userId,
+						name: name,
+						dni: dni,
+						email: email,
+						password: password,
+					};
+
+					const response = await fetch(process.env.BACKEND_URL + `/api/modify_user_data/${userId}`, {
+						method: "PATCH",
+						headers: {
+							"Content-Type": "application/json",
+							Authorization: "Bearer " + sessionStorage.getItem("token"),
+						},
+						body: JSON.stringify(modifiedUser),
+					});
+					console.log("response", response);
+					if (!response.ok) {
+						throw new Error("Error updating user data");
+					}
+					const data = await response.json();
+					setStore({
+						user: data,
+					})
+					return true;
 				} catch (error) {
-				  console.log("Error updating user data", error);
-				  throw error;
+					console.log("Error updating user data", error);
+					throw error;
 				}
-			  },
-			
+			},
+
 
 
 			createEvent: async (nombre, descripcion, imagen, ubicacion, fechaInicio, fechaFin, personas, free, importe) => {
 				try {
 					const store = getStore();
 					const userId = store.user.id;
-			
+
 					const newEvent = new FormData();
 					newEvent.append("nombre", nombre);
 					newEvent.append("descripcion", descripcion);
@@ -202,22 +202,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 					newEvent.append("free", free);
 					newEvent.append("importe", importe);
 					newEvent.append("user_id", userId);
-			
+
 					const response = await fetch(process.env.BACKEND_URL + "/api/crearevento", {
 						method: "POST",
 						body: newEvent,
 					});
-			
+
 					if (response.ok) {
 						setStore({ event: newEvent });
 						console.log(store.event);
-						return true; 
+						return true;
 					} else {
-						throw new Error("Error al crear el evento"); 
+						throw new Error("Error al crear el evento");
 					}
 				} catch (error) {
 					console.log("Error creating event", error);
-					throw new Error("Error al crear el evento"); 
+					throw new Error("Error al crear el evento");
 				}
 			},
 
@@ -226,17 +226,60 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const storedEmail = sessionStorage.getItem("email");
 				const storedId = sessionStorage.getItem("id");
 				if (storedToken) {
-				  setStore({
-					user: {
-						id: storedId,
-					  	token: storedToken,
-					  	email: storedEmail,
-					}
-				  });
+					setStore({
+						user: {
+							id: storedId,
+							token: storedToken,
+							email: storedEmail,
+						}
+					});
 				}
-			  },
-			  
-			  
+			},
+
+			requestPasswordReset: async (email) => {
+				try {
+					const response = await fetch(process.env.BACKEND_URL + "/api/forgotpassword", {
+						method: "POST",
+						headers: {
+							"Content-Type": "application/json",
+						},
+						body: JSON.stringify({ email: email }),
+					});
+
+					if (!response.ok) {
+						throw new Error("Error requesting password reset");
+					}
+					return true;
+				} catch (error) {
+					console.log("Error requesting password reset", error);
+					throw error;
+				}
+			},
+
+			resetPassword: async (email, newPassword) => {
+				try {
+					const response = await fetch(process.env.BACKEND_URL + "/api/password-reset", {
+						method: "POST",
+						headers: {
+							"Content-Type": "application/json",
+						},
+						body: JSON.stringify({
+							email: email,
+							password: newPassword
+						}),
+					});
+			
+					if (response.ok) {
+						return true; // Return true for success
+					} else {
+						throw new Error("Error resetting password");
+					}
+				} catch (error) {
+					console.log("Error resetting password", error);
+					throw error;
+				}
+			},
+			
 		}
 	};
 };
@@ -253,7 +296,7 @@ export default getState;
 
 
 			// 	const store = getStore();
-			// 	const userId = store.user.id; 
+			// 	const userId = store.user.id;
 
 			// 	const newEvent = {
 			// 		nombre: nombre,
@@ -282,4 +325,3 @@ export default getState;
 			// 		})
 			// 		.catch(error => console.log("Error creating event", error));
 			// },	
-			

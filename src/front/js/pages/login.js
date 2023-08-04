@@ -1,14 +1,8 @@
-import React from "react";
-import { useState } from "react";
+import React, {useState, useContext} from "react";
 import { Context } from "../store/appContext";
-import { useContext } from "react";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-
-
 import signupImage1 from "../../img/signup-login1.jpg";
-
 import "../../styles/login.css";
 
 export const Login = () => {
