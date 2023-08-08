@@ -3,3 +3,7 @@
     background-color: #9DA5C9;
     border-radius: 10px;
 }
+
+.disabled-input {
+    opacity: 0.5;
+}

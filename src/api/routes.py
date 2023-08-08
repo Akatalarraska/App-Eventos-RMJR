@@ -159,6 +159,8 @@ def handle_login():
     return jsonify({"message": "User logged in successfully",
                     "id": user.id,
                     "email": user.email,
+                    "name": user.name,
+                    "dni": user.dni,
                     "token": token
                     })
 

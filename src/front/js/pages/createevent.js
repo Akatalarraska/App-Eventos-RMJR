@@ -235,3 +235,5 @@ export const CreateEvent = () => {
         </div>
     )
 }
+
+

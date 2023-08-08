@@ -3,9 +3,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 
 			user: {
+				name: "",
 				email: "",
+				dni: "",
 				token: null,
 				id: "",
+				rol: "",
+				company: "",
+				image: null,
+				phone: "",
+				address: "",
 
 			},
 
@@ -36,10 +43,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			},
 
-			cities: ["Albacete", "Alicante", "Almería", "Ávila", "Badajoz", "Barcelona", "Bilbao", "Burgos", "Castellón", "Ceuta", "Ciudad Real", "Cuenca", "Cáceres", "Cádiz", "Córdoba", "Gerona", "Granada", "Guadalajara", "Huelva", "Huesca", "Jaén", "La Coruña", "Las Palmas de Gran Canaria", "León", "Logroño", "Lugo", "Lérida", "Madrid", "Melilla", "Murcia", "Málaga", "Orense", "Oviedo", "Palencia", "Palma de Mallorca", "Pamplona", "Pontevedra", "Salamanca", "San Sebastián", "Santa Cruz de Tenerife", "Santander", "Segovia", "Sevilla", "Soria", "Tarragona", "Teruel", "Toledo", "Valencia", "Valladolid", "Vitoria", "Zamora", "Zaragoza"],
+			cities: ["A Coruña", "Albacete", "Alicante", "Almería", "Ávila", "Badajoz", "Barcelona", "Bilbao", "Burgos", "Castellón", "Ceuta", "Ciudad Real", "Cuenca", "Cáceres", "Cádiz", "Córdoba", "Girona", "Granada", "Guadalajara", "Huelva", "Huesca", "Jaén", "Las Palmas de Gran Canaria", "León", "Lleida", "Logroño", "Lugo", "Madrid", "Melilla", "Murcia", "Málaga", "Ourense", "Oviedo", "Palencia", "Palma de Mallorca", "Pamplona", "Pontevedra", "Salamanca", "San Sebastián", "Santa Cruz de Tenerife", "Santander", "Segovia", "Sevilla", "Soria", "Tarragona", "Teruel", "Toledo", "Valencia", "Valladolid", "Vitoria", "Zamora", "Zaragoza"],
+			
 		},
 		actions: {
-
 
 
 			userSignup: async (name, dni, email, password) => {
@@ -94,11 +101,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 					sessionStorage.setItem("email", data.email);
 					sessionStorage.setItem("token", data.token);
 					sessionStorage.setItem("id", data.id);
+					sessionStorage.setItem("name", data.name);
+					sessionStorage.setItem("dni", data.dni);
 					setStore({
 						user: {
 							email: data.email,
 							token: data.token,
 							id: data.id,
+							name: data.name,
+							dni: data.dni,
 						}
 					})
 					return data;
@@ -225,12 +236,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const storedToken = sessionStorage.getItem("token");
 				const storedEmail = sessionStorage.getItem("email");
 				const storedId = sessionStorage.getItem("id");
+				const storedName = sessionStorage.getItem("name");
+				const storedDni = sessionStorage.getItem("dni");
+
 				if (storedToken) {
 					setStore({
 						user: {
 							id: storedId,
 							token: storedToken,
 							email: storedEmail,
+							name: storedName,
+							dni: storedDni,
 						}
 					});
 				}
@@ -268,9 +284,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 							password: newPassword
 						}),
 					});
-			
+
 					if (response.ok) {
-						return true; // Return true for success
+						return true;
 					} else {
 						throw new Error("Error resetting password");
 					}
@@ -279,7 +295,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 					throw error;
 				}
 			},
-			
+
+
+
 		}
 	};
 };
@@ -290,38 +308,3 @@ export default getState;
 
 
 
-//// FUNCIÓN PARA CREAR EVENTO, SIN ASYNC-AWAIT, POR SI ACASO /////
-
-			// createEvent: (nombre, descripcion, imagen, ubicacion, fechaInicio, fechaFin, personas, free, importe) => {
-
-
-			// 	const store = getStore();
-			// 	const userId = store.user.id;
-
-			// 	const newEvent = {
-			// 		nombre: nombre,
-			// 		descripcion: descripcion,
-			// 		imagen: imagen,
-			// 		ubicacion: ubicacion,
-			// 		fechaInicio: fechaInicio,
-			// 		fechaFin: fechaFin,
-			// 		personas: personas,
-			// 		free: free,
-			// 		importe: importe,
-			// 		user_id: userId,
-			// 	}
-
-			// 	fetch(process.env.BACKEND_URL + "/api/crearevento", {
-			// 		method: "POST",
-			// 		headers: {
-			// 			"Content-Type": "application/json"
-			// 		},
-			// 		body: JSON.stringify(newEvent)
-			// 	})
-			// 		.then(resp => resp.json())
-			// 		.then(data => {
-			// 			setStore({ event: newEvent });
-			// 			console.log("data", data);
-			// 		})
-			// 		.catch(error => console.log("Error creating event", error));
-			// },	
