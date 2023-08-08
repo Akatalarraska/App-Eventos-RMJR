@@ -27,7 +27,7 @@ export const PasswordReset = () => {
             return;
         }
         try {
-            const response = await actions.resetPassword(email, newPassword); // Pass email along with the new password
+            const response = await actions.resetPassword(email, newPassword); 
 
             if (response) {
                 Swal.fire({
@@ -111,15 +111,3 @@ export const PasswordReset = () => {
 };
 
 
-
-// if (success) {
-//     // Show success message with SweetAlert2
-//     Swal.fire({
-//         title: "Success",
-//         text: "Password reset successful!",
-//         icon: "success",
-//         confirmButtonText: "OK",
-//     }).then(() => {
-//         navigate("/login");
-//     });
-// }

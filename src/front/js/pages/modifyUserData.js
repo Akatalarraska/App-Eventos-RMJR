@@ -6,18 +6,19 @@ import Swal from "sweetalert2";
 
 export const ModifyUserData = () => {
   const { store, actions } = useContext(Context);
-  const userId = useParams();
+
   const [name, setName] = useState(store.user.name);
   const [dni, setDni] = useState(store.user.dni);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState(store.user.password);
+  const [email, setEmail] = useState(store.user.email);
+  const [password, setPassword] = useState("");
+
 
   const navigate = useNavigate();
 
 
   const handleModifySubmit = async (event) => {
     event.preventDefault();
-  
+
     const dniPattern = /^\d{8}[A-Za-z]?$/;
     if (!dniPattern.test(dni)) {
       Swal.fire({
@@ -28,7 +29,7 @@ export const ModifyUserData = () => {
       });
       return;
     }
-  
+
     try {
       const success = await actions.updateUserData(store.user.id, name, dni, email, password);
       if (success) {
@@ -51,48 +52,40 @@ export const ModifyUserData = () => {
       });
     }
   };
-  
 
+  const nameAndDniWarning = () => {
+    Swal.fire({
+      title: "",
+      text: "Por favor, para modificar tu nombre o tu DNI ponte en contacto con nosotros",
+      icon: "warning",
+      confirmButtonText: "Aceptar",
+    });
+  };
 
   return (
-    <div className="container-modify-user-data mt-5">
+    <div className="container-modify-user-data m-5">
       <div className="row d-flex justify-content-center align-items-center">
         <div className="col-xl-6 col-lg-6">
           <form className="modify-user-data-form m-5" onSubmit={handleModifySubmit}>
-            <h3 className="fw-bold mt-5 mb-2 text-center text-black">Introduce tus nuevos datos</h3>
+            <h3 className="fw-bold mt-5 mb-2 text-center text-black">Datos de usuario</h3>
             <div className="row m-3 d-flex justify-content-center">
               <div className="col-6 col-xl-6 col-lg-6">
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  className="form-control form-control-user-signup form-control-lg"
-                  placeholder="Nombre"
-                  required
-                  autoComplete="name"
-                  value={name}
-                  onChange={(event) => setName(event.target.value)}
-                />
+                <div className={`form-control form-control-user-signup form-control-lg disabled-input ${name && "disabled-input"}`} onClick={nameAndDniWarning}>
+                  {name || store.user.name}
+                </div>
               </div>
             </div>
             <div className="row m-3 d-flex justify-content-center">
               <div className="col-6 col-xl-6 col-lg-6">
-                <input
-                  type="text"
-                  id="dni"
-                  name="dni"
-                  className="form-control form-control-user-signup form-control-lg"
-                  placeholder="DNI"
-                  required
-                  autoComplete="dni"
-                  value={dni}
-                  onChange={(event) => setDni(event.target.value)}
-                />
+                <div className={`form-control form-control-user-signup form-control-lg disabled-input ${dni && "disabled-input"}`} onClick={nameAndDniWarning}>
+                  {dni || store.user.dni}
+                </div>
               </div>
             </div>
 
             <div className="row m-3  d-flex justify-content-center">
               <div className="col-6 col-xl-6 col-lg-6">
+
                 <input
                   type="text"
                   id="email"
@@ -100,14 +93,13 @@ export const ModifyUserData = () => {
                   className="form-control form-control-user-signup form-control-lg"
                   placeholder="Email"
                   autoComplete="email"
-                  required
-                  value={email}
+                  value={store.user.email || email}
                   onChange={(event) => setEmail(event.target.value)}
                 />
               </div>
             </div>
 
-            <div className="row m-3  d-flex justify-content-center">
+            <div className="row m-3 d-flex justify-content-center">
               <div className="col-6 col-xl-6 col-lg-6">
                 <input
                   type="password"
@@ -116,14 +108,11 @@ export const ModifyUserData = () => {
                   className="form-control form-control-user-signup form-control-lg"
                   placeholder="Password"
                   autoComplete="current-password"
-                  required
                   value={password}
                   onChange={(event) => setPassword(event.target.value)}
                 />
-            
               </div>
             </div>
-
             <div className="row m-3 d-flex justify-content-center">
               <div className="col-8 col-xl-8 col-lg-8 d-flex justify-content-center">
                 <button type="submit" className="btn btn-lg btn-dark text-white btn-user-signup">
@@ -131,7 +120,7 @@ export const ModifyUserData = () => {
                 </button>
               </div>
             </div>
-            <p className="text-center mt-3">
+            <p className="text-center mt-3 text-black">
               Volver al <Link to="/private">área privada</Link>
             </p>
           </form>
@@ -143,11 +132,3 @@ export const ModifyUserData = () => {
 
 
 
-
-  // Obtener los datos del usuario almacenados en el store y establecerlos en los estados locales
-//   useEffect(() => {
-//     setName(store.user.name);
-//     setDni(store.user.dni);
-//     setEmail(store.user.email);
-//     setPassword(store.user.password);
-//   }, [store.user]);

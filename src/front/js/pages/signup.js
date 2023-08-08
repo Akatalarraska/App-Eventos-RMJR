@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 import signupImage4 from "../../img/signup-login4.jpg";
 
 import "../../styles/signup.css";
+import { event } from "jquery";
 
 export const Signup = () => {
 
@@ -22,6 +23,18 @@ export const Signup = () => {
 
   const handleSignupSubmit = async (e) => {
     e.preventDefault();
+
+    const dniPattern = /^\d{8}[A-Za-z]?$/;
+    if (!dniPattern.test(dni)) {
+      Swal.fire({
+        title: "Error",
+        text: "El DNI no es válido. Debe tener 8 dígitos y una letra opcional al final.",
+        icon: "error",
+        confirmButtonText: "Aceptar",
+      });
+      return;
+    }
+
     try {
       const success = await actions.userSignup(name, dni, email, password);
       if (success) {
@@ -46,14 +59,6 @@ export const Signup = () => {
   };
 
 
-  const validDniPattern = /^\d{0,8}[A-Za-z]{0,1}$/;
-
-  const handleDniChange = (event) => {
-    const value = event.target.value.toUpperCase();
-    if (validDniPattern.test(value)) {
-      setDni(value);
-    }
-  };
 
   const togglePasswordVisibility = () => {
     setShowPassword((prevState) => !prevState);
@@ -100,7 +105,8 @@ export const Signup = () => {
                   required
                   autoComplete="dni"
                   value={dni}
-                  onChange={handleDniChange}
+                  maxLength={9}
+                  onChange={(event) => setDni(event.target.value.toUpperCase())}
                 />
               </div>
             </div>
