@@ -8,12 +8,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				dni: "",
 				token: null,
 				id: "",
-				rol: "",
-				company: "",
-				image: null,
-				phone: "",
-				address: "",
-
 			},
 
 			company: {
@@ -162,14 +156,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 
 
-			updateUserData: async (userId, name, dni, email, password) => {
+			updateUserData: async (userId, name, dni, email, password, newEmail, newPassword) => {
+
 				try {
 					const modifiedUser = {
-						id: userId,
-						name: name,
-						dni: dni,
-						email: email,
-						password: password,
+					  id: userId,
+					  name: name,
+					  dni: dni,
+					  oldEmail: email,
+					  newEmail: newEmail,
+					  oldPassword: password,
+					  newPassword: newPassword,
 					};
 
 					const response = await fetch(process.env.BACKEND_URL + `/api/modify_user_data/${userId}`, {
@@ -180,13 +177,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 						},
 						body: JSON.stringify(modifiedUser),
 					});
+					console.log("modifiedUser", modifiedUser)
 					console.log("response", response);
 					if (!response.ok) {
 						throw new Error("Error updating user data");
 					}
 					const data = await response.json();
+					console.log("data", data);
 					setStore({
-						user: data,
+						user: {
+							email: data.newEmail
+							}
 					})
 					return true;
 				} catch (error) {
