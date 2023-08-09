@@ -7,3 +7,8 @@
 .disabled-input {
     opacity: 0.5;
 }
+
+.input-wrapper-mod {
+    display: flex;
+    position: sticky;
+ }

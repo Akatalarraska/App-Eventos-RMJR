@@ -29,7 +29,7 @@ export const Navbar = () => {
               <p className="m-5 text-black">Bienvenid@, {store.user.name.split(' ')[0]} <i className="fa-solid fa-user fa-beat" ></i></p>
                 <button
                   type="button"
-                  className="btn close-session-button me-5 align-item-end"
+                  className="btn btn-dark text-white close-session-button me-5 align-item-end"
                   onClick={handleLogout}
                 >
                   Cerrar sesión

@@ -23,15 +23,6 @@ import cloudinary.api
 
 
 
-
-
-password_reset_tokens = {}
-
-# Función para generar un token seguro para el restablecimiento de contraseña
-def generate_reset_token():
-    return secrets.token_urlsafe(32)
-
-
 api = Blueprint('api', __name__)
 
 @api.route('/users', methods=['GET'])
@@ -322,8 +313,6 @@ def handle_crearevento():
 @api.route('/modify_user_data/<int:user_id>', methods=['PATCH'])
 @jwt_required()
 def handle_modify_user(user_id):
-
-    user_id = get_jwt_identity()
     user = User.query.get(user_id)
 
     if user is None:
@@ -335,20 +324,21 @@ def handle_modify_user(user_id):
         raise APIException(
             "You need to specify the request body as a json object", status_code=400)
 
-    # Actualizar los campos del usuario con los valores proporcionados en el cuerpo de la solicitud
-    if "email" in body:
-        user.email = body["email"]
-    if "dni" in body:
-        user.dni = body["dni"]
-    if "name" in body:
-        user.name = body["name"]
-    if "password" in body:
-        user.password = body["password"]
- 
+    
+    old_password = body.get("oldPassword")
+    new_password = body.get("newPassword")
+    new_email = body.get("newEmail")
+    
+    if old_password == user.password:    
+        user.password = new_password
+        user.email = new_email
+
+    print(body)
     db.session.add(user)
     db.session.commit()
 
     return jsonify("User data updated successfully"), 200
+
 
 
 
@@ -383,7 +373,6 @@ def handle_forgot_password():
     if "email" not in body:
         raise APIException('You need to specify the email', status_code=400)
 
-    # Check if the user with the specified email exists
     user = User.query.filter_by(email=body["email"]).first()
     if user is None:
         raise APIException('User not found', status_code=404)
