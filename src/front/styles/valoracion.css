@@ -33,6 +33,7 @@
 
 .details-container {
   display: flex;
+  width: 100%;
   flex-direction: column;
   justify-content: center;
   padding: 2px;
@@ -59,9 +60,11 @@
 }
 
 .button-64 {
+  display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 2px;
+  margin-bottom: 10px;
 }
 
 @media screen and (max-width: 768px) {
@@ -78,9 +81,8 @@
   .star-row {
     height: 50px; /* Ajustar el valor de la altura según tus necesidades */
   }
-  .button-64 {
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 10px;
+  .image-container img {
+    width: 100%;
+    height: auto; /* Permite que la altura se ajuste automáticamente */
   }
 }

@@ -48,6 +48,7 @@ export const Valoracion = () => {
                   <Link to={`/event/${valoracion.evento?.id}`}>+ info</Link>{" "}
                 </span>
               </button>
+              <br/>
             </div>
           </div>
         ))}

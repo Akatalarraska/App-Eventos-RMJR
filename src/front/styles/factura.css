@@ -12,6 +12,8 @@
     border-radius: 5px;
     margin: 10px;
     width: 25%;
+    height: 550px;
+    overflow: hidden;
     /* Nuevos estilos para pantallas pequeñas */
     @media (max-width: 768px) {
       width: 100%;
@@ -22,6 +24,8 @@
     margin: auto;
     padding: 1.5em;
     background: #f4f5f6;
+    height:20%;
+    max-height: 20%;
   }
   
   .ticket__co span,
@@ -37,13 +41,18 @@
   }
   
   .ticket__co-name {
-    font-size: 2.5em;
+    font-size: 1.5em ;
     font-variation-settings: "wght" 500, "wdth" 75;
     letter-spacing: -0.01em;
+    overflow: hidden;
+    white-space: wrap; /* Evita el salto de línea */
+     
   }
+
   
   .ticket__body {
     padding: 2rem 1.25em 1.25em;
+    height: 100%;
     /* Nuevos estilos para pantallas pequeñas */
     @media (max-width: 768px) {
       padding: 1rem;
