@@ -329,15 +329,15 @@ def handle_modify_user(user_id):
     new_password = body.get("newPassword")
     new_email = body.get("newEmail")
     
-    if old_password == user.password:    
+    if old_password == user.password:
         user.password = new_password
         user.email = new_email
+        db.session.add(user)
+        db.session.commit()
+        return jsonify({"success": True, "passwordVerified": True}), 200
+    else:
+        return jsonify({"success": False, "passwordVerified": False}), 200
 
-    print(body)
-    db.session.add(user)
-    db.session.commit()
-
-    return jsonify("User data updated successfully"), 200
 
 
 
