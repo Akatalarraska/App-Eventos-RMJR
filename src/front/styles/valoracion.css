@@ -40,16 +40,18 @@
 }
 
 .opinion-title {
-  font-size: 38px;
+  font-size: 34px;
   font-weight: bold;
   margin-bottom: 1px;
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 
 .information {
   font-size: 20px;
   padding: 2px;
   overflow-x: hidden;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .star-row {
