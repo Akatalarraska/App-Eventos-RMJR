@@ -86,3 +86,10 @@
 }
   
 
+@media (max-width: 576px){
+
+	.private-container {
+	margin-left: -50px;
+	}
+}
+

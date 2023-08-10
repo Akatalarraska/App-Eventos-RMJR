@@ -127,3 +127,38 @@ nav a:nth-child(5) {
 .close-session-button:hover {
   opacity: 1;
 }
+
+.close-session-button:active {
+  opacity: 0.9;
+}
+
+
+
+
+/* Agrega estilos para pantallas móviles */
+@media (max-width: 576px) {
+  .navbar{
+    align-items: center;
+    margin-top: 10px;
+    font-size: 0.75rem;
+  }
+
+  .navbar a {
+    /* margin: 10px 10px; */
+    font-size: 0.75rem;
+  }
+
+  .private-area-items {
+    align-items: center;
+    text-align: center;
+    margin: 10px 10px;
+  }
+
+  .close-session-button {
+    size: 2px;
+    margin-top: 10px;
+  }
+}
+
+
+

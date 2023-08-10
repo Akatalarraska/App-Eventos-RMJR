@@ -12,7 +12,7 @@ export const Home = () => {
 
 	return (
 		<div className="text-center" id="principal">
-			<h1 className="mt-2">IBENTO</h1>
+			<h1 className="mt-1">IBENTO</h1>
 			<p className="mt-3"> "Bring Your Event Vision to Life: Unlock Endless Possibilities"</p>
 			<div id="carouselExampleIndicators" className="carousel slide mt-5">
 				<div className="carousel-indicators">
