@@ -157,44 +157,49 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 
 			updateUserData: async (userId, name, dni, email, password, newEmail, newPassword) => {
-
 				try {
-					const modifiedUser = {
-					  id: userId,
-					  name: name,
-					  dni: dni,
-					  oldEmail: email,
-					  newEmail: newEmail,
-					  oldPassword: password,
-					  newPassword: newPassword,
-					};
-
-					const response = await fetch(process.env.BACKEND_URL + `/api/modify_user_data/${userId}`, {
-						method: "PATCH",
-						headers: {
-							"Content-Type": "application/json",
-							Authorization: "Bearer " + sessionStorage.getItem("token"),
-						},
-						body: JSON.stringify(modifiedUser),
-					});
-					console.log("modifiedUser", modifiedUser)
-					console.log("response", response);
-					if (!response.ok) {
-						throw new Error("Error updating user data");
-					}
-					const data = await response.json();
-					console.log("data", data);
+				  const modifiedUser = {
+					id: userId,
+					name: name,
+					dni: dni,
+					oldEmail: email,
+					newEmail: newEmail,
+					oldPassword: password,
+					newPassword: newPassword,
+				  };
+			  
+				  const response = await fetch(process.env.BACKEND_URL + `/api/modify_user_data/${userId}`, {
+					method: "PATCH",
+					headers: {
+					  "Content-Type": "application/json",
+					  Authorization: "Bearer " + sessionStorage.getItem("token"),
+					},
+					body: JSON.stringify(modifiedUser),
+				  });
+			  
+				  if (!response.ok) {
+					throw new Error("Error updating user data");
+				  }
+			  
+				  const data = await response.json();
+				  console.log("data", data);
+			  
+				  if (data.success && data.passwordVerified) {
 					setStore({
-						user: {
-							email: data.newEmail
-							}
-					})
+					  user: {
+						email: data.newEmail,
+					  },
+					});
 					return true;
+				  } else {
+					return false;
+				  }
 				} catch (error) {
-					console.log("Error updating user data", error);
-					throw error;
+				  console.log("Error updating user data", error);
+				  throw error;
 				}
-			},
+			  },
+			  
 
 
 

@@ -17,18 +17,18 @@ export const ModifyUserData = () => {
   const [newEmail, setNewEmail] = useState("");
 
 
-useEffect(() => {
-  if (store.user.name) {
-    setName(store.user.name);
-  }
-  if (store.user.dni) {
-    setDni(store.user.dni);
-  }
+  useEffect(() => {
+    if (store.user.name) {
+      setName(store.user.name);
+    }
+    if (store.user.dni) {
+      setDni(store.user.dni);
+    }
 
-  if (store.user.email) {
-    setEmail(store.user.email);
-  }
-}, [store.user]);
+    if (store.user.email) {
+      setEmail(store.user.email);
+    }
+  }, [store.user]);
 
 
 
@@ -37,16 +37,34 @@ useEffect(() => {
 
   const handleModifySubmit = async (event) => {
     event.preventDefault();
-
+  
     try {
-      await actions.updateUserData(store.user.id, name, dni, email, password, newEmail, newPassword);
-      Swal.fire({
-        title: "Datos actualizados con éxito",
-        text: "Por favor, vuelve a iniciar sesión con tus nuevos datos",
-        icon: "success",
-        confirmButtonText: "Aceptar",
-      });
-      navigate("/login");
+      const success = await actions.updateUserData(
+        store.user.id,
+        name,
+        dni,
+        email,
+        password,
+        newEmail,
+        newPassword
+      );
+  
+      if (success) {
+        Swal.fire({
+          title: "Datos actualizados con éxito",
+          text: "Por favor, vuelve a iniciar sesión con tus nuevos datos",
+          icon: "success",
+          confirmButtonText: "Aceptar",
+        });
+        navigate("/login");
+      } else {
+        Swal.fire({
+          title: "Error",
+          text: "La contraseña no es correcta, por favor inténtalo de nuevo",
+          icon: "error",
+          confirmButtonText: "Aceptar",
+        });
+      }
     } catch (error) {
       Swal.fire({
         title: "Error",
@@ -55,8 +73,8 @@ useEffect(() => {
         confirmButtonText: "Aceptar",
       });
     }
-    
   };
+  
 
   const nameAndDniWarning = () => {
     Swal.fire({
@@ -83,7 +101,7 @@ useEffect(() => {
 
   const starredText = (text) => {
     if (text)
-    return '*'.repeat(text.length);
+      return '*'.repeat(text.length);
   };
 
 
