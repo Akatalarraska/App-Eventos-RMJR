@@ -156,7 +156,6 @@
   cursor: pointer;
 }
 
-.button-64:active,
 .button-64:hover {
   outline: 0;
 }
