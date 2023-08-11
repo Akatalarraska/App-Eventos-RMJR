@@ -68,7 +68,7 @@ export const ExpandingCards = () => {
                   </div>
                 </div>
               </div>
-              <h3 className="fw-normal">{evento.nombre}</h3>
+              <h3 className="fw-normal mb-4">{evento.nombre}</h3>
             </div>
           ))}
         </div>
