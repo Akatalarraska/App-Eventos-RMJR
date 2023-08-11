@@ -38,16 +38,16 @@ export const Footer = () => (
         <div className="footer-col col-6 col-md-3">
           <h4>Follow Us</h4>
           <div className="social-links">
-            <a href="#">
+            <a href="https://es-es.facebook.com/">
               <i className="fa-brands fa-facebook"></i>
             </a>
-            <a href="#">
+            <a href="https://www.instagram.com/">
               <i className="fa-brands fa-instagram"></i>
             </a>
-            <a href="#">
+            <a href="https://twitter.com/?lang=es">
               <i className="fa-brands fa-twitter"></i>
             </a>
-            <a href="#">
+            <a href="https://es.linkedin.com/">
               <i className="fa-brands fa-linkedin-in"></i>
             </a>
           </div>
