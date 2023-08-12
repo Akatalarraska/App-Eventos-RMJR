@@ -23,7 +23,7 @@ stripe = "*"
 mail = "*"
 flask-mailman = "*"
 yagmail = {extras = ["all"], version = "*"}
-scrypt = "*"
+argon2-cffi = "*"
 
 [requires]
 python_version = "3.10"

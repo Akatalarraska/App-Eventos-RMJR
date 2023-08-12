@@ -8,7 +8,7 @@ class User(db.Model):
     dni = db.Column(db.String(20), unique=True, nullable=False)
     name = db.Column(db.String(50), unique=False, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
-    password = db.Column(db.String(80), unique=False, nullable=False)
+    password = db.Column(db.String, unique=False, nullable=False)
     user_empresa = db.relationship('User_Empresa', backref= 'user', lazy=True)
     evento = db.relationship('Evento', backref= 'user', lazy=True)
     factura = db.relationship('Factura', backref= 'user', lazy=True)

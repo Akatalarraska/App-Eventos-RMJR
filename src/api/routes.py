@@ -4,6 +4,12 @@ from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
 import yagmail
 import os
+from argon2 import PasswordHasher
+from argon2.exceptions import VerifyMismatchError
+from werkzeug.exceptions import Unauthorized
+
+import argon2
+
 
 from datetime import date
 import datetime
@@ -21,6 +27,17 @@ cloudinary.config(
 import cloudinary.uploader
 import cloudinary.api
 
+ph = PasswordHasher()
+
+def generate_hashed_password(password):
+    return ph.hash(password)
+
+def verify_password(hashed_password, plain_password):
+    try:
+        ph.verify(hashed_password, plain_password)
+        return True
+    except argon2.exceptions.VerifyMismatchError:
+        return False
 
 
 api = Blueprint('api', __name__)
@@ -105,7 +122,6 @@ def create_factura():
 
 @api.route('/signup', methods=['POST'])
 def handle_signup():
-
     body = request.get_json()
 
     if body is None:
@@ -118,7 +134,8 @@ def handle_signup():
     if "password" not in body:
         raise APIException('You need to specify the password', status_code=400)
 
-    user1 = User(email=body["email"], password=body["password"], dni=body["dni"], name=body["name"])
+    hashed_password = ph.hash(body["password"])  
+    user1 = User(email=body["email"], password=hashed_password, dni=body["dni"], name=body["name"])
     db.session.add(user1)
     db.session.commit()
 
@@ -141,19 +158,23 @@ def handle_login():
     if "password" not in body:
         raise APIException('You need to specify the password', status_code=400)
 
-    user = User.query.filter_by(email=body["email"], password=body["password"]).first()
+    user = User.query.filter_by(email=body["email"]).first()
     if user is None:
         raise APIException('User not found', status_code=404)
-        
-    token = create_access_token(identity=user.id)
-        
-    return jsonify({"message": "User logged in successfully",
-                    "id": user.id,
-                    "email": user.email,
-                    "name": user.name,
-                    "dni": user.dni,
-                    "token": token
-                    })
+
+    try:
+        ph.verify(user.password, body["password"]) 
+        token = create_access_token(identity=user.id)
+        return jsonify({
+            "message": "User logged in successfully",
+            "id": user.id,
+            "email": user.email,
+            "name": user.name,
+            "dni": user.dni,
+            "token": token
+        })
+    except VerifyMismatchError:
+        raise Unauthorized('Invalid password')
 
 
 
@@ -319,24 +340,32 @@ def handle_modify_user(user_id):
         raise APIException('User not found', status_code=404)
 
     body = request.get_json()
+    print(body)
 
     if body is None:
         raise APIException(
             "You need to specify the request body as a json object", status_code=400)
 
-    
     old_password = body.get("oldPassword")
     new_password = body.get("newPassword")
     new_email = body.get("newEmail")
-    
-    if old_password == user.password:
-        user.password = new_password
-        user.email = new_email
-        db.session.add(user)
+
+    if old_password is None:
+        raise APIException("oldPassword is required", status_code=400)
+
+    if ph.verify(user.password, old_password):
+        if new_password:
+            user.password = ph.hash(new_password)
+        if new_email:
+            user.email = new_email
         db.session.commit()
         return jsonify({"success": True, "passwordVerified": True}), 200
     else:
         return jsonify({"success": False, "passwordVerified": False}), 200
+
+
+
+
 
 
 
@@ -408,23 +437,26 @@ def handle_forgot_password():
 @api.route('/password-reset', methods=['POST'])
 def handle_password_reset():
     body = request.get_json()
+    print(body)
 
     if body is None:
         raise APIException("You need to specify the request body as a json object", status_code=400)
 
     if "email" not in body or "password" not in body:
-        raise APIException('You need to specify both email and password', status_code=400)
+        raise APIException('You need to specify both email and newPassword', status_code=400)
 
     user = User.query.filter_by(email=body["email"]).first()
     if user is None:
         raise APIException('User not found', status_code=404)
 
-    user.password = body["password"]  # Use hash function here if possible
+    hashed_new_password = ph.hash(body["password"])  
 
+    user.password = hashed_new_password
     db.session.add(user)
     db.session.commit()
 
     return jsonify({"message": "Password reset successful"}), 200
+
 
 
 
