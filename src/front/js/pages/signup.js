@@ -40,7 +40,7 @@ export const Signup = () => {
       if (success) {
         Swal.fire({
           title: 'Registro realizado con éxito',
-          text: 'Ya puede iniciar sesión',
+          text: 'Ya puedes iniciar sesión',
           icon: 'success',
           confirmButtonText: 'Aceptar'
         });
@@ -51,7 +51,7 @@ export const Signup = () => {
     } catch (error) {
       Swal.fire({
         title: 'Error',
-        text: 'Error al registrar el usuario, inténtelo de nuevo',
+        text: 'Error al registrar el usuario, revisa los datos introducidos e inténtalo de nuevo',
         icon: 'error',
         confirmButtonText: 'Aceptar'
       });

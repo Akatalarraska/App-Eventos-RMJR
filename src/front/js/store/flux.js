@@ -158,16 +158,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			updateUserData: async (userId, name, dni, email, password, newEmail, newPassword) => {
 				try {
-				  const modifiedUser = {
-					id: userId,
-					name: name,
-					dni: dni,
-					oldEmail: email,
-					newEmail: newEmail,
-					oldPassword: password,
-					newPassword: newPassword,
-				  };
-			  
+					const modifiedUser = {
+						id: userId,
+						name: name,
+						dni: dni,
+						oldEmail: email,
+						oldPassword: password,
+						newPassword: newPassword,
+					};
+					
+					if (newEmail !== '') {
+						modifiedUser.newEmail = newEmail;
+					}
+					else if (newPassword !== '') {
+						modifiedUser.newPassword = newPassword;
+					}
+					
 				  const response = await fetch(process.env.BACKEND_URL + `/api/modify_user_data/${userId}`, {
 					method: "PATCH",
 					headers: {
