@@ -21,7 +21,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				fechaInicio: "",
 				fechaFin: "",
 				personas: "",
-				free: false,
+				free: "",
 				importe: "",
 			},
 

@@ -303,9 +303,10 @@ def handle_crearevento():
                 imagen_upload = cloudinary.uploader.upload(imagen_file)
                 imagen_url = imagen_upload["secure_url"]
                 print(imagen_url)
+            print(body["free"])
 
-            evento = Evento(nombre=body["nombre"], fecha_inicio=body["fechaInicio"], fecha_fin=body["fechaFin"], descripcion=body["descripcion"], imagen=imagen_url, ubicacion=body["ubicacion"], personas=body["personas"], free=bool(body["free"]), importe=int(body["importe"]))
-
+            evento = Evento(nombre=body["nombre"], fecha_inicio=body["fechaInicio"], fecha_fin=body["fechaFin"], descripcion=body["descripcion"], imagen=imagen_url, ubicacion=body["ubicacion"], personas=body["personas"], free=body["free"] == "true", importe=int(body["importe"]))
+            print(evento.free)
             db.session.add(evento)
             db.session.commit()
         
