@@ -17,6 +17,19 @@ export const PasswordReset = () => {
 
     const handlePasswordReset = async (e) => {
         e.preventDefault();
+
+        // Expresión regular para validar la contraseña
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+        if (!passwordRegex.test(newPassword)) {
+            Swal.fire({
+                title: "Lo sentimos, la contraseña no es válida",
+                text: "La contraseña debe tener al menos 8 caracteres e incluir una letra mayúscula, una letra minúscula, un dígito y un carácter especial.",
+                icon: "error",
+                confirmButtonText: "Aceptar",
+            });
+            return;
+        }
         if (newPassword !== confirmNewPassword) {
             Swal.fire({
                 title: "Error",
@@ -26,8 +39,10 @@ export const PasswordReset = () => {
             });
             return;
         }
+
+
         try {
-            const response = await actions.resetPassword(email, newPassword); 
+            const response = await actions.resetPassword(email, newPassword);
 
             if (response) {
                 Swal.fire({
@@ -63,7 +78,7 @@ export const PasswordReset = () => {
     return (
         <div className="password-reset-container">
             <form className="password-reset-form">
-            <h3 className="fw-bold mt-5 mb-2 text-center text-black">
+                <h3 className="fw-bold mt-5 mb-2 text-center text-black">
                     Restablecer contraseña</h3>
                 <input
                     type="email"

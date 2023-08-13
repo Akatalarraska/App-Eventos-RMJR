@@ -89,9 +89,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					if (response.status !== 200) {
 						throw new Error("Error en la solicitud de inicio de sesión");
+						
 					}
 					const data = await response.json()
-					console.log("data", data)
 					sessionStorage.setItem("email", data.email);
 					sessionStorage.setItem("token", data.token);
 					sessionStorage.setItem("id", data.id);
@@ -107,8 +107,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 						}
 					})
 					return data;
-				} catch (error) {
-					console.log("Error logging in user", error);
+				} catch (error)
+				 {
+					console.log("Error logging in user en flux", error);
 					throw error;
 				}
 			},
@@ -173,7 +174,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					else if (newPassword !== '') {
 						modifiedUser.newPassword = newPassword;
 					}
-					
+
 				  const response = await fetch(process.env.BACKEND_URL + `/api/modify_user_data/${userId}`, {
 					method: "PATCH",
 					headers: {
