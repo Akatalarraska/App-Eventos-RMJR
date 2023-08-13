@@ -5,6 +5,7 @@ import "../../styles/companysignup.css";
 import businessImage from "../../img/business.jpg";
 import { useNavigate } from "react-router-dom";
 import { TermsAndConditions } from "../component/termsandconditions";
+import Swal from "sweetalert2";
 
 
 
@@ -25,6 +26,49 @@ export const CompanySignup = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        const cifPattern = /^[A-Z]\d{8}$/; 
+        if (!cifPattern.test(cif)) {
+            Swal.fire({
+                title: "Error",
+                text: "El CIF no es válido. Debe tener una letra mayúscula y 8 dígitos.",
+                icon: "error",
+                confirmButtonText: "Aceptar",
+            });
+            return;
+        }
+        const codigoPostalPattern = /^\d{5}$/;
+        if (!codigoPostalPattern.test(codigoPostal)) {
+            Swal.fire({
+                title: "Error",
+                text: "El código postal no es válido. Debe tener 5 dígitos.",
+                icon: "error",
+                confirmButtonText: "Aceptar",
+            });
+            return;
+        }
+        const telefonoPattern = /^\d{9}$/;
+        if (!telefonoPattern.test(telefono)) {
+            Swal.fire({
+                title: "Error",
+                text: "El número de teléfono no es válido. Debe tener 9 dígitos.",
+                icon: "error",
+                confirmButtonText: "Aceptar",
+            });
+            return;
+        }
+        const emailPattern = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+        if (!emailPattern.test(email)) {
+            Swal.fire({
+                title: "Error",
+                text: "El email no es válido.",
+                icon: "error",
+                confirmButtonText: "Aceptar",
+            });
+            return;
+        }
+
+
+
         actions.companySignup(
             razonSocial,
             cif,

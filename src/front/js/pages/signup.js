@@ -35,6 +35,19 @@ export const Signup = () => {
       return;
     }
 
+    // Expresión regular para validar la contraseña
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+    if (!passwordRegex.test(password)) {
+      Swal.fire({
+        title: "Lo sentimos, la contraseña no es válida",
+        text: "La contraseña debe tener al menos 8 caracteres e incluir una letra mayúscula, una letra minúscula, un dígito y un carácter especial.",
+        icon: "error",
+        confirmButtonText: "Aceptar",
+      });
+      return;
+    }
+
     try {
       const success = await actions.userSignup(name, dni, email, password);
       if (success) {

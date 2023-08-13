@@ -38,6 +38,18 @@ export const ModifyUserData = () => {
   const handleModifySubmit = async (event) => {
     event.preventDefault();
   
+    // Expresión regular para validar la nueva contraseña
+    const newPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+  
+    if (newPassword && !newPasswordRegex.test(newPassword)) {
+        Swal.fire({
+          title: "Error",
+          text: "La nueva contraseña debe tener al menos una letra mayúscula, una letra minúscula, un dígito y un carácter especial.",
+          icon: "error",
+          confirmButtonText: "Aceptar",
+        });
+        return;
+      }
     try {
       const success = await actions.updateUserData(
         store.user.id,
@@ -57,15 +69,16 @@ export const ModifyUserData = () => {
           confirmButtonText: "Aceptar",
         });
         navigate("/login");
-      } else {
-        Swal.fire({
-          title: "Error",
-          text: "La contraseña no es correcta, por favor inténtalo de nuevo",
-          icon: "error",
-          confirmButtonText: "Aceptar",
-        });
+      }  else {
+          Swal.fire({
+            title: "Error",
+            text: "La contraseña anterior no es correcta, por favor inténtalo de nuevo",
+            icon: "error",
+            confirmButtonText: "Aceptar",
+          });
+        }
       }
-    } catch (error) {
+     catch (error) {
       Swal.fire({
         title: "Error",
         text: "Error al actualizar los datos, inténtalo de nuevo",

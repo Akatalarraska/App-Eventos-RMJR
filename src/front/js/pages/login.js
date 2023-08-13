@@ -33,10 +33,12 @@ export const Login = () => {
             else {
                 throw new Error("Error al iniciar sesión, inténtalo de nuevo");
             }
-        } catch (error) {
+        } catch (error) 
+            
+        {
             Swal.fire({
-                title: 'Error',
-                text: 'Error al iniciar sesión, inténtalo de nuevo',
+                title: 'Error al iniciar sesión',
+                text: 'El email o la contraseña no son correctos, inténtalo de nuevo',
                 icon: 'error',
                 confirmButtonText: 'Aceptar'
             });
