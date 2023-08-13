@@ -70,6 +70,7 @@ export const CreateEvent = () => {
 
         if (isFree) {
             setImporte(0);
+            setFree(true);
         }
     };
 
